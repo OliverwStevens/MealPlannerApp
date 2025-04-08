@@ -7,3 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# db/seeds.rb
+
+# Create a test user (only if it doesn't exist)
+User.find_or_create_by!(email: "test@example.com") do |user|
+  user.password = "password123"
+  user.password_confirmation = "password123"
+  # Add other fields if needed (e.g., name, admin: false)
+end
+
+puts "✅ Seeded test user: test@example.com / password123"

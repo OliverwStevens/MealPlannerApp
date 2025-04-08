@@ -120,6 +120,7 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashie (5.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.1.0)
@@ -191,6 +192,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.7-x86_64-linux-musl)
       racc (~> 1.4)
+    openfoodfacts (0.6.2)
+      hashie (>= 3.4, < 6.0)
+      nokogiri (~> 1.7)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
     parallel (1.26.3)
@@ -395,6 +399,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  openfoodfacts
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)

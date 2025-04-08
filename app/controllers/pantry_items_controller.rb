@@ -1,4 +1,5 @@
 class PantryItemsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_pantry_item, only: %i[ show edit update destroy ]
 
   # GET /pantry_items or /pantry_items.json
@@ -8,6 +9,14 @@ class PantryItemsController < ApplicationController
 
   # GET /pantry_items/1 or /pantry_items/1.json
   def show
+    Rails.logger.warn("Barcode from DB: #{@pantry_item.barcode}")
+    if @pantry_item.barcode.present?
+      @product_data = OpenFoodFactsService.fetch_product(@pantry_item.barcode)
+      Rails.logger.warn(@product_data)
+    else
+      Rails.logger.warn("No barcode in database record")
+      @product_data = { error: "No barcode provided" }
+    end
   end
 
   # GET /pantry_items/new
@@ -21,6 +30,7 @@ class PantryItemsController < ApplicationController
 
   # POST /pantry_items or /pantry_items.json
   def create
+    Rails.logger.info "Params received: #{params.inspect}"
     @pantry_item = PantryItem.new(pantry_item_params)
 
     respond_to do |format|
@@ -60,11 +70,11 @@ class PantryItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pantry_item
-      @pantry_item = PantryItem.find(params.expect(:id))
+      @pantry_item = PantryItem.find(params.require(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def pantry_item_params
-      params.expect(pantry_item: [ :name, :barcode, :quantity, :user_id ])
+      params.require(:pantry_item).permit(:name, :barcode, :quantity).merge(user_id: current_user.id)
     end
 end
