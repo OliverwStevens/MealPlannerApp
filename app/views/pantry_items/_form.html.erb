@@ -31,6 +31,36 @@
     <%= form.text_field :user_id %>
   </div>
 
+  <%# app/views/pantry_items/_form.html.erb %>
+  <button id="start-scanner" type="button" class="btn btn-secondary">
+    Scan Barcode
+  </button>
+
+  <video id="scanner-video" style="display:none; width:300px;"></video>
+  <%= form.text_field :barcode, id: "barcode-result" %>
+
+  <script>
+  document.getElementById('start-scanner').addEventListener('click', async () => {
+    const codeReader = new ZXing.BrowserMultiFormatReader();
+    const videoElem = document.getElementById('scanner-video');
+    
+    try {
+      // Start camera
+      videoElem.style.display = 'block';
+      const result = await codeReader.decodeFromVideoDevice(null, videoElem, (result) => {
+        if (result) {
+          document.getElementById('barcode-result').value = result.text;
+          codeReader.reset();
+          videoElem.style.display = 'none';
+        }
+      });
+    } catch (err) {
+      alert(`Scanner error: ${err}`);
+      videoElem.style.display = 'none';
+    }
+  });
+  </script>
+
   <div>
     <%= form.submit %>
   </div>
