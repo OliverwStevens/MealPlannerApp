@@ -12,7 +12,8 @@ class PantryItemsController < ApplicationController
     Rails.logger.warn("Barcode from DB: #{@pantry_item.barcode}")
     if @pantry_item.barcode.present?
       @product_data = OpenFoodFactsService.fetch_product(@pantry_item.barcode)
-      Rails.logger.warn(@product_data)
+
+      Rails.logger.warn(@product_data[:name])
     else
       Rails.logger.warn("No barcode in database record")
       @product_data = { error: "No barcode provided" }
