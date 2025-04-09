@@ -31,7 +31,6 @@ class PantryItemsController < ApplicationController
 
   # POST /pantry_items or /pantry_items.json
   def create
-    Rails.logger.info "Params received: #{params.inspect}"
     @pantry_item = PantryItem.new(pantry_item_params)
 
     respond_to do |format|
@@ -76,6 +75,6 @@ class PantryItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pantry_item_params
-      params.require(:pantry_item).permit(:name, :barcode, :quantity).merge(user_id: current_user.id)
+      params.require(:pantry_item).permit(:name, :barcode).merge(user_id: current_user.id)
     end
 end

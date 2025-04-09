@@ -18,12 +18,7 @@
 
   <div>
     <%= form.label :barcode, style: "display: block" %>
-    <%= form.text_field :barcode %>
-  </div>
-
-  <div>
-    <%= form.label :quantity, style: "display: block" %>
-    <%= form.number_field :quantity %>
+    <%= form.text_field :barcode, id: "barcode-result" %>
   </div>
 
   <div>
@@ -37,7 +32,6 @@
   </button>
 
   <video id="scanner-video" style="display:none; width:300px;"></video>
-  <%= form.text_field :barcode, id: "barcode-result" %>
 
   <script>
   document.getElementById('start-scanner').addEventListener('click', async () => {
