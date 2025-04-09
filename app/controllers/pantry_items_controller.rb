@@ -9,15 +9,6 @@ class PantryItemsController < ApplicationController
 
   # GET /pantry_items/1 or /pantry_items/1.json
   def show
-    Rails.logger.warn("Barcode from DB: #{@pantry_item.barcode}")
-    if @pantry_item.barcode.present?
-      @product_data = OpenFoodFactsService.fetch_product(@pantry_item.barcode)
-
-      Rails.logger.warn(@product_data[:name])
-    else
-      Rails.logger.warn("No barcode in database record")
-      @product_data = { error: "No barcode provided" }
-    end
   end
 
   # GET /pantry_items/new
@@ -31,6 +22,8 @@ class PantryItemsController < ApplicationController
 
   # POST /pantry_items or /pantry_items.json
   def create
+    # extract barcode data here
+
     @pantry_item = PantryItem.new(pantry_item_params)
 
     respond_to do |format|
@@ -73,8 +66,23 @@ class PantryItemsController < ApplicationController
       @pantry_item = PantryItem.find(params.require(:id))
     end
 
-    # Only allow a list of trusted parameters through.
     def pantry_item_params
-      params.require(:pantry_item).permit(:name, :barcode).merge(user_id: current_user.id)
+      # First, permit only the allowed parameters
+      permitted_params = params.require(:pantry_item).permit(:name, :barcode, :quantity)
+
+      # Automatically set the user
+      permitted_params = permitted_params.merge(user_id: current_user.id)
+
+      # If barcode was submitted, fetch product data
+      if permitted_params[:barcode].present?
+        product_data = OpenFoodFactsService.fetch_product(permitted_params[:barcode])
+
+        # Use product name if available, otherwise keep user-submitted name
+        permitted_params[:name] = product_data[:name] if product_data[:name].present?
+
+        Rails.logger.info "Fetched product data: #{product_data.inspect}"
+      end
+
+      permitted_params
     end
 end
