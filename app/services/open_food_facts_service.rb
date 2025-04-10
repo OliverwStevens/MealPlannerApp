@@ -40,7 +40,7 @@ class OpenFoodFactsService
         name: product["product_name"].presence || "Untitled Product",
         ingredients: product["ingredients_text"].presence || "No ingredients listed",
         # nutrients: product["nutriments"] || {},
-        image_url: product["image_url"],
+        img_url: product["img_url"],
         cached_at: Time.current # Helpful for debugging
       }
     else
