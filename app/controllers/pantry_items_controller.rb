@@ -63,12 +63,12 @@ class PantryItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pantry_item
-      @pantry_item = PantryItem.find(params.require(:id))
+      @pantry_item = PantryItem.find(params.expect(:id))
     end
 
     def pantry_item_params
       # First, permit only the allowed parameters
-      permitted_params = params.require(:pantry_item).permit(:name, :barcode, :img_url)
+      permitted_params = params.expect(pantry_item: [ :name, :barcode, :img_url ])
 
       # Automatically set the user
       permitted_params = permitted_params.merge(user_id: current_user.id)
