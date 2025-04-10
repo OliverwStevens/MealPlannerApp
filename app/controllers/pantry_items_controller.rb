@@ -68,7 +68,7 @@ class PantryItemsController < ApplicationController
 
     def pantry_item_params
       # First, permit only the allowed parameters
-      permitted_params = params.require(:pantry_item).permit(:name, :barcode, :quantity)
+      permitted_params = params.require(:pantry_item).permit(:name, :barcode)
 
       # Automatically set the user
       permitted_params = permitted_params.merge(user_id: current_user.id)
