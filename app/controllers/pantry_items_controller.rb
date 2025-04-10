@@ -4,7 +4,7 @@ class PantryItemsController < ApplicationController
 
   # GET /pantry_items or /pantry_items.json
   def index
-    @pantry_items = PantryItem.all
+    @pantry_items = current_user.pantry_items
   end
 
   # GET /pantry_items/1 or /pantry_items/1.json
@@ -13,7 +13,7 @@ class PantryItemsController < ApplicationController
 
   # GET /pantry_items/new
   def new
-    @pantry_item = PantryItem.new
+    @pantry_item = current_user.pantry_items.new
   end
 
   # GET /pantry_items/1/edit
@@ -24,7 +24,7 @@ class PantryItemsController < ApplicationController
   def create
     # extract barcode data here
 
-    @pantry_item = PantryItem.new(pantry_item_params)
+    @pantry_item = current_user.pantry_items.new(pantry_item_params)
 
     respond_to do |format|
       if @pantry_item.save
@@ -63,7 +63,7 @@ class PantryItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pantry_item
-      @pantry_item = PantryItem.find(params.expect(:id))
+      @pantry_item = current_user.pantry_items.find(params[:id])
     end
 
     def pantry_item_params

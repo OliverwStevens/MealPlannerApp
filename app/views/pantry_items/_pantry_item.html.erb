@@ -9,7 +9,9 @@
     <%= pantry_item.barcode %>
   </p>
 
+  <% if pantry_item.img_url.present? %>
   <%= image_tag pantry_item.img_url %>
+  <% end %>
 
   <p>
     <strong>User:</strong>

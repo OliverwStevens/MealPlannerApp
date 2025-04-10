@@ -1,21 +1,31 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 # db/seeds.rb
 
-# Create a test user (only if it doesn't exist)
-User.find_or_create_by!(email: "test@example.com") do |user|
-  user.first_name = "John"
-  user.last_name = "Doe"
-  user.password = "password123"
-  user.password_confirmation = "password123"
-  # Add other fields if needed (e.g., name, admin: false)
+
+# Create test users with pantry items
+users = [
+  {
+    email: "test@example.com",
+    first_name: "John",
+    last_name: "Doe",
+    password: "password123"
+  },
+  {
+    email: "jane@example.com",
+    first_name: "Jane",
+    last_name: "Smith",
+    password: "password123"
+  }
+]
+
+users.each do |user_data|
+  user = User.find_or_create_by!(email: user_data[:email]) do |u|
+    u.first_name = user_data[:first_name]
+    u.last_name = user_data[:last_name]
+    u.password = user_data[:password]
+    u.password_confirmation = user_data[:password]
+  end
+
+  puts "✅ Created user: #{user.email}"
 end
 
-puts "✅ Seeded test user: test@example.com / John / Doe / password123"
+puts "🌱 Seeding complete! Created #{User.count} users."
