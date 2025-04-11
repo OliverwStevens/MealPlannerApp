@@ -31,10 +31,11 @@
     Scan Barcode
   </button>
 
-  <video id="scanner-video" style="display:none; width:300px;"></video>
+  <video id="scanner-video" style="display:block; width:300px;"></video>
 
   <script>
-  document.getElementById('start-scanner').addEventListener('click', async () => {
+
+  document.addEventListener('turbo:load', async () => {
     const codeReader = new ZXing.BrowserMultiFormatReader();
     const videoElem = document.getElementById('scanner-video');
     
@@ -46,6 +47,8 @@
           document.getElementById('barcode-result').value = result.text;
           codeReader.reset();
           videoElem.style.display = 'none';
+          const form = document.querySelector("form");
+          form.submit();
         }
       });
     } catch (err) {
