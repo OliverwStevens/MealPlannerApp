@@ -36,6 +36,19 @@
   <script>
 
   document.addEventListener('turbo:load', async () => {
+    const link = document.getElementById("custom-link");
+
+    if (link) {
+      link.addEventListener("click", (e) => {
+        console.log("Link clicked! Doing something extra...");
+        // You can do your extra action here
+
+        codeReader.reset();
+        videoElem.style.display = 'none';
+        // If you need to prevent the link from navigating:
+        // e.preventDefault();
+      });
+  }
     const codeReader = new ZXing.BrowserMultiFormatReader();
     const videoElem = document.getElementById('scanner-video');
     
@@ -52,13 +65,16 @@
         }
       });
     } catch (err) {
-      alert(`Scanner error: ${err}`);
-      videoElem.style.display = 'none';
+      console.log(err)
     }
   });
   </script>
 
   <div>
     <%= form.submit %>
+  </div>
+  <div>
+    <%= link_to "Back to pantry items", pantry_items_path, id: "custom-link" %>
+
   </div>
 <% end %>
