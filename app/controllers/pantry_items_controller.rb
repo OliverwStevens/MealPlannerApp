@@ -22,8 +22,6 @@ class PantryItemsController < ApplicationController
 
   # POST /pantry_items or /pantry_items.json
   def create
-    # extract barcode data here
-
     @pantry_item = current_user.pantry_items.new(pantry_item_params)
 
     respond_to do |format|
