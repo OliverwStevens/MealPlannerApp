@@ -1,21 +1,17 @@
 <div id="<%= dom_id pantry_item %>">
   <p>
-    <strong>Name:</strong>
     <%= pantry_item.name %>
   </p>
 
+<% if local_assigns[:show_barcode] %>
   <p>
     <strong>Barcode:</strong>
     <%= pantry_item.barcode %>
   </p>
+<% end %>
 
   <% if pantry_item.img_url.present? %>
   <%= image_tag pantry_item.img_url %>
   <% end %>
-
-  <p>
-    <strong>User:</strong>
-    <%= pantry_item.user_id %>
-  </p>
 
 </div>

@@ -14,7 +14,9 @@
 
 <div id="pantry_items">
   <% @pantry_items.each do |pantry_item| %>
-    <%= render pantry_item %>
+    <%#= render pantry_item %>
+    <%= render partial: "pantry_item", locals: { pantry_item: pantry_item, show_barcode: false } %>
+
     <p>
       <%= link_to "Show this pantry item", pantry_item %>
     </p>

@@ -17,13 +17,11 @@
   </div>
 
   <div>
-    <%= form.label :barcode, style: "display: block" %>
-    <%= form.text_field :barcode, id: "barcode-result" %>
+    <%= form.hidden_field :barcode, id: "barcode-result" %>
   </div>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+    <%= form.hidden_field :user_id %>
   </div>
 
   <%# app/views/pantry_items/_form.html.erb %>
