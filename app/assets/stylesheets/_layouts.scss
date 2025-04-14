@@ -1,12 +1,22 @@
 // 1. Base Sticky Behavior
 .sticky-header {
-    position: sticky;
-    top: 0;          // Stick to top of viewport
-    background: rgb(255, 0, 0);
-    width: 100%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); // Subtle shadow for depth
-    transition: all 0.3s ease; // Smooth state changes
+  position: sticky;
+  top: 0;
+  z-index: 100; // Ensures header stays above other content
+  width: 100%;
+  background-color: red;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+  // Add transition for smooth effects
+  transition: all 0.3s ease;
+  
+  // You can add a smaller version when scrolling
+  &.scrolled {
+    padding: 0.5rem 2rem;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   }
+}
   
   // 2. Header Layout
   .header-container {
