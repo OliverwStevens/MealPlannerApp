@@ -9,8 +9,8 @@
  * Consider organizing styles into separate files for maintainability.
  */
 @import "reset";
-@import "base";
 @import "variables";
+@import "base";
 @import "mixins";
 @import "components";
 @import "layouts";
