@@ -19,13 +19,21 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
     <%= javascript_include_tag "https://unpkg.com/@zxing/library@latest" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+    <header class="sticky-header">
+    <div class="header-container">
+      <%= link_to "Your Logo", root_path, class: "logo" %>
+      <nav>
+        <%= link_to "Home", root_path %>
+      </nav>
+    </div>
+  </header>
     <%= yield %>
   </body>
 </html>

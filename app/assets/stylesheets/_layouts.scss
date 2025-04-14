@@ -1,0 +1,44 @@
+// 1. Base Sticky Behavior
+.sticky-header {
+    position: sticky;
+    top: 0;          // Stick to top of viewport
+    background: rgb(255, 0, 0);
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); // Subtle shadow for depth
+    transition: all 0.3s ease; // Smooth state changes
+  }
+  
+  // 2. Header Layout
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; // Optional: constrain width
+    margin: 0 auto;
+    padding: 1rem 2rem;
+  }
+  
+  // 3. Logo Styles
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  // 4. Navigation Links
+  nav a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    color: #555;
+    transition: color 0.2s;
+  
+    &:hover {
+      color: #000;
+    }
+  }
+  
+  // 5. Optional: Shrink Effect on Scroll
+  .shrink {
+    padding: 0.5rem 2rem; // Smaller padding when scrolled
+  }
