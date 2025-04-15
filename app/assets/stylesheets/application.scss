@@ -8,9 +8,10 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
-@import "reset";
-@import "variables";
-@import "base";
-@import "mixins";
-@import "components";
-@import "layouts";
+// Load variables globally (so they work everywhere)
+@use "variables" as *;  // The `as *` makes variables available without namespace
+@use "reset";
+@use "base";
+@use "mixins";
+@use "components";
+@use "layouts";

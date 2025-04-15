@@ -66,5 +66,4 @@ end
 
 gem "devise", "~> 4.9"
 gem "httparty"
-gem "sass-rails"
-gem "sprockets-rails"
+gem "dartsass-rails"

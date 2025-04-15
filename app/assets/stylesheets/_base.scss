@@ -1,6 +1,7 @@
 // app/assets/stylesheets/_base.scss
+@use "variables" as *; 
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    //color: $quaternary;
-    //background: $background;
+    color: $test;
+    background: $test;
 }
