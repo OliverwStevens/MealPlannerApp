@@ -1,13 +1,5 @@
 <p style="color: green"><%= notice %></p>
 
-<% if user_signed_in? %>
-  <%= link_to current_user.name || current_user.email, edit_user_registration_path %>
-  <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path %> |
-  <%= link_to "Login", new_user_session_path %>
-<% end %>
-
 <% content_for :title, "Your Pantry items" %>
 
 <h1>Your Pantry items</h1>

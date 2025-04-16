@@ -1,17 +1,17 @@
 // 1. Base Sticky Behavior
+@use "variables" as *; 
 .sticky-header {
   position: sticky;
   top: 0;
   z-index: 100; // Ensures header stays above other content
   width: 100%;
-  background-color: red;
+  background-color: $tertiary;
   padding: 1rem 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   
   // Add transition for smooth effects
   transition: all 0.3s ease;
   
-  // You can add a smaller version when scrolling
   &.scrolled {
     padding: 0.5rem 2rem;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -19,12 +19,12 @@
 }
   
   // 2. Header Layout
+  //Change to grid
   .header-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    max-width: 1200px; // Optional: constrain width
-    margin: 0 auto;
+    justify-items: center;
+    gap: 30px;
     padding: 1rem 2rem;
   }
   

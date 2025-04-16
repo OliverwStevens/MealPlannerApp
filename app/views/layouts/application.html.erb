@@ -29,9 +29,19 @@
     <header class="sticky-header">
     <div class="header-container">
       <%= link_to "Your Logo", root_path, class: "logo" %>
-      <nav>
-        <%= link_to "Home", root_path %>
-      </nav>
+
+      <% if user_signed_in? %>
+        <%= link_to "Pantry", pantry_items_path %>
+        <%= link_to "Recipes", pantry_items_path %>
+        <%= link_to "Meals", pantry_items_path %>
+        <%= link_to "Meal Plan", pantry_items_path %>
+        <%= link_to current_user.name || current_user.email, edit_user_registration_path %>
+        <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path %> |
+        <%= link_to "Login", new_user_session_path %>
+      <% end %>
+
     </div>
   </header>
     <%= yield %>
