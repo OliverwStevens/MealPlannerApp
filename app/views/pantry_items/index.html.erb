@@ -4,14 +4,13 @@
 
 <h1>Your Pantry items</h1>
 
-<div id="pantry_items">
+<div id="pantry_items" class= "food-display">
   <% @pantry_items.each do |pantry_item| %>
-    <%#= render pantry_item %>
-    <%= render partial: "pantry_item", locals: { pantry_item: pantry_item, show_barcode: false } %>
-    <p>
-      <%= link_to "Show this pantry item", pantry_item %>
-    </p>
-    
+  <%#= render pantry_item %>
+  <%= render partial: "pantry_item", locals: { pantry_item: pantry_item, show_barcode: false } %>
+  <%#<p%>
+    <%#= link_to "Show this pantry item", pantry_item %>
+  <%#/p%>
   <% end %>
 </div>
 
