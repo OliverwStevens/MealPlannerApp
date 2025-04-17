@@ -87,4 +87,18 @@ body {
   font-weight: bold;
   text-decoration: none;
   color: #333;
+}
+
+.pantry-item {
+  width: 15rem;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background-color: red;
+  padding: 1rem;
+}
+
+.food-image {
+  width: 1fr;
 }/*# sourceMappingURL=application.css.map */

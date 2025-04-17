@@ -24,7 +24,7 @@
     <%= form.hidden_field :user_id %>
   </div>
 
-  <%# app/views/pantry_items/_form.html.erb %>
+  <%# app/views/pantry_items/_form.html.erb %> 
   <button id="start-scanner" type="button" class="btn btn-secondary">
     Scan Barcode
   </button>
@@ -33,39 +33,80 @@
 
   <script>
 
-  document.addEventListener('turbo:load', async () => {
-    const link = document.getElementById("custom-link");
+    document.addEventListener('DOMContentLoaded', initScanner);
+    document.addEventListener('turbo:load', initScanner);
 
-    if (link) {
-      link.addEventListener("click", (e) => {
-        console.log("Link clicked! Doing something extra...");
-        // You can do your extra action here
-
-        codeReader.reset();
-        videoElem.style.display = 'none';
-        // If you need to prevent the link from navigating:
-        // e.preventDefault();
-      });
-  }
-    const codeReader = new ZXing.BrowserMultiFormatReader();
-    const videoElem = document.getElementById('scanner-video');
-    
-    try {
-      // Start camera
+    function initScanner() {
+      // Check if we're on the right page (has scanner elements)
+      const videoElem = document.getElementById('scanner-video');
+      const barcodeInput = document.getElementById('barcode-result');
+      
+      if (!videoElem || !barcodeInput) return;
+      
+      console.log("Scanner elements found, initializing camera...");
+      
+      // Ensure ZXing is loaded
+      if (typeof ZXing === 'undefined') {
+        console.error("ZXing library not loaded! Please check script inclusion.");
+        return;
+      }
+      
+      // Initialize scanner
+      const codeReader = new ZXing.BrowserMultiFormatReader();
+      
+      // Show video element
       videoElem.style.display = 'block';
-      const result = await codeReader.decodeFromVideoDevice(null, videoElem, (result) => {
+      
+      // Start camera immediately
+      codeReader.decodeFromVideoDevice(null, videoElem, (result) => {
         if (result) {
-          document.getElementById('barcode-result').value = result.text;
+          console.log("Barcode detected:", result.text);
+          barcodeInput.value = result.text;
           codeReader.reset();
           videoElem.style.display = 'none';
           const form = document.querySelector("form");
           form.submit();
         }
+      }).catch(err => {
+        console.error("Camera error:", err);
       });
-    } catch (err) {
-      console.log(err)
+      
+      // Set up cleanup for when leaving page
+      const backLink = document.getElementById("custom-link");
+      if (backLink) {
+        backLink.addEventListener("click", () => {
+          console.log("Back link clicked, stopping camera");
+          codeReader.reset();
+          videoElem.style.display = 'none';
+        });
+      }
+      
+      // Manual scanner button as fallback
+      const startScannerButton = document.getElementById('start-scanner');
+      if (startScannerButton) {
+        startScannerButton.addEventListener('click', () => {
+          console.log("Start scanner button clicked");
+          // If camera is not visible, show it
+          if (videoElem.style.display !== 'block') {
+            videoElem.style.display = 'block';
+            
+            // Restart camera if needed
+            codeReader.decodeFromVideoDevice(null, videoElem, (result) => {
+              if (result) {
+                console.log("Barcode detected:", result.text);
+                barcodeInput.value = result.text;
+                codeReader.reset();
+                videoElem.style.display = 'none';
+                const form = document.querySelector("form");
+                form.submit();
+              }
+            }).catch(err => {
+              console.error("Camera restart error:", err);
+            });
+          }
+        });
+      }
     }
-  });
   </script>
 
   <div>
