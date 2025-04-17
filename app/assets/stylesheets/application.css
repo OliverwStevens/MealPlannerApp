@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
  * This is a manifest file that'll be compiled into application.css.
  *
@@ -59,9 +60,18 @@ body {
   background: #F5F1ED;
 }
 
+.food-name {
+  color: #252323;
+  text-align: center;
+  font-size: larger;
+  width: 100%;
+}
+
 .food-display {
   display: grid;
-  grid-template-columns: repeat(4, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+  align-items: stretch; /* ← Key property: forces equal height */
 }
 
 .sticky-header {
@@ -96,13 +106,12 @@ body {
 
 .pantry-item {
   width: 15rem;
-  height: -moz-fit-content;
-  height: fit-content;
+  grid-template-rows: 1fr minmax(auto, max-content);
   display: grid;
-  grid-template-rows: auto 1fr;
   background-color: red;
-  padding: 3rem;
-  border: 1px solid #e1e1e1;
+  align-items: start;
+  padding: 1rem;
+  border: 2px solid #252323;
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s;
@@ -113,7 +122,7 @@ body {
 
 .food-image-container {
   aspect-ratio: 1/1;
-  background: #f5f5f5;
+  background: blue;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,5 +133,4 @@ body {
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
-  padding: 10px;
 }/*# sourceMappingURL=application.css.map */

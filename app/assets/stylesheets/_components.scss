@@ -1,0 +1,7 @@
+@use "variables" as *; 
+.food-name {
+    color: $quaternary;
+    text-align: center;
+    font-size: larger;
+    width: 100%;
+}

@@ -2,8 +2,7 @@
 
 <% content_for :title, "Your Pantry items" %>
 
-<h1>Your Pantry items</h1>
-
+<h1>You have <%= @pantry_items.count %> items in your pantry</h1>
 <div id="pantry_items" class= "food-display">
   <% @pantry_items.each do |pantry_item| %>
   <%#= render pantry_item %>

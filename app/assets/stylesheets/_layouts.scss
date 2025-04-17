@@ -2,7 +2,9 @@
 @use "variables" as *; 
 .food-display {
   display: grid;
-  grid-template-columns: repeat(4, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+  align-items: stretch; /* ← Key property: forces equal height */
 }
 .sticky-header {
   position: sticky;
@@ -42,14 +44,13 @@
 
   .pantry-item {
     width: 15rem;
-    height: fit-content;
+    grid-template-rows: 1fr minmax(auto, max-content);
 
     display: grid;
-    grid-template-rows: auto 1fr;
     background-color: red;
-    padding: 3rem;
-
-    border: 1px solid #e1e1e1;
+    align-items: start;
+    padding: 1rem;
+    border: 2px solid $quaternary;
     border-radius: 8px;
     overflow: hidden; // Keeps image corners rounded
     transition: transform 0.2s; // Hover effect
@@ -60,7 +61,7 @@
 
   .food-image-container {
     aspect-ratio: 1 / 1; // Force square container (or use 4/3)
-    background: #f5f5f5; // Fallback if image missing
+    background: blue; // Fallback if image missing
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,5 +72,4 @@
     height: 100%;
     object-fit: contain; // Fits entire image inside container (no cropping)
     // OR use `object-fit: cover` to fill container (may crop edges)
-    padding: 10px; // Inner spacing
   }

@@ -1,7 +1,4 @@
 <div id="<%= dom_id pantry_item %>" class="pantry-item">
-  <p>
-    <%= pantry_item.name %>
-  </p>
 
   <% if pantry_item.img_url.present? %>
   <%#= image_tag pantry_item.img_url, class: "food-image" %>
@@ -13,6 +10,10 @@
   <% end %>
 
   </div>
+
+  <p class="food-name">
+    <%= pantry_item.name %>
+  </p>
 
   <% if local_assigns[:show_barcode] %>
   <p>
