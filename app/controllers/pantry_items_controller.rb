@@ -24,6 +24,7 @@ class PantryItemsController < ApplicationController
   def create
     @pantry_item = current_user.pantry_items.new(pantry_item_params)
 
+    Rails.logger.warn("Hello")
     respond_to do |format|
       if @pantry_item.save
         format.html { redirect_to new_pantry_item_url, notice: "Pantry item was successfully created." }

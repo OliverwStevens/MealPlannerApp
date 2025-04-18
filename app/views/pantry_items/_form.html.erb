@@ -12,8 +12,7 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.hidden_field :name %>
   </div>
 
   <div>
@@ -21,20 +20,14 @@
   </div>
 
   <div>
-    <%= form.hidden_field :user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
-
-  <%# app/views/pantry_items/_form.html.erb %> 
-  <button id="start-scanner" type="button" class="btn btn-secondary">
-    Scan Barcode
-  </button>
 
   <video id="scanner-video" style="display:block; width:300px;"></video>
 
   <script>
 
     document.addEventListener('DOMContentLoaded', initScanner);
-    document.addEventListener('turbo:load', initScanner);
 
     function initScanner() {
       // Check if we're on the right page (has scanner elements)
@@ -64,8 +57,12 @@
           barcodeInput.value = result.text;
           codeReader.reset();
           videoElem.style.display = 'none';
-          const form = document.querySelector("form");
-          form.submit();
+          
+          // Find and click the submit button instead of submitting directly
+          const submitButton = document.querySelector("input[type='submit']");
+          if (submitButton) {
+            submitButton.click();
+          }
         }
       }).catch(err => {
         console.error("Camera error:", err);
@@ -82,35 +79,13 @@
       }
       
       // Manual scanner button as fallback
-      const startScannerButton = document.getElementById('start-scanner');
-      if (startScannerButton) {
-        startScannerButton.addEventListener('click', () => {
-          console.log("Start scanner button clicked");
-          // If camera is not visible, show it
-          if (videoElem.style.display !== 'block') {
-            videoElem.style.display = 'block';
-            
-            // Restart camera if needed
-            codeReader.decodeFromVideoDevice(null, videoElem, (result) => {
-              if (result) {
-                console.log("Barcode detected:", result.text);
-                barcodeInput.value = result.text;
-                codeReader.reset();
-                videoElem.style.display = 'none';
-                const form = document.querySelector("form");
-                form.submit();
-              }
-            }).catch(err => {
-              console.error("Camera restart error:", err);
-            });
-          }
-        });
-      }
+      
+      
     }
   </script>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "hidden-submit" %>
   </div>
   <div>
     <%= link_to "Back to pantry items", pantry_items_path, id: "custom-link" %>

@@ -41,3 +41,11 @@
     height: 2rem;
     filter: brightness(0) invert(1); /* Makes white icon */
   }
+
+  .hidden-submit {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
