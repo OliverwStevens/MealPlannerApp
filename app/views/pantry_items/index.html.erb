@@ -2,6 +2,12 @@
 
 <% content_for :title, "Your Pantry items" %>
 
+<div class="floating-button-container">
+  <%= link_to new_pantry_item_path, class: "floating-action-button" do %>
+    <%= image_tag "cart-plus.svg", alt: "Add pantry item", class: "floating-button-icon" %>
+  <% end %>
+
+</div>
 <h1>You have <%= @pantry_items.count %> items in your pantry</h1>
 <div id="pantry_items" class="food-display">
   <% @pantry_items.each do |pantry_item| %>
@@ -10,5 +16,3 @@
     <% end %>
   <% end %>
 </div>
-
-<%= link_to "New pantry item", new_pantry_item_path %>
