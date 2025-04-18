@@ -1,18 +1,12 @@
 <div id="<%= dom_id pantry_item %>" class="pantry-item">
-  <% if local_assigns[:food_card] && pantry_item.img_url.present? %>
+  <% if pantry_item.img_url.present? %>
     <div class="food-image-container">
       <%= image_tag pantry_item.img_url,
                    class: "food-card",
                    loading: "lazy",
                    alt: pantry_item.name %>
     </div>
-  <% elsif pantry_item.img_url.present? %>
-    <%= image_tag pantry_item.img_url,
-                 class: "food-image",
-                 loading: "lazy",
-                 alt: pantry_item.name %>
   <% end %>
-
   <p class="food-name">
     <%= pantry_item.name %>
   </p>
