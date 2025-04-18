@@ -6,7 +6,7 @@
 <div id="pantry_items" class="food-display">
   <% @pantry_items.each do |pantry_item| %>
     <%= link_to pantry_item_path(pantry_item), class: "food-name" do %>
-      <%= render partial: "pantry_item", locals: { pantry_item: pantry_item, show_barcode: false } %>
+      <%= render partial: "pantry_item", locals: { pantry_item: pantry_item, show_barcode: false, food_card: true } %>
     <% end %>
   <% end %>
 </div>
