@@ -1,32 +1,26 @@
 <div id="<%= dom_id pantry_item %>" class="pantry-item">
-
-  <% if local_assigns[:food_card] %>
-    <% if pantry_item.img_url.present? %>
-    <%#= image_tag pantry_item.img_url, class: "food-image" %>
+  <% if local_assigns[:food_card] && pantry_item.img_url.present? %>
     <div class="food-image-container">
-      <%= image_tag pantry_item.img_url, 
-              class: "food-card", 
-              loading: "lazy", 
-              alt: pantry_item.name %>
-    <% end %>
-
+      <%= image_tag pantry_item.img_url,
+                   class: "food-card",
+                   loading: "lazy",
+                   alt: pantry_item.name %>
     </div>
- <% else %>
-  <%= image_tag pantry_item.img_url, 
-                class: "food-image", 
-                loading: "lazy", 
-                alt: pantry_item.name %>
- <% end %>
-  <p class="food-name">
-    <%= pantry_item.name %>
-    <%#= link_to pantry_item_path, pantry_item.name %>
-  </p>
-
-  <% if local_assigns[:show_barcode] %>
-  <p>
-    <strong>Barcode:</strong>
-    <%= pantry_item.barcode %>
-  </p>
+  <% elsif pantry_item.img_url.present? %>
+    <%= image_tag pantry_item.img_url,
+                 class: "food-image",
+                 loading: "lazy",
+                 alt: pantry_item.name %>
   <% end %>
 
+  <p class="food-name">
+    <%= pantry_item.name %>
+  </p>
+
+  <% if local_assigns[:show_barcode]%>
+    <p class="barcode">
+      <strong>Barcode:</strong>
+      <%= pantry_item.barcode %>
+    </p>
+  <% end %>
 </div>
