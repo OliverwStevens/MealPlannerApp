@@ -142,16 +142,16 @@ body {
 
 .food-display {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
   grid-auto-rows: 1fr; /* This makes rows equal height */
-  gap: 1rem; /* Adjust as needed */
+  gap: 2rem; /* Adjust as needed */
 }
 
 .pantry-item {
   display: grid;
   grid-template-rows: auto 1fr; /* First row auto, second takes remaining space */
   height: 100%; /* Important for equal height */
-  background-color: red;
+  background-color: #DAD2BC;
   border: 2px solid #252323;
   border-radius: 8px;
   overflow: hidden;
@@ -171,7 +171,7 @@ body {
 
 .food-image-container {
   aspect-ratio: 1/1;
-  background: blue;
+  background: #A99985;
   display: flex;
   align-items: center;
   justify-content: center;
