@@ -14,10 +14,8 @@
   
 
   @media (max-width: 600px) {
-    .floating-button-container {
-        right: max(1rem, env(safe-area-inset-right)); /* Accounts for notches */
-        bottom: max(1rem, env(safe-area-inset-bottom));
-    }
+    right: 2rem;
+    bottom: 2.5rem;
 }
 }
   

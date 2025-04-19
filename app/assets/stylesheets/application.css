@@ -74,9 +74,9 @@ body {
   bottom: 1.5rem;
 }
 @media (max-width: 600px) {
-  .floating-button-container .floating-button-container {
-    right: max(1rem, env(safe-area-inset-right)); /* Accounts for notches */
-    bottom: max(1rem, env(safe-area-inset-bottom));
+  .floating-button-container {
+    right: 2rem;
+    bottom: 2.5rem;
   }
 }
 
