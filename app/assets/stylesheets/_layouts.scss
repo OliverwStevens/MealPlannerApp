@@ -53,14 +53,6 @@
       grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); // Smaller columns
       gap: 1rem; // Smaller gap between items
       padding: 1rem;
-      margin-top: 15rem;
-    }
-  
-    // Optional: Even smaller for very small phones
-    @media (max-width: 400px) {
-      grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
-      gap: 0.75rem;
-      padding: .75rem;
     }
   }
   
@@ -99,4 +91,12 @@
     height: 100%;
     object-fit: contain; // Fits entire image inside container (no cropping)
     // OR use `object-fit: cover` to fill container (may crop edges)
+  }
+
+  .mobile-margin {
+    margin-top: 8rem; // Default (mobile)
+    
+    @media (min-width: 601px) {
+      margin-top: 0; // Reset on larger screens
+    }
   }

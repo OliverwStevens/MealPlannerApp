@@ -11,13 +11,9 @@
   position: fixed;
   right: 1.5rem;
   bottom: 1.5rem;
-  /* Add these safeguards: */
-  left: auto !important;  /* Prevent left positioning conflicts */
-  top: auto !important;   /* Prevent top positioning conflicts */
+  
 
-  transform: none !important;
-
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     .floating-button-container {
         right: max(1rem, env(safe-area-inset-right)); /* Accounts for notches */
         bottom: max(1rem, env(safe-area-inset-bottom));
@@ -47,7 +43,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       width: 5rem;
       height: 5rem;
       /* More prominent shadow on mobile */

@@ -72,12 +72,8 @@ body {
   position: fixed;
   right: 1.5rem;
   bottom: 1.5rem;
-  /* Add these safeguards: */
-  left: auto !important; /* Prevent left positioning conflicts */
-  top: auto !important; /* Prevent top positioning conflicts */
-  transform: none !important;
 }
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .floating-button-container .floating-button-container {
     right: max(1rem, env(safe-area-inset-right)); /* Accounts for notches */
     bottom: max(1rem, env(safe-area-inset-bottom));
@@ -103,7 +99,7 @@ body {
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .floating-action-button {
     width: 5rem;
     height: 5rem;
@@ -174,14 +170,6 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
     gap: 1rem;
     padding: 1rem;
-    margin-top: 15rem;
-  }
-}
-@media (max-width: 400px) {
-  .food-display {
-    grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
-    gap: 0.75rem;
-    padding: 0.75rem;
   }
 }
 
@@ -221,4 +209,13 @@ body {
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.mobile-margin {
+  margin-top: 8rem;
+}
+@media (min-width: 601px) {
+  .mobile-margin {
+    margin-top: 0;
+  }
 }/*# sourceMappingURL=application.css.map */
