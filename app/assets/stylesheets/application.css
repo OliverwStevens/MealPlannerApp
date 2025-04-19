@@ -129,8 +129,9 @@ body {
   z-index: 100;
   width: 100%;
   background-color: #70798C;
-  padding: 1rem 2rem;
+  padding: 1rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  justify-items: center;
   transition: all 0.3s ease;
 }
 .sticky-header.scrolled {
@@ -139,16 +140,26 @@ body {
 }
 @media (max-width: 768px) {
   .sticky-header {
+    padding: 0;
     position: fixed;
   }
 }
 
 .header-container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-items: center;
-  gap: 30px;
-  padding: 1rem 2rem;
+  width: 100%;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+  row-gap: 20px;
+  padding: 1rem;
+  justify-content: center; /* Center wrapped items */
+}
+@media (min-width: 600px) {
+  .header-container {
+    justify-content: left;
+  }
 }
 
 .logo {
@@ -212,7 +223,7 @@ body {
 }
 
 .mobile-margin {
-  margin-top: 8rem;
+  margin-top: 10rem;
 }
 @media (min-width: 601px) {
   .mobile-margin {

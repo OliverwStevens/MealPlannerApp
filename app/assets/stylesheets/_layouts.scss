@@ -7,9 +7,9 @@
   z-index: 100; // Ensures header stays above other content
   width: 100%;
   background-color: $tertiary;
-  padding: 1rem 2rem;
+  padding: 1rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  
+  justify-items: center;
   // Add transition for smooth effects
   transition: all 0.3s ease;
   
@@ -19,7 +19,8 @@
   }
 
   @media (max-width: 768px) {
-    position: fixed;  // iOS Safari
+    padding: 0;
+    position: fixed;
   }
 }
   
@@ -27,10 +28,19 @@
   //Change to grid
   .header-container {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-items: center;
-    gap: 30px;
-    padding: 1rem 2rem;
+    width: 100%;
+    column-gap: 30px;
+    row-gap: 20px;
+
+    padding: 1rem;
+
+    justify-content: center; /* Center wrapped items */
+
+    @media (min-width: 600px) {
+      justify-content: left;
+    }
   }
   
   // 3. Logo Styles
@@ -94,7 +104,7 @@
   }
 
   .mobile-margin {
-    margin-top: 8rem; // Default (mobile)
+    margin-top: 10rem; // Default (mobile)
     
     @media (min-width: 601px) {
       margin-top: 0; // Reset on larger screens
