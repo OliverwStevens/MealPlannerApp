@@ -23,7 +23,8 @@
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <video id="scanner-video" style="display:block; width:300px;"></video>
+  <img src="camera-placeholder">
+  <video id="scanner-video"></video>
 
   <script>
 
@@ -76,19 +77,17 @@
           codeReader.reset();
           videoElem.style.display = 'none';
         });
-      }
-      
-      // Manual scanner button as fallback
-      
-      
+      }      
     }
   </script>
 
   <div>
     <%= form.submit class: "hidden-submit" %>
   </div>
-  <div>
-    <%= link_to "Back to pantry items", pantry_items_path, id: "custom-link" %>
+  <div class="floating-button-container">
+    <%= link_to pantry_items_path, id: "custom-link", class: "floating-action-button" do %>
+        <%= image_tag "arrow-left.svg", alt: "Back to pantry items", class: "floating-button-icon" %>
+    <% end %>
 
   </div>
 <% end %>

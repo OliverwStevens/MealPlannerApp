@@ -128,10 +128,14 @@ body {
   pointer-events: none;
 }
 
+#custom-link {
+  background-color: red;
+}
+
 .sticky-header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 99;
   width: 100%;
   background-color: #70798C;
   padding: 1rem;
@@ -241,4 +245,16 @@ body {
   .mobile-margin {
     margin-top: 0;
   }
+}
+
+#scanner-video {
+  display: block;
+  position: fixed; /* or 'absolute' if within a positioned container */
+  top: 0;
+  left: 0;
+  width: 100vw; /* viewport width */
+  height: 100vh; /* viewport height */
+  -o-object-fit: cover;
+     object-fit: cover; /* ensures video covers entire area without distortion */
+  z-index: 100;
 }/*# sourceMappingURL=application.css.map */

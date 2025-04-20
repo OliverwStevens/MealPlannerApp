@@ -4,7 +4,7 @@
 .sticky-header {
   position: sticky;
   top: 0;
-  z-index: 100; // Ensures header stays above other content
+  z-index: 99; // Ensures header stays above other content
   width: 100%;
   background-color: $tertiary;
   padding: 1rem;
@@ -114,3 +114,14 @@
       margin-top: 0; // Reset on larger screens
     }
   }
+
+  #scanner-video {
+    display: block;
+    position: fixed; /* or 'absolute' if within a positioned container */
+    top: 0;
+    left: 0;
+    width: 100vw; /* viewport width */
+    height: 100vh; /* viewport height */
+    object-fit: cover; /* ensures video covers entire area without distortion */
+    z-index: 100;
+}
