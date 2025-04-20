@@ -23,7 +23,8 @@
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <img src="camera-placeholder">
+  <%= image_tag "camera-icon.svg", alt: "Camera icon", class: "camera-icon"%>
+  
   <video id="scanner-video"></video>
 
   <script>
