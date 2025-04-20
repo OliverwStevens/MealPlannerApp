@@ -73,13 +73,17 @@
     background-color: $primary;
     border: 2px solid $quaternary;
     border-radius: 8px;
-    overflow: hidden;
     cursor: pointer;
     transition: transform 0.2s;
-    
+    place-items: center;
     &:hover {
       transform: translateY(-10px);
       filter: brightness(90%);
+    }
+
+    @media (max-width: 600px) {
+      width: max(fit-content); // Reset on larger screens
+      width: min(10rem);
     }
   }
 

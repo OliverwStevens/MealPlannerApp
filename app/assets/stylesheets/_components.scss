@@ -1,17 +1,21 @@
 @use "variables" as *; 
-.food-name {
+.centered-text {
     color: $quaternary;
     text-align: center;
     font-size: larger;
     width: 100%;
     text-decoration: none;
 }
+
+.padded {
+  padding: .5rem;
+}
 /* Container for fixed positioning */
 .floating-button-container {
   position: fixed;
   right: 1.5rem;
   bottom: 1.5rem;
-  
+  z-index: 1000;
 
   @media (max-width: 600px) {
     right: 2rem;
