@@ -140,6 +140,37 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+  max-width: 15rem;
+  border: 1px solid #F5F1ED;
+  border-radius: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  width: 2rem;
+  height: 2rem;
+}
+
+.search-button:hover {
+  color: white;
+}
+
 .sticky-header {
   position: sticky;
   top: 0;

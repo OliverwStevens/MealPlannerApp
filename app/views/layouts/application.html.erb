@@ -35,6 +35,13 @@
         <%= link_to "Recipes", pantry_items_path %>
         <%= link_to "Meals", pantry_items_path %>
         <%= link_to "Meal Plan", pantry_items_path %>
+        <div class="search-container">
+          <button class="search-button">
+             <%= image_tag "magnify.svg", alt: "Search" %>
+          </button>
+          <input type="text" class="search-bar" placeholder="Search...">
+
+        </div>
         <%= link_to current_user.name || current_user.email, edit_user_registration_path %>
         <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
       <% else %>
