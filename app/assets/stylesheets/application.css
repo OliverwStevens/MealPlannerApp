@@ -63,7 +63,6 @@ body {
   color: #252323;
   text-align: center;
   font-size: larger;
-  width: 100%;
   text-decoration: none;
 }
 
@@ -158,8 +157,9 @@ body {
   background: transparent;
 }
 
-.search-button {
+.header-button {
   background: none;
+  fill: white;
   border: none;
   cursor: pointer;
   padding: 5px;
@@ -167,8 +167,14 @@ body {
   height: 2rem;
 }
 
-.search-button:hover {
+.header-button:hover {
   color: white;
+}
+
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sticky-header {

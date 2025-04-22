@@ -31,13 +31,29 @@
       <%= link_to "Your Logo", root_path, class: "logo" %>
 
       <% if user_signed_in? %>
-        <%= link_to "Pantry", pantry_items_path %>
-        <%= link_to "Recipes", pantry_items_path %>
-        <%= link_to "Meals", pantry_items_path %>
-        <%= link_to "Meal Plan", pantry_items_path %>
-        <%= link_to "Shopping List", pantry_items_path %>
+        <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
+          <%= image_tag("pantry.svg", alt: "Pantry", class: "header-button") %>
+          <span>Pantry</span>
+        <% end %>
+        <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
+          <%= image_tag("recipes.svg", alt: "Recipes", class: "header-button") %>
+          <span>Recipes</span>
+        <% end %>
+        <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
+          <%= image_tag("meals.svg", alt: "Meals", class: "header-button") %>
+          <span>Meals</span>
+        <% end %>
+        <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
+          <%= image_tag("meal_plan.svg", alt: "Meal plan", class: "header-button") %>
+          <span>Meal Plan</span>
+        <% end %>
+        <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
+          <%= image_tag("shopping_list.svg", alt: "Shopping list", class: "header-button") %>
+          <span>Shopping List</span>
+        <% end %>
+   
         <div class="search-container">
-          <button class="search-button">
+          <button class="header-button">
              <%= image_tag "magnify.svg", alt: "Search" %>
           </button>
           <input type="text" class="search-bar" placeholder="Search...">
