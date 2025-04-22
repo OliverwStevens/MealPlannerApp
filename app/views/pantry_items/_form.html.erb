@@ -27,59 +27,6 @@
   
   <video id="scanner-video"></video>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', initScanner);
-
-    function initScanner() {
-      // Check if we're on the right page (has scanner elements)
-      const videoElem = document.getElementById('scanner-video');
-      const barcodeInput = document.getElementById('barcode-result');
-      
-      if (!videoElem || !barcodeInput) return;
-      
-      console.log("Scanner elements found, initializing camera...");
-      
-      // Ensure ZXing is loaded
-      if (typeof ZXing === 'undefined') {
-        console.error("ZXing library not loaded! Please check script inclusion.");
-        return;
-      }
-      
-      // Initialize scanner
-      const codeReader = new ZXing.BrowserMultiFormatReader();
-      // Show video element
-      videoElem.style.display = 'block';
-      
-      // Start camera immediately
-      codeReader.decodeFromVideoDevice(null, videoElem, (result) => {
-        if (result) {
-          console.log("Barcode detected:", result.text);
-          barcodeInput.value = result.text;
-          codeReader.reset();
-          videoElem.style.display = 'none';
-          
-          // Find and click the submit button instead of submitting directly
-          const submitButton = document.querySelector("input[type='submit']");
-          if (submitButton) {
-            submitButton.click();
-          }
-        }
-      }).catch(err => {
-        console.error("Camera error:", err);
-      });
-      
-      // Set up cleanup for when leaving page
-      const backLink = document.getElementById("custom-link");
-      if (backLink) {
-        backLink.addEventListener("click", () => {
-          console.log("Back link clicked, stopping camera");
-          codeReader.reset();
-          videoElem.style.display = 'none';
-        });
-      }      
-    }
-  </script>
-
   <div>
     <%= form.submit class: "hidden-submit" %>
   </div>
@@ -87,6 +34,8 @@
     <%= link_to pantry_items_path, id: "custom-link", class: "floating-action-button" do %>
         <%= image_tag "arrow-left.svg", alt: "Back to pantry items", class: "floating-button-icon" %>
     <% end %>
-
   </div>
 <% end %>
+
+<%# Import the JavaScript file %>
+<%= javascript_import_module_tag "barcode_scanner" %>
