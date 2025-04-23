@@ -59,8 +59,15 @@
           <input type="text" class="search-bar" placeholder="Search...">
 
         </div>
-        <%= link_to current_user.name || current_user.email, edit_user_registration_path %>
-        <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
+        <%= link_to edit_user_registration_path, class: "flex-vertical centered-text" do %>
+          <%= image_tag("account-edit.svg", alt: "Account", class: "header-button") %>
+          <span><%= current_user.name %></span>
+        <% end %>
+        <%= button_to destroy_user_session_path, method: :delete, class: "flex-vertical centered-text no-background" do %>
+          <%= image_tag("logout.svg", alt: "Log out", class: "header-button") %>
+          <span class="clickable">Log Out</span>
+        <% end %>
+
       <% else %>
         <%= link_to "Sign up", new_user_registration_path %> |
         <%= link_to "Login", new_user_session_path %>
