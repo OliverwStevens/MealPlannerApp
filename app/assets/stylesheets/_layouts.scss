@@ -1,16 +1,18 @@
-// 1. Base Sticky Behavior
-@use "variables" as *; 
+@use "variables" as *;
 @use "mixins" as *;
+
+/* ======================
+   Layout & Structure
+   ====================== */
 .sticky-header {
   position: sticky;
   top: 0;
-  z-index: 99; // Ensures header stays above other content
+  z-index: 99;
   width: 100%;
   background-color: $tertiary;
   padding: 1rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   justify-items: center;
-  // Add transition for smooth effects
   transition: all 0.3s ease;
   
   &.scrolled {
@@ -23,105 +25,34 @@
     position: fixed;
   }
 }
-  
-  // 2. Header Layout
-  //Change to grid
-  .header-container {
-    @include display;
-    /* Center wrapped items */
 
-    @media (min-width: 769px) {
-      justify-content: left;
-    }
-  }
-  
-  // 3. Logo Styles
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
+.header-container {
+  @include display;
+
+  @media (min-width: 769px) {
+    justify-content: left;
   }
 
-  .food-display {
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-    grid-auto-rows: 1fr;
-    gap: 2rem;
-  
-    // Media query for phones (typically 600px or less)
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); // Smaller columns
-      gap: 1rem; // Smaller gap between items
-      padding: 1rem;
-    }
+  @media (max-width: 768px) {
+    gap: 5rem;
   }
-  
-  .pantry-item {
-    display: grid;
-    grid-template-rows: auto 1fr; /* First row auto, second takes remaining space */
-    height: 100%; /* Important for equal height */
-    background-color: $primary;
-    border: 2px solid $quaternary;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    place-items: center;
-    &:hover {
-      transform: translateY(-10px);
-      filter: brightness(90%);
-    }
-
-    @media (max-width: 768px) {
-      width: max(fit-content); // Reset on larger screens
-      width: min(10rem);
-    }
-  }
-
-  .food-container {
-    width: 25%;
-    height: fit-content;
-    margin: 0 auto;
-  }
-  .food-image-container {
-    aspect-ratio: 1 / 1; // Force square container (or use 4/3)
-    background: $secondary; // Fallback if image missing
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .food-card {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; // Fits entire image inside container (no cropping)
-    // OR use `object-fit: cover` to fill container (may crop edges)
-  }
-
-  .mobile-margin {
-    margin-top: 10rem; // Default (mobile)
-    
-    @media (min-width: 601px) {
-      margin-top: 0; // Reset on larger screens
-    }
-  }
-
-  #scanner-video {
-    display: block;
-    position: fixed; /* or 'absolute' if within a positioned container */
-    top: 0;
-    left: 0;
-    width: 100vw; /* viewport width */
-    height: 100vh; /* viewport height */
-    object-fit: cover; /* ensures video covers entire area without distortion */
-    z-index: 100;
 }
+
+.mobile-margin {
+  margin-top: 10rem;
+  
+  @media (min-width: 601px) {
+    margin-top: 0;
+  }
+}
+
+/* ======================
+   Navigation Components
+   ====================== */
 .desktop-nav {
-  @include display
+  @include display;
 }
 
-/* Mobile menu button - hidden by default on desktop */
 .mobile-menu-button {
   display: none;
   background: none;
@@ -130,7 +61,6 @@
   padding: 10px;
 }
 
-/* Mobile nav - hidden by default */
 .mobile-nav {
   display: none;
   position: absolute;
@@ -143,17 +73,10 @@
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
   flex-direction: column;
   gap: 15px;
-}
 
-/* Show mobile menu when active */
-.mobile-nav.active {
-  display: flex;
-}
-
-/* Mobile search adjustments */
-.mobile-search {
-  width: 100%;
-  margin: auto;
+  &.active {
+    display: flex;
+  }
 }
 
 .mobile-nav-link {
@@ -161,7 +84,87 @@
   display: block;
 }
 
-/* Responsive styles */
+.mobile-search {
+  width: 100%;
+  margin: auto;
+}
+
+/* ======================
+   Food Display Components
+   ====================== */
+.food-display {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 2rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+.pantry-item {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  background-color: $primary;
+  border: 2px solid $quaternary;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  place-items: center;
+  
+  &:hover {
+    transform: translateY(-10px);
+    filter: brightness(90%);
+  }
+
+  @media (max-width: 768px) {
+    width: max(fit-content);
+    width: min(10rem);
+  }
+}
+
+.food-container {
+  width: 25%;
+  height: fit-content;
+  margin: 0 auto;
+}
+
+.food-image-container {
+  aspect-ratio: 1 / 1;
+  background: $secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.food-card {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ======================
+   Scanner Components
+   ====================== */
+#scanner-video {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 100;
+}
+
+/* ======================
+   Responsive Overrides
+   ====================== */
 @media (max-width: 768px) {
   .mobile-menu-button {
     display: block;
@@ -169,10 +172,6 @@
   
   .desktop-nav {
     display: none;
-  }
-  
-  .header-container {
-    gap: 5rem;
   }
 
   .flex-vertical {

@@ -1,15 +1,32 @@
-@use "variables" as *; 
+@use "variables" as *;
+
+/* ======================
+   Text & Typography
+   ====================== */
 .centered-text {
-    color: $quaternary;
-    text-align: center;
-    font-size: larger;
-    text-decoration: none;
+  color: $quaternary;
+  text-align: center;
+  font-size: larger;
+  text-decoration: none;
 }
 
+/* ======================
+   Layout & Spacing
+   ====================== */
 .padded {
   padding: .5rem;
 }
-/* Container for fixed positioning */
+
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ======================
+   Buttons & Interactive Elements
+   ====================== */
+// Floating Button System
 .floating-button-container {
   position: fixed;
   right: 1.5rem;
@@ -19,66 +36,67 @@
   @media (max-width: 600px) {
     right: 2rem;
     bottom: 2.5rem;
-}
-}
-  
-  /* Your existing button with modifications */
-  .floating-action-button {
-    width: 4rem;          /* Recommended touch target size */
-    height: 4rem;
-    border-radius: 50%;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    background: $btn-normal;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-
-    
-  
-    &:hover {
-      background: $btn-hover;
-      transform: scale(1.1);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 600px) {
-      width: 5rem;
-      height: 5rem;
-      /* More prominent shadow on mobile */
-      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
   }
-  }
-  
-  /* Icon sizing */
-  .floating-button-icon {
-    width: 2rem;
-    height: 2rem;
-    filter: brightness(0) invert(1); /* Makes white icon */
-  }
-
-  .hidden-submit {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-    pointer-events: none;
-  }
-
-  #custom-link {
-    background-color: red;
-  }
-
-  .camera-icon {
-    width: 30%;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
+.floating-action-button {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: $btn-normal;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: $btn-hover;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  @media (max-width: 600px) {
+    width: 5rem;
+    height: 5rem;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  }
+}
+
+.floating-button-icon {
+  width: 2rem;
+  height: 2rem;
+  filter: brightness(0) invert(1); // Makes white icon
+}
+
+// Header Buttons
+.header-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  width: 2rem;
+  height: 2rem;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.no-background {
+  background: none;
+  border: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/* ======================
+   Form Elements
+   ====================== */
 .search-container {
   display: flex;
   align-items: center;
@@ -97,28 +115,25 @@
   background: transparent;
 }
 
-.header-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  width: 2rem;
-  height: 2rem;
+.hidden-submit {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
 }
 
-.header-button:hover {
-  color: white;
-}
-.flex-vertical {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.no-background {
-  background: none;
-  border: none;
+/* ======================
+   Special Components
+   ====================== */
+#custom-link {
+  background-color: red;
 }
 
-.clickable {
-  cursor: pointer;
+.camera-icon {
+  width: 30%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

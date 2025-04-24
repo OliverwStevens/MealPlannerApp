@@ -59,6 +59,9 @@ body {
   background: #F5F1ED;
 }
 
+/* ======================
+   Text & Typography
+   ====================== */
 .centered-text {
   color: #252323;
   text-align: center;
@@ -66,11 +69,22 @@ body {
   text-decoration: none;
 }
 
+/* ======================
+   Layout & Spacing
+   ====================== */
 .padded {
   padding: 0.5rem;
 }
 
-/* Container for fixed positioning */
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ======================
+   Buttons & Interactive Elements
+   ====================== */
 .floating-button-container {
   position: fixed;
   right: 1.5rem;
@@ -84,9 +98,8 @@ body {
   }
 }
 
-/* Your existing button with modifications */
 .floating-action-button {
-  width: 4rem; /* Recommended touch target size */
+  width: 4rem;
   height: 4rem;
   border-radius: 50%;
   display: flex !important;
@@ -107,38 +120,40 @@ body {
   .floating-action-button {
     width: 5rem;
     height: 5rem;
-    /* More prominent shadow on mobile */
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
   }
 }
 
-/* Icon sizing */
 .floating-button-icon {
   width: 2rem;
   height: 2rem;
-  filter: brightness(0) invert(1); /* Makes white icon */
+  filter: brightness(0) invert(1);
 }
 
-.hidden-submit {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-  pointer-events: none;
+.header-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  width: 2rem;
+  height: 2rem;
+}
+.header-button:hover {
+  color: white;
 }
 
-#custom-link {
-  background-color: red;
+.no-background {
+  background: none;
+  border: none;
 }
 
-.camera-icon {
-  width: 30%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.clickable {
+  cursor: pointer;
 }
 
+/* ======================
+   Form Elements
+   ====================== */
 .search-container {
   display: flex;
   align-items: center;
@@ -157,34 +172,32 @@ body {
   background: transparent;
 }
 
-.header-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  width: 2rem;
-  height: 2rem;
+.hidden-submit {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
 }
 
-.header-button:hover {
-  color: white;
+/* ======================
+   Special Components
+   ====================== */
+#custom-link {
+  background-color: red;
 }
 
-.flex-vertical {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.camera-icon {
+  width: 30%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.no-background {
-  background: none;
-  border: none;
-}
-
-.clickable {
-  cursor: pointer;
-}
-
+/* ======================
+   Layout & Structure
+   ====================== */
 .sticky-header {
   position: sticky;
   top: 0;
@@ -214,21 +227,77 @@ body {
   -moz-column-gap: 2rem;
        column-gap: 2rem;
   justify-content: center;
-  /* Center wrapped items */
 }
 @media (min-width: 769px) {
   .header-container {
     justify-content: left;
   }
 }
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
+@media (max-width: 768px) {
+  .header-container {
+    gap: 5rem;
+  }
 }
 
+.mobile-margin {
+  margin-top: 10rem;
+}
+@media (min-width: 601px) {
+  .mobile-margin {
+    margin-top: 0;
+  }
+}
+
+/* ======================
+   Navigation Components
+   ====================== */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+  justify-content: center;
+}
+
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1000;
+  padding: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  gap: 15px;
+}
+.mobile-nav.active {
+  display: flex;
+}
+
+.mobile-nav-link {
+  padding: 10px;
+  display: block;
+}
+
+.mobile-search {
+  width: 100%;
+  margin: auto;
+}
+
+/* ======================
+   Food Display Components
+   ====================== */
 .food-display {
   padding: 2rem;
   display: grid;
@@ -246,8 +315,8 @@ body {
 
 .pantry-item {
   display: grid;
-  grid-template-rows: auto 1fr; /* First row auto, second takes remaining space */
-  height: 100%; /* Important for equal height */
+  grid-template-rows: auto 1fr;
+  height: 100%;
   background-color: #DAD2BC;
   border: 2px solid #252323;
   border-radius: 8px;
@@ -289,86 +358,30 @@ body {
      object-fit: contain;
 }
 
-.mobile-margin {
-  margin-top: 10rem;
-}
-@media (min-width: 601px) {
-  .mobile-margin {
-    margin-top: 0;
-  }
-}
-
+/* ======================
+   Scanner Components
+   ====================== */
 #scanner-video {
   display: block;
-  position: fixed; /* or 'absolute' if within a positioned container */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100vw; /* viewport width */
-  height: 100vh; /* viewport height */
+  width: 100vw;
+  height: 100vh;
   -o-object-fit: cover;
-     object-fit: cover; /* ensures video covers entire area without distortion */
+     object-fit: cover;
   z-index: 100;
 }
 
-.desktop-nav {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  -moz-column-gap: 2rem;
-       column-gap: 2rem;
-  justify-content: center;
-}
-
-/* Mobile menu button - hidden by default on desktop */
-.mobile-menu-button {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-}
-
-/* Mobile nav - hidden by default */
-.mobile-nav {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  z-index: 1000;
-  padding: 15px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Show mobile menu when active */
-.mobile-nav.active {
-  display: flex;
-}
-
-/* Mobile search adjustments */
-.mobile-search {
-  width: 100%;
-  margin: auto;
-}
-
-.mobile-nav-link {
-  padding: 10px;
-  display: block;
-}
-
-/* Responsive styles */
+/* ======================
+   Responsive Overrides
+   ====================== */
 @media (max-width: 768px) {
   .mobile-menu-button {
     display: block;
   }
   .desktop-nav {
     display: none;
-  }
-  .header-container {
-    gap: 5rem;
   }
   .flex-vertical {
     margin: auto;
