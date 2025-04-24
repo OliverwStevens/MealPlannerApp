@@ -209,16 +209,14 @@ body {
 
 .header-container {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   width: 100%;
-  -moz-column-gap: 30px;
-       column-gap: 30px;
-  row-gap: 20px;
-  padding: 1rem;
-  justify-content: center; /* Center wrapped items */
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+  justify-content: center;
+  /* Center wrapped items */
 }
-@media (min-width: 600px) {
+@media (min-width: 769px) {
   .header-container {
     justify-content: left;
   }
@@ -238,7 +236,7 @@ body {
   grid-auto-rows: 1fr;
   gap: 2rem;
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .food-display {
     grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
     gap: 1rem;
@@ -261,7 +259,7 @@ body {
   transform: translateY(-10px);
   filter: brightness(90%);
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .pantry-item {
     width: max(-moz-fit-content);
     width: max(fit-content);
@@ -310,4 +308,74 @@ body {
   -o-object-fit: cover;
      object-fit: cover; /* ensures video covers entire area without distortion */
   z-index: 100;
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+  justify-content: center;
+}
+
+/* Mobile menu button - hidden by default on desktop */
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+/* Mobile nav - hidden by default */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1000;
+  padding: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Show mobile menu when active */
+.mobile-nav.active {
+  display: flex;
+}
+
+/* Mobile search adjustments */
+.mobile-search {
+  width: 100%;
+  margin: auto;
+}
+
+.mobile-nav-link {
+  padding: 10px;
+  display: block;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
+  .desktop-nav {
+    display: none;
+  }
+  .header-container {
+    gap: 5rem;
+  }
+  .flex-vertical {
+    margin: auto;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-nav {
+    display: none !important;
+  }
 }/*# sourceMappingURL=application.css.map */

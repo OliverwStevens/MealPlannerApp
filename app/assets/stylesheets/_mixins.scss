@@ -1,0 +1,8 @@
+@mixin display() {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    column-gap: 2rem;
+
+    justify-content: center;
+}
