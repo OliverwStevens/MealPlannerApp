@@ -40,7 +40,7 @@
         
         <!-- Desktop navigation (hidden on mobile) -->
         <nav class="desktop-nav">
-          <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
+          <%= link_to root_path, class: "flex-vertical centered-text" do %>
             <%= image_tag("tasty_shares.svg", alt: "Symbol of working together", class: "header-button") %>
             <span>Tasty Shares</span>
           <% end %>
@@ -88,7 +88,7 @@
         
         <!-- Mobile dropdown menu (hidden by default) -->
         <nav class="mobile-nav" data-mobile-menu-target="menu" data-action="click@window->mobile-menu#hide">
-          <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
+          <%= link_to root_path, class: "flex-vertical centered-text" do %>
             <%= image_tag("tasty_shares.svg", alt: "Symbol of working together", class: "header-button") %>
             <span>Tasty Shares</span>
           <% end %>
