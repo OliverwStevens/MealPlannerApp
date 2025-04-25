@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get "home/index"
-  # resources :recipe_items
   resources :recipes
   resources :pantry_items
   devise_for :users, controllers: {

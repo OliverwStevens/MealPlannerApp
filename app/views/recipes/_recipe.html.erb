@@ -4,6 +4,21 @@
     <%= recipe.name %>
   </p>
 
+    <p>
+    <strong> Ingredients: </strong>
+    <% if recipe.recipe_items.any? %>
+      <ul>
+        <% recipe.recipe_items.each do |item| %>
+          <li>
+            <strong><%= item.name %>:</strong> <%= item.amount %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No ingredients listed for this recipe.</p>
+    <% end %>
+  </p>
+
   <p>
     <strong>Procedure:</strong>
     <%= recipe.procedure %>
