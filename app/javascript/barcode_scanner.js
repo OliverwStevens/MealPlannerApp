@@ -60,15 +60,24 @@ function stopScanner() {
   }
 }
 
-// Register all relevant events
-document.addEventListener('DOMContentLoaded', startScanner);
-document.addEventListener('turbo:load', startScanner);
-document.addEventListener('turbolinks:load', startScanner);
+// Remove this general event listener as it's unreliable with Turbo
+// document.addEventListener('DOMContentLoaded', startScanner);
 
-// Add direct call to startScanner that will run anytime this script is loaded
+// Keep these for Turbo/Turbolinks events
+document.addEventListener('turbo:load', function() {
+  console.log("Turbo load event fired");
+  setTimeout(startScanner, 200); // Slightly longer timeout
+});
+
+document.addEventListener('turbolinks:load', function() {
+  console.log("Turbolinks load event fired");
+  setTimeout(startScanner, 200); // Slightly longer timeout
+});
+
+// Change the window load event to be more robust
 window.addEventListener('load', function() {
-  // Slight delay to ensure elements are available
-  setTimeout(startScanner, 100);
+  console.log("Window load event fired");
+  setTimeout(startScanner, 300); // Slightly longer timeout
 });
 
 // Handle page navigation away
