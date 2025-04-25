@@ -1,0 +1,71 @@
+<%= form_with(model: recipe) do |form| %>
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+        <% recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :procedure %>
+    <%= form.text_area :procedure %>
+  </div>
+
+  <div class="field">
+    <%= form.label :servings %>
+    <%= form.number_field :servings %>
+  </div>
+
+  <div class="field">
+    <%= form.label :difficulty %>
+    <%= form.number_field :difficulty, in: 1..10 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prep_time %>
+    <%= form.text_field :prep_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recipe_type %>
+    <%= form.select :recipe_type, Recipe.recipe_types.keys.map { |t| [t.humanize, t] } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :diet %>
+    <%= form.text_field :diet %>
+  </div>
+
+  <h3>Ingredients</h3>
+  <div data-controller="nested-form">
+    <template data-nested-form-target="template">
+      <%= form.fields_for :recipe_items, RecipeItem.new, child_index: 'NEW_RECORD' do |item_form| %>
+        <%= render 'recipe_item_fields', f: item_form %>
+      <% end %>
+    </template>
+
+    <div data-nested-form-target="container">
+      <%= form.fields_for :recipe_items do |item_form| %>
+        <%= render 'recipe_item_fields', f: item_form %>
+      <% end %>
+    </div>
+    
+    <div class="links">
+      <button data-action="click->nested-form#add" class="btn btn-secondary">Add Ingredient</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

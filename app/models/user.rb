@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
 
   has_many :pantry_items, dependent: :destroy
+  has_many :recipes, dependent: :destroy
+
 
   def name
     "#{first_name} #{last_name}"

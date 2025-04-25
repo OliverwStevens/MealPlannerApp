@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :recipe_items
+  resources :recipes
   resources :pantry_items
   devise_for :users, controllers: {
     registrations: "users/registrations"

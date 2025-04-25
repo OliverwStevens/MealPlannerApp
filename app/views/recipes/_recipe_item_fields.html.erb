@@ -1,0 +1,17 @@
+<div class="nested-fields">
+  <% if f.object.persisted? %>
+    <%= f.hidden_field :_destroy %>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  </div>
+  
+  <button data-action="click->nested-form#remove" class="btn btn-danger">Remove</button>
+</div>
