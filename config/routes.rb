@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :recipe_items
+  # resources :recipe_items
   resources :recipes
   resources :pantry_items
   devise_for :users, controllers: {
@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "pantry_items#index"
+  root "recipes#index"
 end

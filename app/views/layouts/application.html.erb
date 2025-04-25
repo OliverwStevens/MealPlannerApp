@@ -35,7 +35,7 @@
             data-action="click->mobile-menu#toggle"
             data-mobile-menu-target="button"
             aria-label="Toggle menu">
-          <%= image_tag("pantry.svg", alt: "Menu", class: "header-button") %>
+          <%= image_tag("menu.svg", alt: "Menu", class: "header-button") %>
         </button>
         
         <!-- Desktop navigation (hidden on mobile) -->
@@ -45,7 +45,7 @@
               <%= image_tag("pantry.svg", alt: "Pantry", class: "header-button") %>
               <span>Pantry</span>
             <% end %>
-            <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
+            <%= link_to recipes_path, class: "flex-vertical centered-text" do %>
               <%= image_tag("recipes.svg", alt: "Recipes", class: "header-button") %>
               <span>Recipes</span>
             <% end %>
@@ -89,7 +89,7 @@
               <%= image_tag("pantry.svg", alt: "Pantry", class: "header-button") %>
               <span>Pantry</span>
             <% end %>
-            <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
+            <%= link_to recipes_path, class: "flex-vertical centered-text" do %>
               <%= image_tag("recipes.svg", alt: "Recipes", class: "header-button") %>
               <span>Recipes</span>
             <% end %>
