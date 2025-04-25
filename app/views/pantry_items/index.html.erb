@@ -8,7 +8,11 @@
   <% end %>
 
 </div>
-<h1>You have <%= @pantry_items.count %> items in your pantry</h1>
+<h1 class="padded">You have <%= @pantry_items.count %> items in your pantry</h1>
+
+<% if @pantry_items.count == 0 %>
+  <h2 class="centered-big-title padded"> You need to go shopping! </h2>
+<%end%>
 <div id="pantry_items" class="food-display">
   <% @pantry_items.each do |pantry_item| %>
     <%= link_to pantry_item_path(pantry_item), class: "centered-text" do %>

@@ -10,6 +10,17 @@
   text-decoration: none;
 }
 
+.centered-big-title {
+  color: $quaternary;
+  text-align: center;
+  font-size: 5rem;
+  text-decoration: none;
+
+  @media (min-width: 769px) {
+    font-size: 10rem;
+  }
+}
+
 /* ======================
    Layout & Spacing
    ====================== */
