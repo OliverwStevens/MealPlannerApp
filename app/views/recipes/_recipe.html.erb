@@ -1,11 +1,11 @@
-<div id="<%= dom_id recipe %>">
+<div id="<%= dom_id recipe %>" class="recipe-container large-text padded">
   <p>
-    <strong>Name:</strong>
     <%= recipe.name %>
   </p>
 
-    <p>
-    <strong> Ingredients: </strong>
+  <strong> Ingredients: </strong>
+
+  <div class="ingredients-container">
     <% if recipe.recipe_items.any? %>
       <ul>
         <% recipe.recipe_items.each do |item| %>
@@ -17,7 +17,7 @@
     <% else %>
       <p>No ingredients listed for this recipe.</p>
     <% end %>
-  </p>
+  </div>
 
   <p>
     <strong>Procedure:</strong>
