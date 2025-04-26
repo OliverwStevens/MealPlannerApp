@@ -193,20 +193,20 @@
   flex-direction: column;
 }
 .recipe-container {
-  display: grid;
-  grid-template-rows: 1fr 1fr auto repeat(1fr, 4);
+  display: flex;
+  flex-direction: column;
+  flex: auto;
   background-color: red;
   border: 5px solid $quaternary;
   border-radius: 2%;
 
-  width: 10rem;
   @media (min-width: 768px) {
     width: 20rem;
   }
 }
 .ingredients-container {
-  display: grid;
-  grid-template-rows: 1fr;
+  display: flex;
+  flex-direction: column;
   background-color: blue;
 }
 .ingredients-container ul {

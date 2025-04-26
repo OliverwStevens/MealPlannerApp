@@ -11,9 +11,6 @@
 
 .large-text {
   @include basic-text;
-  @media (min-width: 769px) {
-    font-size: 2.5rem;
-  }
 }
 
 .centered-big-title {

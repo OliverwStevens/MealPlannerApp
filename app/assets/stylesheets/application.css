@@ -74,11 +74,6 @@ body {
   text-decoration: none;
   color: #252323;
 }
-@media (min-width: 769px) {
-  .large-text {
-    font-size: 2.5rem;
-  }
-}
 
 .centered-big-title {
   color: #252323;
@@ -429,12 +424,12 @@ body {
 }
 
 .recipe-container {
-  display: grid;
-  grid-template-rows: 1fr 1fr auto repeat(1fr, 4);
+  display: flex;
+  flex-direction: column;
+  flex: auto;
   background-color: red;
   border: 5px solid #252323;
   border-radius: 2%;
-  width: 10rem;
 }
 @media (min-width: 768px) {
   .recipe-container {
@@ -443,8 +438,8 @@ body {
 }
 
 .ingredients-container {
-  display: grid;
-  grid-template-rows: 1fr;
+  display: flex;
+  flex-direction: column;
   background-color: blue;
 }
 
