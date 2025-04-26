@@ -1,6 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Recipes" %>
+<p> You have <%= @recipes.count %> recipe(s). </p>
+
+<div class="floating-button-container">
+  <%= link_to new_recipe_path, class: "floating-action-button" do %>
+    <%= image_tag "add_recipe.svg", alt: "Add recipe", class: "floating-button-icon" %>
+  <% end %>
+
+</div>
+
 <div class="recipe-page">
   <h1>Recipes</h1>
 
@@ -12,7 +21,4 @@
       </p>
     <% end %>
   </div>
-
-  <%= link_to "New recipe", new_recipe_path %>
-
 </div>
