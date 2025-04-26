@@ -57,6 +57,7 @@ body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #252323;
   background: #F5F1ED;
+  overflow-x: hidden;
 }
 
 /* ======================
@@ -447,8 +448,4 @@ body {
   list-style-type: disc; /* Shows bullet points */
   padding-left: 1rem; /* Proper indentation */
   margin: 1rem; /* Adds some spacing */
-}
-
-.ingredients-container li {
-  margin-bottom: 1rem; /* Space between items */
 }/*# sourceMappingURL=application.css.map */
