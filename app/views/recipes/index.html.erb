@@ -13,12 +13,11 @@
 <div class="recipe-page">
   <h1>Recipes</h1>
 
-  <div id="recipes">
+  <div id="recipes" class="food-display">
     <% @recipes.each do |recipe| %>
-      <%= render recipe, info: false %>
-      <p>
-        <%= link_to "Show this recipe", recipe %>
-      </p>
+      <%= link_to recipe, class: "centered-text" do %>
+        <%= render recipe, info: false %>
+      <% end %>
     <% end %>
   </div>
 </div>
