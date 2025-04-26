@@ -1,42 +1,43 @@
 <div id="<%= dom_id recipe %>" class="recipe-container large-text padded">
-  <p>
+  <p class="centered-text">
     <%= recipe.name %>
   </p>
 
-  <strong> Ingredients: </strong>
+  <% if local_assigns[:info]%>
+    <strong> Ingredients: </strong>
 
-  <div class="ingredients-container">
-    <% if recipe.recipe_items.any? %>
-      <ul>
-        <% recipe.recipe_items.each do |item| %>
-          <li>
-            <strong><%= item.name %>:</strong> <%= item.amount %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p>No ingredients listed for this recipe.</p>
-    <% end %>
-  </div>
+    <div class="ingredients-container">
+      <% if recipe.recipe_items.any? %>
+        <ul>
+          <% recipe.recipe_items.each do |item| %>
+            <li>
+              <strong><%= item.name %>:</strong> <%= item.amount %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No ingredients listed for this recipe.</p>
+      <% end %>
+    </div>
 
-  <p>
-    <strong>Procedure:</strong>
-    <%= recipe.procedure %>
-  </p>
+    <p>
+      <strong>Procedure:</strong>
+      <%= recipe.procedure %>
+    </p>
 
-  <p>
-    <strong>Servings:</strong>
-    <%= recipe.servings %>
-  </p>
+    <p>
+      <strong>Servings:</strong>
+      <%= recipe.servings %>
+    </p>
 
-  <p>
-    <strong>Difficulty:</strong>
-    <%= recipe.difficulty %>
-  </p>
+    <p>
+      <strong>Difficulty:</strong>
+      <%= recipe.difficulty %>
+    </p>
 
-  <p>
-    <strong>Prep time:</strong>
-    <%= recipe.prep_time %>
-  </p>
-
+    <p>
+      <strong>Prep time:</strong>
+      <%= recipe.prep_time %>
+    </p>
+  <% end %>
 </div>

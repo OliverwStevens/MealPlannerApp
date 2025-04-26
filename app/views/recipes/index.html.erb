@@ -6,7 +6,7 @@
 
   <div id="recipes">
     <% @recipes.each do |recipe| %>
-      <%= render recipe %>
+      <%= render recipe, info: false %>
       <p>
         <%= link_to "Show this recipe", recipe %>
       </p>
