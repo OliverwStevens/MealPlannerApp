@@ -1,0 +1,5 @@
+<div class="recipe-page">
+    <%= render @public_recipe, info: true %>
+    <%= link_to "Back to Tasty Shares", root_path %>
+    <%= link_to "Add to recipes", add_recipe_path(@public_recipe), data: { turbo_method: :post } %>
+</div>

@@ -57,6 +57,24 @@ class RecipesController < ApplicationController
     end
   end
 
+  def add
+    public_recipe = Recipe.find(params[:id])
+
+    # Check if current user already has this recipe
+    if current_user.recipes.exists?(public_recipe.id)
+      redirect_to pantry_items_path, alert: "This recipe is already in your collection."
+      # redirect_to recipes_path(public_recipe), alert: "This recipe is already in your collection."
+    else
+      attributes = public_recipe.attributes.except("id", "created_at", "updated_at", "user_id")
+
+      new_recipe = current_user.recipes.new(attributes)
+      if new_recipe.save
+        redirect_to recipes_path, notice: "Recipe successfully added to your collection."
+      else
+        redirect_to recipes_path(public_recipe), alert: "Could not add recipe: #{new_recipe.errors.full_messages.join(', ')}"
+      end
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe

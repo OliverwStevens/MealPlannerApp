@@ -1,6 +1,8 @@
-<div id="public_recipes">
-  <% @public_recipes.each do |public_recipe| %>
-    <%= render public_recipe %>
-    <%= public_recipe.user.name%>
+<div id="public_recipes" class="recipe-page">
+ <% @public_recipes.each do |public_recipe| %>
+    <%= link_to "/home/#{public_recipe.id}", class: "centered-text" do %>
+      <%= render public_recipe, info: false %>
+      <%= public_recipe.user.name %>
+    <% end %>
   <% end %>
 </div>

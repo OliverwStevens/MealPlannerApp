@@ -431,6 +431,7 @@ body {
   background-color: red;
   border: 5px solid #252323;
   border-radius: 2%;
+  margin: 1rem;
 }
 @media (min-width: 768px) {
   .recipe-container {

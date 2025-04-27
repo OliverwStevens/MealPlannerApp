@@ -13,7 +13,7 @@
 <div class="recipe-page">
   <h1>Recipes</h1>
 
-  <div id="recipes" class="food-display">
+  <div id="recipes">
     <% @recipes.each do |recipe| %>
       <%= link_to recipe, class: "centered-text" do %>
         <%= render recipe, info: false %>
