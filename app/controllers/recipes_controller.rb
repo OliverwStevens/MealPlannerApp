@@ -66,7 +66,7 @@ class RecipesController < ApplicationController
       # redirect_to recipes_path(public_recipe), alert: "This recipe is already in your collection."
     else
       attributes = public_recipe.attributes.except("id", "created_at", "updated_at", "user_id")
-
+      attributes["sharable"] = false
       new_recipe = current_user.recipes.new(attributes)
       if new_recipe.save
         redirect_to recipes_path, notice: "Recipe successfully added to your collection."
