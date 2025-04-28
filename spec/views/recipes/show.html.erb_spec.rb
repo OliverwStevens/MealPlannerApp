@@ -1,22 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe "recipes/show", type: :view do
+  let(:user) { build(:user) }
+  let(:recipe) { create(:recipe) }
   before(:each) do
-    assign(:recipe, Recipe.create!(
-      name: "Name",
-      procedure: "MyText",
-      servings: 2,
-      difficulty: 3,
-      prep_time: "Prep Time"
-    ))
+    allow(view).to receive(:user_signed_in?).and_return(true)
+    allow(view).to receive(:current_user).and_return(user)
+
+    assign(:recipe, recipe)
   end
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Name/)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/2/)
-    expect(rendered).to match(/3/)
-    expect(rendered).to match(/Prep Time/)
+    expect(rendered).to include(recipe.name)
+
+    expect(rendered).to include(recipe.procedure)
+
+    expect(rendered).to include(recipe.servings.to_s)
+
+    expect(rendered).to include(recipe.difficulty.to_s)
+
+    expect(rendered).to include(recipe.prep_time)
   end
 end

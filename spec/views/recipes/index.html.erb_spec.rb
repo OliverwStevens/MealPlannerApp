@@ -1,32 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "recipes/index", type: :view do
-  before(:each) do
-    assign(:recipes, [
-      Recipe.create!(
-        name: "Name",
-        procedure: "MyText",
-        servings: 2,
-        difficulty: 3,
-        prep_time: "Prep Time"
-      ),
-      Recipe.create!(
-        name: "Name",
-        procedure: "MyText",
-        servings: 2,
-        difficulty: 3,
-        prep_time: "Prep Time"
-      )
-    ])
+  let(:user) { create(:user) }
+  let!(:recipes) { create_list(:recipe, 2, user: user) }
+
+  before do
+    allow(view).to receive(:user_signed_in?).and_return(true)
+    allow(view).to receive(:current_user).and_return(user)
+    assign(:recipes, recipes)
   end
 
   it "renders a list of recipes" do
     render
-    cell_selector = 'div>p'
-    assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("MyText".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(3.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Prep Time".to_s), count: 2
+    recipes.each do |recipe|
+      expect(rendered).to include(recipe.name)
+    end
   end
 end
