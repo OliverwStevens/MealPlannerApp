@@ -1,15 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "recipes/edit", type: :view do
-  let(:recipe) {
-    Recipe.create!(
-      name: "MyString",
-      procedure: "MyText",
-      servings: 1,
-      difficulty: 1,
-      prep_time: "MyString"
-    )
-  }
+  let(:recipe) { create(:recipe) }
 
   before(:each) do
     assign(:recipe, recipe)
@@ -19,7 +11,6 @@ RSpec.describe "recipes/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", recipe_path(recipe), "post" do
-
       assert_select "input[name=?]", "recipe[name]"
 
       assert_select "textarea[name=?]", "recipe[procedure]"
