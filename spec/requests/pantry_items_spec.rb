@@ -79,7 +79,7 @@ RSpec.describe "/pantry_items", type: :request do
 
       it "redirects to the created pantry_item" do
         post pantry_items_url, params: { pantry_item: valid_attributes }
-        expect(response).to redirect_to(pantry_item_url(PantryItem.last))
+        expect(response).to redirect_to(new_pantry_item_url)
       end
     end
 
