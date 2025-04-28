@@ -1,5 +1,7 @@
 class Recipe < ApplicationRecord
   belongs_to :user
+  has_many :meal_recipes, dependent: :destroy
+  has_many :meals, through: :meal_recipes
   scope :sharable, -> { where(sharable: true) }
 
 

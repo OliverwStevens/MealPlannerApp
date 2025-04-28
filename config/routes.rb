@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meals
   get "home/index"
   resources :recipes
   resources :pantry_items

@@ -1,0 +1,38 @@
+<%= form_with(model: meal, data: { turbo: false }) do |form| %>
+  <% if meal.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(meal.errors.count, "error") %> prohibited this meal from being saved:</h2>
+      <ul>
+        <% meal.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recipe_ids, "Recipes" %>
+    <%= form.collection_select :recipe_ids, 
+                              current_user.recipes, 
+                              :id, 
+                              :name, 
+                              { selected: meal.persisted? ? meal.recipe_ids : [] }, 
+                              { multiple: true, class: "form-control" } %>
+  </div>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

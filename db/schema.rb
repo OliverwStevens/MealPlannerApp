@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_25_154016) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_28_180434) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "meal_recipes", force: :cascade do |t|
+    t.bigint "meal_id", null: false
+    t.bigint "recipe_id", null: false
+    t.integer "position"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_id", "recipe_id"], name: "index_meal_recipes_on_meal_id_and_recipe_id", unique: true
+    t.index ["meal_id"], name: "index_meal_recipes_on_meal_id"
+    t.index ["recipe_id"], name: "index_meal_recipes_on_recipe_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_meals_on_user_id"
+  end
 
   create_table "pantry_items", force: :cascade do |t|
     t.string "name"
@@ -62,6 +83,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_25_154016) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "meal_recipes", "meals"
+  add_foreign_key "meal_recipes", "recipes"
+  add_foreign_key "meals", "users"
   add_foreign_key "pantry_items", "users"
   add_foreign_key "recipe_items", "recipes"
   add_foreign_key "recipes", "users"

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h3>Recipes in this meal:</h3>
+<ul>
+  <% @meal.recipes.each do |recipe| %>
+    <li><%= link_to recipe.name, recipe %></li>
+  <% end %>
+</ul>
+<div>
+  <%= link_to "Edit this meal", edit_meal_path(@meal) %> |
+  <%= link_to "Back to meals", meals_path %>
+
+  <%= button_to "Destroy this meal", @meal, method: :delete %>
+</div>
