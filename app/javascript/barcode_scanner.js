@@ -60,9 +60,6 @@ function stopScanner() {
   }
 }
 
-// Remove this general event listener as it's unreliable with Turbo
-// document.addEventListener('DOMContentLoaded', startScanner);
-
 // Keep these for Turbo/Turbolinks events
 document.addEventListener('turbo:load', function() {
   console.log("Turbo load event fired");
