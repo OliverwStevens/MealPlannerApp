@@ -7,8 +7,8 @@
 .centered-text {
   @include basic-text;
   text-align: center;
+  font-size: 1rem;
 }
-
 .large-text {
   @include basic-text;
   font-size: larger;

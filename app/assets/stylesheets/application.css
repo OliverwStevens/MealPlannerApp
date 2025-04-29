@@ -79,6 +79,7 @@ body {
   text-decoration: none;
   color: #252323;
   text-align: center;
+  font-size: 1rem;
 }
 
 .large-text {
@@ -443,7 +444,7 @@ body {
 }
 @media (min-width: 768px) {
   .recipe-container {
-    width: 8rem;
+    width: 12rem;
   }
 }
 
