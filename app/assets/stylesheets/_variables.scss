@@ -4,8 +4,21 @@ $primary: #DAD2BC;
 $secondary: #A99985;
 $tertiary: #70798C;
 $quaternary: #252323;
-$btn-green-normal: #00CC66;
-$btn-green-hover: #137547;
 
-$btn-red-normal: #BD1E1E;
-$btn-red-hover: #88292F;
+
+$color-success: #00CC66;
+$color-success-hover: #137547;
+$color-danger: #BD1E1E;
+$color-danger-hover: #88292F;
+
+// Button Variants
+$btn-colors: (
+  "green": (
+    "normal": $color-success,
+    "hover": $color-success-hover
+  ),
+  "red": (
+    "normal": $color-danger,
+    "hover": $color-danger-hover
+  )
+);

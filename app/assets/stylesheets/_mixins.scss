@@ -48,3 +48,10 @@
   height: 2rem;
   filter: brightness(0) invert(1);
 }
+
+@mixin button-variant($color) {
+    background-color: map-get($btn-colors, $color, "normal");
+    &:hover {
+      background-color: map-get($btn-colors, $color, "hover");
+    }
+  }

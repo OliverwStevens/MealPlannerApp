@@ -140,7 +140,7 @@ body {
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  background: #00CC66;
+  background-color: #00CC66;
 }
 .floating-green-button:hover {
   transform: scale(1.1);
@@ -154,7 +154,7 @@ body {
   }
 }
 .floating-green-button:hover {
-  background: #137547;
+  background-color: #137547;
 }
 
 .floating-button-icon {
@@ -187,7 +187,7 @@ body {
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  background: red;
+  background-color: #BD1E1E;
 }
 .floating-red-button:hover {
   transform: scale(1.1);
@@ -201,7 +201,7 @@ body {
   }
 }
 .floating-red-button:hover {
-  background: darkred;
+  background-color: #88292F;
 }
 
 .header-button {
