@@ -476,7 +476,6 @@ body {
   min-width: 20%;
   flex: 1 0 auto;
   height: 100%;
-  aspect-ratio: 8.5/11;
   border: 5px solid #252323;
   border-radius: 2%;
   background: #DAD2BC;
