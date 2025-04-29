@@ -374,6 +374,7 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
   grid-auto-rows: 1fr;
   gap: 2rem;
+  place-items: center;
 }
 @media (max-width: 768px) {
   .food-display {
@@ -407,7 +408,7 @@ body {
 }
 
 .food-container {
-  width: 20%;
+  width: 10rem;
   height: -moz-fit-content;
   height: fit-content;
   margin: 0 auto;
@@ -474,6 +475,7 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 20%;
+  width: 100%;
   flex: 1 0 auto;
   height: 100%;
   border: 5px solid #252323;
