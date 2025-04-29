@@ -69,6 +69,21 @@
     <%= form.label :sharable %>
     <%= form.check_box :sharable %>
   </div>
+
+
+  <div class="field">
+    <%= form.label :image %>
+    <% if recipe.image.attached? %>
+      <div>
+        <%= image_tag recipe.image %>
+      </div>
+      <div class="mt-2">
+        Replace image: <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
+      </div>
+    <% else %>
+      <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
+    <% end %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

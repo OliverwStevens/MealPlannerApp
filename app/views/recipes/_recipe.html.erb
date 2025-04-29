@@ -3,6 +3,11 @@
     <%= recipe.name %>
   </p>
 
+  <% if recipe.image.attached? %>
+    <%= image_tag recipe.image %>
+  <% else %>
+    <strong> No image attached </strong>
+  <% end %>
   <% if local_assigns[:info]%>
     <strong> Ingredients: </strong>
 
