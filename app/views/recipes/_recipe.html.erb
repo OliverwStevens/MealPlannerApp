@@ -3,11 +3,14 @@
     <%= recipe.name %>
   </p>
 
-  <% if recipe.image.attached? %>
-    <%= image_tag recipe.image %>
-  <% else %>
-    <strong> No image attached </strong>
-  <% end %>
+  <div class="image-container">
+    <% if recipe.image.attached? %>
+      <%= image_tag recipe.image, class: "image-card" %>
+    <% else %>
+      <strong> No image attached </strong>
+    <% end %>
+
+  </div>
   <% if local_assigns[:info]%>
     <strong> Ingredients: </strong>
 

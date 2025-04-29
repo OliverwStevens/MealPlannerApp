@@ -78,10 +78,11 @@
         <%= image_tag recipe.image %>
       </div>
       <div class="mt-2">
-        Replace image: <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
+        Replace image:   <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg', capture: 'camera' %>
+
       </div>
     <% else %>
-      <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg' %>
+      <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg', capture: 'camera' %>
     <% end %>
   </div>
   <div class="actions">

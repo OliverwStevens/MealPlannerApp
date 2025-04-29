@@ -1,8 +1,8 @@
 <div id="<%= dom_id pantry_item %>" class="pantry-item">
   <% if pantry_item.img_url.present? %>
-    <div class="food-image-container">
+    <div class="image-container">
       <%= image_tag pantry_item.img_url,
-                   class: "food-card",
+                   class: "image-card",
                    loading: "lazy",
                    alt: pantry_item.name %>
     </div>
