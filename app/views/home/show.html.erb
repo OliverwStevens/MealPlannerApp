@@ -1,10 +1,8 @@
-<div class="recipe-page">
-    <%= render @public_recipe, info: true %>
-    <%= link_to "Back to Tasty Shares", root_path %>
+<%= render @public_recipe, info: true %>
+<%= link_to "Back to Tasty Shares", root_path %>
 
-    <% if @public_recipe.user == current_user %>
-        <%= link_to "You made this recipe, view it in recipes", recipe_path(@public_recipe) %>
-    <% else %>
-        <%= link_to "Add to recipes", add_recipe_path(@public_recipe), data: { turbo_method: :post } %>
-    <% end %>
-</div>
+<% if @public_recipe.user == current_user %>
+    <%= link_to "You made this recipe, view it in recipes", recipe_path(@public_recipe) %>
+<% else %>
+    <%= link_to "Add to recipes", add_recipe_path(@public_recipe), data: { turbo_method: :post } %>
+<% end %>
