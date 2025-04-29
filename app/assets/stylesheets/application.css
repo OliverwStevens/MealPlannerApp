@@ -54,6 +54,18 @@ table {
 }
 
 body {
+  overflow-x: hidden;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #252323;
   background: #F5F1ED;
@@ -64,16 +76,15 @@ body {
    Text & Typography
    ====================== */
 .centered-text {
-  font-size: larger;
   text-decoration: none;
   color: #252323;
   text-align: center;
 }
 
 .large-text {
-  font-size: larger;
   text-decoration: none;
   color: #252323;
+  font-size: larger;
 }
 
 .centered-big-title {
@@ -415,13 +426,8 @@ body {
    Recipe Display Components
    ====================== */
 .recipe-page {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  -moz-column-gap: 2rem;
-       column-gap: 2rem;
-  justify-content: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
 }
 
 .recipe-container {
@@ -432,10 +438,12 @@ body {
   border: 5px solid #252323;
   border-radius: 2%;
   margin: 1rem;
+  aspect-ratio: 8.5/11;
+  width: 5rem;
 }
 @media (min-width: 768px) {
   .recipe-container {
-    width: 20rem;
+    width: 8rem;
   }
 }
 
