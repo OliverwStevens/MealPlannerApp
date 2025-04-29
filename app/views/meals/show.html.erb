@@ -1,11 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
 <h3>Recipes in this meal:</h3>
-<ul>
+<div class="food-display">
   <% @meal.recipes.each do |recipe| %>
+    <%#= link_to recipe, class: "centered-text" do %>
+      <%#= render recipe, info: false %>
+    <%# end %>
     <%= render recipe, info: true %>
   <% end %>
-</ul>
+</div>
 <div>
   <%= link_to "Edit this meal", edit_meal_path(@meal) %> |
   <%= link_to "Back to meals", meals_path %>

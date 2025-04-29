@@ -1,4 +1,6 @@
-<%= render @public_recipe, info: true %>
+<div class="food-container">
+    <%= render @public_recipe, info: true %>
+</div>
 <%= link_to "Back to Tasty Shares", root_path %>
 
 <% if @public_recipe.user == current_user %>

@@ -129,7 +129,7 @@
 }
 
 .food-container {
-  width: 25%;
+  width: 20%;
   height: fit-content;
   margin: 0 auto;
 }
@@ -215,7 +215,7 @@
     
     // Sizing (now controlled by grid)
     height: 100%; // Fills grid row
-    aspect-ratio: 8.5/11; // Optional: Only if you want to enforce proportions
+    aspect-ratio: 8.5 / 11; // Optional: Only if you want to enforce proportions
     
     // Styling
     border: 5px solid $quaternary;
