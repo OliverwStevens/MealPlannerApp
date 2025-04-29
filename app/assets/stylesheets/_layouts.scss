@@ -193,25 +193,13 @@
 /* ======================
    Recipe Display Components
    ====================== */
-   .parent-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(clamp(150px, 20vw, 250px), 1fr));
-    grid-auto-rows: 1fr; // Critical for equal height rows
-    gap: 1rem;
-    padding: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-  
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 25vw, 300px), 1fr));
-    }
-  }
   
   .recipe-container {
     // Layout
     display: flex;
     flex-direction: column;
-    min-width: 0; // Fix overflow
+    min-width: 20%; // Fix overflow
+    flex: 1 0 auto;
     
     // Sizing (now controlled by grid)
     height: 100%; // Fills grid row
