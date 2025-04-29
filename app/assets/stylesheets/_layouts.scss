@@ -188,23 +188,31 @@
 /* ======================
    Recipe Display Components
    ====================== */
-.recipe-page {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-}
 .recipe-container {
+  // Layout & Structure
   display: flex;
   flex-direction: column;
-  flex: auto;
-  background-color: red;
+  flex: 1 0 auto; // Allows growth but prevents shrinking below content size
+  min-width: 0; // Fixes flexbox overflow issues
+  
+  // Sizing
+  width: clamp(150px, 20vw, 250px); // Responsive width with min/max bounds
+  aspect-ratio: 8.5 / 11; // Maintain proportions
+  max-width: 100%; // Never exceeds parent container
+  
+  // Spacing & Borders
+  margin: 1rem;
   border: 5px solid $quaternary;
   border-radius: 2%;
-  margin: 1rem;
+  background-color: red;
+  
+  // Text Handling
+  overflow-wrap: break-word; // Breaks long words
+  word-break: break-word; // Alternative for wider browser support
+  padding: 0.5rem; // Prevents text touching edges
 
-  aspect-ratio: 8.5 / 11;
-  width: 5rem;
   @media (min-width: 768px) {
-    width: 12rem;
+    width: clamp(200px, 25vw, 300px); // Larger screens get more space
   }
 }
 .ingredients-container {
