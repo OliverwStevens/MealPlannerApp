@@ -14,7 +14,7 @@
 
 <div id="recipes" class="food-display">
   <% @recipes.each do |recipe| %>
-    <%= link_to recipe, class: "centered-text" do %>
+    <%= link_to recipe, class: "centered-text hover-move" do %>
       <%= render recipe, info: false %>
     <% end %>
   <% end %>

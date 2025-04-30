@@ -265,6 +265,12 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.hover-move:hover {
+  transform: translateY(-10px);
+  filter: brightness(90%);
+  transition: transform 0.2s;
+}
+
 /* ======================
    Layout & Structure
    ====================== */

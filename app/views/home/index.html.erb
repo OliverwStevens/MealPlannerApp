@@ -1,6 +1,6 @@
 <div id="public_recipes" class="food-display">
  <% @public_recipes.each do |public_recipe| %>
-    <%= link_to "/home/#{public_recipe.id}", class: "centered-text" do %>
+    <%= link_to "/home/#{public_recipe.id}", class: "centered-text hover-move" do %>
       <%= render public_recipe, info: false %>
       <%= public_recipe.user.name %>
     <% end %>
