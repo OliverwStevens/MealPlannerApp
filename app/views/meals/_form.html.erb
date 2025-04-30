@@ -1,6 +1,6 @@
-<%= form_with(model: meal, data: { turbo: false }) do |form| %>
+<%= form_with(model: meal, class: "meal-form", data: { turbo: false }) do |form| %>
   <% if meal.errors.any? %>
-    <div style="color: red">
+    <div class="error-explanation">
       <h2><%= pluralize(meal.errors.count, "error") %> prohibited this meal from being saved:</h2>
       <ul>
         <% meal.errors.each do |error| %>
