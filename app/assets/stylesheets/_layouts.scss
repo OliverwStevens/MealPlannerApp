@@ -264,7 +264,7 @@
     font-weight: 600;
   }
 
-  input[type="text"],
+  input[type="text"], input[type="number"],
     textarea {
       width: 100%;
       padding: 0.75rem;
@@ -300,15 +300,17 @@
   // Submit button
   input[type="submit"], .add-btn {
     @include button-variant("green");
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
+    @include form-btn;
+  }
+  .remove-btn {
+    @include button-variant("red");
+    @include form-btn;
   }
 
+  .attach-btn {
+    @include button-variant("red");
+    @include form-btn;
+  }
 
 
   // Responsive adjustments

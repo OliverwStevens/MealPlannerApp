@@ -539,7 +539,7 @@ body {
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
-.meal-form input[type=text],
+.meal-form input[type=text], .meal-form input[type=number],
 .meal-form textarea {
   width: 100%;
   padding: 0.75rem;
@@ -548,7 +548,7 @@ body {
   font-size: 1rem;
   transition: border-color 0.3s ease;
 }
-.meal-form input[type=text]:focus,
+.meal-form input[type=text]:focus, .meal-form input[type=number]:focus,
 .meal-form textarea:focus {
   outline: none;
   border-color: #70798C;
@@ -579,6 +579,32 @@ body {
 }
 .meal-form input[type=submit]:hover, .meal-form .add-btn:hover {
   background-color: #137547;
+}
+.meal-form .remove-btn {
+  background-color: #BD1E1E;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.meal-form .remove-btn:hover {
+  background-color: #88292F;
+}
+.meal-form .attach-btn {
+  background-color: #BD1E1E;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.meal-form .attach-btn:hover {
+  background-color: #88292F;
 }
 @media (max-width: 768px) {
   .meal-form {

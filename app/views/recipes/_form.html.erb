@@ -46,7 +46,7 @@
     <%= form.text_field :diet %>
   </div>
 
-  <h3>Ingredients</h3>
+  <h3>Ingredients:</h3>
   <div data-controller="nested-form">
     <template data-nested-form-target="template">
       <%= form.fields_for :recipe_items, RecipeItem.new, child_index: 'NEW_RECORD' do |item_form| %>
