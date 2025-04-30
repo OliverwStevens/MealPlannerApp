@@ -1,5 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
+<h1> <%= @meal.name %></h1>
+<p>
+  <%= @meal.description %>
+</p>
 <h3>Recipes in this meal:</h3>
 <div class="food-display">
   <% @meal.recipes.each do |recipe| %>

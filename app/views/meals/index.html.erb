@@ -2,15 +2,23 @@
 
 <% content_for :title, "Meals" %>
 
+<p> You have <%= @meals.count %> recipe(s). </p>
+
 <h1>Meals</h1>
 
-<div id="meals">
+<div class="floating-right-btn-container">
+  <%= link_to new_meal_path, class: "floating-green-button" do %>
+    <%= image_tag "add_meal.svg", alt: "Add meal", class: "floating-button-icon" %>
+  <% end %>
+
+</div>
+
+<div id="meals" class="food-display">
   <% @meals.each do |meal| %>
-    <%= render meal %>
-    <p>
-      <%= link_to "Show this meal", meal %>
-    </p>
+    <%= link_to meal, class: "centered-text hover-move" do %>
+      <%= render meal %>
+    <% end %>
   <% end %>
 </div>
 
-<%= link_to "New meal", new_meal_path %>
+

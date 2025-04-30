@@ -6,6 +6,8 @@
 
 <br>
 
-<div>
-  <%= link_to "Back to recipes", recipes_path %>
+<div class="floating-left-btn-container">
+  <%= link_to recipes_path, id: "custom-link", class: "floating-red-button" do %>
+      <%= image_tag "arrow-left.svg", alt: "Back to recipes", class: "floating-button-icon" %>
+  <% end %>
 </div>
