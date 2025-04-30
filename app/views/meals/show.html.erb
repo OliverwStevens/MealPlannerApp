@@ -3,9 +3,6 @@
 <h3>Recipes in this meal:</h3>
 <div class="food-display">
   <% @meal.recipes.each do |recipe| %>
-    <%#= link_to recipe, class: "centered-text" do %>
-      <%#= render recipe, info: false %>
-    <%# end %>
     <%= render recipe, info: true %>
   <% end %>
 </div>
