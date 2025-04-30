@@ -228,6 +228,12 @@
   margin: .5rem;        /* Adds some spacing */
 }
 
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
 // Form container
 .meal-form {
   max-width: 600px;
@@ -256,12 +262,6 @@
       margin-bottom: 0;
       padding-left: 1.5rem;
     }
-  }
-  // Form fields
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
   }
 
   input[type="text"], input[type="number"],

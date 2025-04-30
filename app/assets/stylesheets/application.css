@@ -509,6 +509,12 @@ body {
   margin: 0.5rem; /* Adds some spacing */
 }
 
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
 .meal-form {
   max-width: 600px;
   margin: 2rem auto;
@@ -533,11 +539,6 @@ body {
 .meal-form .error-explanation ul {
   margin-bottom: 0;
   padding-left: 1.5rem;
-}
-.meal-form label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
 }
 .meal-form input[type=text], .meal-form input[type=number],
 .meal-form textarea {

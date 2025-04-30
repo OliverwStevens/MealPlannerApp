@@ -1,6 +1,6 @@
 <%= form_with(model: recipe, class: "meal-form") do |form| %>
   <% if recipe.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="error-explanation">
       <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
 
       <ul>
@@ -46,7 +46,7 @@
     <%= form.text_field :diet %>
   </div>
 
-  <h3>Ingredients:</h3>
+  <label>Ingredients:</label>
   <div data-controller="nested-form">
     <template data-nested-form-target="template">
       <%= form.fields_for :recipe_items, RecipeItem.new, child_index: 'NEW_RECORD' do |item_form| %>
@@ -67,7 +67,7 @@
 
   <div class="field">
     <%= form.label :sharable %>
-    <%= form.check_box :sharable %>
+    <%= form.check_box :sharable, { checked: true } %>
   </div>
 
 
