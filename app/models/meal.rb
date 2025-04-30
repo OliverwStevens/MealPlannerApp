@@ -4,6 +4,7 @@ class Meal < ApplicationRecord
   has_many :recipes, through: :meal_recipes
 
   validates :name, presence: true
+  validates :description, presence: true
 
   # This ensures recipes exist but doesn't require them
   def recipes=(new_recipes)

@@ -615,4 +615,34 @@ label {
   .meal-form .field {
     margin-bottom: 1.25rem;
   }
+}
+
+/* Hide the default file input */
+.hidden-file-input {
+  display: none;
+}
+
+/* Style the label as a button */
+.custom-file-upload {
+  display: inline-block;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #00CC66;
+}
+.custom-file-upload:hover {
+  background-color: #137547;
+}
+
+/* Preview image styling */
+.preview-image {
+  max-width: 200px;
+  max-height: 200px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
 }/*# sourceMappingURL=application.css.map */
