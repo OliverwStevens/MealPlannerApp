@@ -1,5 +1,6 @@
 class Meal < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
   has_many :meal_recipes, dependent: :destroy
   has_many :recipes, through: :meal_recipes
 

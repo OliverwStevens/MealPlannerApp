@@ -32,6 +32,24 @@
 
   <%= form.hidden_field :user_id, value: current_user.id %>
 
+  <div class="field">
+    <%= form.label :image %>
+    <% if meal.image.attached? %>
+      <div>
+        <%= image_tag meal.image %>
+      </div>
+      <div class="file-upload">
+        <%= form.label :image, "Replace image", class: "custom-file-upload" %>
+        <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg', class: "hidden-file-input" %>
+      </div>
+    <% else %>
+      <div class="file-upload">
+        <%= form.label :image, "Upload image", class: "custom-file-upload" %>
+        <%= form.file_field :image, accept: 'image/png,image/jpeg,image/jpg', class: "hidden-file-input" %>
+      </div>
+    <% end %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

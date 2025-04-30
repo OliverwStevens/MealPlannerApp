@@ -1,4 +1,13 @@
 <div id="<%= dom_id meal %>" class="recipe-container">
+
+  <div class="image-container">
+    <% if meal.image.attached? %>
+      <%= image_tag meal.image, class: "image-card" %>
+    <% else %>
+      <strong> No image attached </strong>
+    <% end %>
+
+  </div>
   <p class="centered-text">
     <%= meal.name %>
   </p>
