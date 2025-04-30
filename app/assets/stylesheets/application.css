@@ -567,18 +567,17 @@ body {
   border-color: #70798C;
   box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
 }
-.meal-form input[type=submit] {
+.meal-form input[type=submit], .meal-form .add-btn {
   background-color: #00CC66;
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
-.meal-form input[type=submit]:hover {
+.meal-form input[type=submit]:hover, .meal-form .add-btn:hover {
   background-color: #137547;
 }
 @media (max-width: 768px) {

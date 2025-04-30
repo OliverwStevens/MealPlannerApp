@@ -1,4 +1,4 @@
-<%= form_with(model: recipe) do |form| %>
+<%= form_with(model: recipe, class: "meal-form") do |form| %>
   <% if recipe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -61,7 +61,7 @@
     </div>
     
     <div class="links">
-      <button data-action="click->nested-form#add" class="btn btn-secondary">Add Ingredient</button>
+      <button data-action="click->nested-form#add" class="add-btn">Add Ingredient</button>
     </div>
   </div>
 

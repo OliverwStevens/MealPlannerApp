@@ -298,17 +298,18 @@
   }
 
   // Submit button
-  input[type="submit"] {
+  input[type="submit"], .add-btn {
     @include button-variant("green");
     color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1rem;
     margin-top: 1rem;
     font-size: 1rem;
     border-radius: 4px;
     cursor: pointer;
-    transition: background 0.3s ease;
   }
+
+
 
   // Responsive adjustments
   @media (max-width: 768px) {
