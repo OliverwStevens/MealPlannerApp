@@ -30,6 +30,11 @@
                               { multiple: true, class: "form-control" } %>
   </div>
 
+  <div class="field">
+    <%= form.label :sharable %>
+    <%= form.check_box :sharable, { checked: true } %>
+  </div>
+
   <%= form.hidden_field :user_id, value: current_user.id %>
 
   <div class="field">
