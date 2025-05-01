@@ -1,8 +1,29 @@
-<div id="public_recipes" class="food-display">
- <% @public_recipes.each do |public_recipe| %>
-    <%= link_to "/home/#{public_recipe.id}", class: "centered-text hover-move" do %>
-      <%= render public_recipe, info: false %>
-      <%= public_recipe.user.name %>
+<!-- app/views/home/index.html.erb -->
+<h1>Tasty Shares</h1>
+
+<h2>Public Recipes</h2>
+<% if @public_recipes.any? %>
+ 
+  <div class="food-display">
+    <% @public_recipes.each do |recipe| %>
+      <%= link_to home_show_path(type: "recipe", id: recipe.id), class: "centered-text hover-move" do %>
+        <%= render recipe, info: false %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+<% else %>
+  <p>No public recipes available</p>
+<% end %>
+
+<h2>Public Meals</h2>
+<% if @public_meals.any? %>
+  <div class="food-display">
+    <% @public_meals.each do |meal| %>
+      <%= link_to home_show_path(type: "meal", id: meal.id), class: "centered-text hover-move" do %>
+        <%= render meal %>
+      <% end %>
+    <% end %>
 </div>
+<% else %>
+  <p>No public meals available</p>
+<% end %>

@@ -1,10 +1,35 @@
-<div class="food-container">
-    <%= render @public_recipe, info: true %>
+<!-- app/views/home/show.html.erb -->
+<div>
+  <% if params[:type] == "recipe" %>
+    <div class="food-container">
+        <%= render @public_item, info: true %>
+
+    </div>
+            
+                    
+  <% elsif params[:type] == "meal" %>
+    <h1> <%= @public_item.name %></h1>
+    <p>
+      <%= @public_item.description %>
+    </p>
+    <div class="food-display">
+        <% @public_item.recipes.each do |recipe| %>
+            <%= render recipe, info: true %>
+        <% end %>
+    </div>
+    <small>Created by: <%= @public_item.user.name if @public_item.respond_to?(:user) %></small>
+
+        
+  <% end %>
 </div>
+
 <%= link_to "Back to Tasty Shares", root_path %>
 
-<% if @public_recipe.user == current_user %>
-    <%= link_to "You made this recipe, view it in recipes", recipe_path(@public_recipe) %>
-<% else %>
-    <%= link_to "Add to recipes", add_recipe_path(@public_recipe), data: { turbo_method: :post } %>
+<% if params[:type] == "recipe" %>
+  <% if @public_item.user == current_user %>
+    <%= link_to "You made this recipe, view it in recipes", recipe_path(@public_item) %>
+  <% else %>
+    <%= @public_item.id%>
+    <%= link_to "Add to my recipes", "/recipes/#{@public_item.id}/add", data: { turbo_method: :post } %>
+  <% end %>
 <% end %>

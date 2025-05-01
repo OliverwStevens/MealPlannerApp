@@ -67,11 +67,13 @@ class RecipesController < ApplicationController
     else
       attributes = public_recipe.attributes.except("id", "created_at", "updated_at", "user_id")
       attributes["sharable"] = false
+      attributes["recipe_items"] = public_recipe.recipe_items
       new_recipe = current_user.recipes.new(attributes)
       if new_recipe.save
         redirect_to recipes_path, notice: "Recipe successfully added to your collection."
       else
-        redirect_to recipes_path(public_recipe), alert: "Could not add recipe: #{new_recipe.errors.full_messages.join(', ')}"
+
+        redirect_to recipes_path(public_recipe), notice: "Could not add recipe: #{new_recipe.errors.full_messages.join(', ')}"
       end
     end
   end

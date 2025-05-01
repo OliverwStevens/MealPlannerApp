@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  post "recipes/:id/add", to: "recipes#add", as: "add_recipe"
+  post "recipes/:id/add", to: "recipes#add", as: "add_recipe", constraints: { id: /\d+/ }
+  get "home/:type/:id", to: "home#show", as: "home_show"
+
   # Defines the root path route ("/")
   root "home#index"
 end
