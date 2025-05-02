@@ -29,7 +29,12 @@
   <% if @public_item.user == current_user %>
     <%= link_to "You made this recipe, view it in recipes", recipe_path(@public_item) %>
   <% else %>
-    <%= @public_item.id%>
     <%= link_to "Add to my recipes", "/recipes/#{@public_item.id}/add", data: { turbo_method: :post } %>
+  <% end %>
+<% elsif params[:type] == "meal" %>
+  <% if @public_item.user == current_user %>
+    <%= link_to "You made this meal, view it in meals", meal_path(@public_item) %>
+  <% else %>
+    <%= link_to "Add to my meals", "/meals/#{@public_item.id}/add", data: { turbo_method: :post } %>
   <% end %>
 <% end %>

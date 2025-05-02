@@ -60,6 +60,26 @@ class MealsController < ApplicationController
     end
   end
 
+  def add
+    public_meal = Meal.find(params[:id])
+
+    # Check if current user already has this recipe
+    if current_user.meals.exists?(public_meal.id)
+      redirect_to pantry_items_path, alert: "This meal is already in your collection."
+    else
+      attributes = public_meal.attributes.except("id", "created_at", "updated_at", "user_id")
+      attributes["sharable"] = false
+      attributes["recipes"] = public_meal.recipes
+      new_meal = current_user.meals.new(attributes)
+      if new_meal.save
+        redirect_to meals_path, notice: "Meal successfully added to your collection."
+      else
+
+        redirect_to meals_path(public_recipe), notice: "Could not add meal: #{new_meal.errors.full_messages.join(', ')}"
+      end
+    end
+  end
+
   private
 
   def set_meal

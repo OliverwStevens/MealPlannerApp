@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   post "recipes/:id/add", to: "recipes#add", as: "add_recipe", constraints: { id: /\d+/ }
+  post "meals/:id/add", to: "meals#add", as: "add_meal", constraints: { id: /\d+/ }
+
   get "home/:type/:id", to: "home#show", as: "home_show"
 
   # Defines the root path route ("/")
