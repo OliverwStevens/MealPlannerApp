@@ -30,4 +30,12 @@ class Recipe < ApplicationRecord
 
   # Validate nested recipe_items
   validates :recipe_items, presence: true
+
+  before_create :generate_uuid
+
+  private
+
+  def generate_uuid
+    self.recipe_uuid ||= SecureRandom.uuid
+  end
 end
