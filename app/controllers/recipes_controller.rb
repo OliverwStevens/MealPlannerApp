@@ -62,7 +62,7 @@ class RecipesController < ApplicationController
 
     # Check if current user already has this recipe
     if current_user.recipes.exists?(public_recipe.id)
-      redirect_to pantry_items_path, alert: "This recipe is already in your collection."
+      redirect_to recipes_path, alert: "This recipe is already in your collection."
       # redirect_to recipes_path(public_recipe), alert: "This recipe is already in your collection."
     else
       attributes = public_recipe.attributes.except("id", "created_at", "updated_at", "user_id")

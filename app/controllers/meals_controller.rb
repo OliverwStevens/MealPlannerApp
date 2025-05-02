@@ -65,7 +65,7 @@ class MealsController < ApplicationController
 
     # Check if current user already has this meal
     if current_user.meals.exists?(public_meal.id)
-      redirect_to pantry_items_path, alert: "This meal is already in your collection."
+      redirect_to meals_path, alert: "This meal is already in your collection."
     else
       begin
         # Start a transaction to ensure all operations succeed or fail together
