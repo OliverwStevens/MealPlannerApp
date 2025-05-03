@@ -21,6 +21,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :meal_type %>
+    <%= form.select :meal_type, Meal.meal_types.keys.map { |t| [t.humanize, t] } %>
+  </div>
+
+  <div class="field">
     <%= form.label :recipe_ids, "Recipes" %>
     <%= form.collection_select :recipe_ids, 
                               current_user.recipes, 

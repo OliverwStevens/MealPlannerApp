@@ -106,7 +106,7 @@ class MealsController < ApplicationController
   end
 
   def meal_params
-    params.require(:meal).permit(:name, :description, :image, :sharable, recipe_ids: [])
+    params.require(:meal).permit(:name, :description, :meal_type, :image, :sharable, recipe_ids: [])
   end
 
   def find_or_create_recipe_by_uuid(user, public_recipe)

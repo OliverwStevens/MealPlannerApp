@@ -5,8 +5,13 @@ class Meal < ApplicationRecord
   has_many :recipes, through: :meal_recipes
   scope :sharable, -> { where(sharable: true) }
 
+
+  enum :meal_type, { breakfast: 0, lunch: 1, dinner: 2 }
+
+
   validates :name, presence: true
   validates :description, presence: true
+  validates :meal_type, presence: true
   validates :sharable, inclusion: { in: [ true, false ] }
   # This ensures recipes exist but doesn't require them
   def recipes=(new_recipes)
