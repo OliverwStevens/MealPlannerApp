@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   resources :recipes
   resources :pantry_items
   resources :home
-  resources :meal_plans
-
+  resources :meal_plans do
+    collection do
+      post "update_plan", action: :create_or_update, as: :update_plan
+    end
+  end
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
