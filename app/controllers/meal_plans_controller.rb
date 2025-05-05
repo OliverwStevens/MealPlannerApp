@@ -21,33 +21,29 @@ class MealPlansController < ApplicationController
     current_user.meals.each { |meal| @meals_by_type[meal.meal_type] << meal }
   end
 
-# app/controllers/meal_plans_controller.rb
-def create_or_update
-  date = Date.parse(params[:date])
-  meal_type = params[:meal_type]
-  meal_id = params[:meal_id]
+  def create_or_update
+    date = Date.parse(params[:date])
+    meal_type = params[:meal_type]
+    meal_id = params[:meal_id]
 
-  # Find by date and meal type through the associated meal
-  meal_plan = current_user.meal_plans
-                .includes(:meal)
-                .find { |mp| mp.date == date && mp.meal.meal_type == meal_type }
+    # Find by date and meal type through the associated meal
+    meal_plan = current_user.meal_plans
+                  .includes(:meal)
+                  .find { |mp| mp.date == date && mp.meal.meal_type == meal_type }
 
-  # If not found, initialize a new one
-  meal_plan ||= current_user.meal_plans.new(date: date)
+    # If not found, initialize a new one
+    meal_plan ||= current_user.meal_plans.new(date: date)
 
-  if meal_id.present?
-    meal_plan.meal_id = meal_id
-    if meal_plan.save
-      redirect_to meal_plans_path, notice: "Meal plan updated!"
+    if meal_id.present?
+      meal_plan.meal_id = meal_id
+      if meal_plan.save
+        redirect_to meal_plans_path, notice: "Meal plan updated!"
+      else
+        redirect_to meal_plans_path, alert: "Failed to update: #{meal_plan.errors.full_messages.join(', ')}"
+      end
     else
-      redirect_to meal_plans_path, alert: "Failed to update: #{meal_plan.errors.full_messages.join(', ')}"
+      meal_plan.destroy if meal_plan.persisted?
+      redirect_to meal_plans_path, notice: "Meal removed from plan"
     end
-  else
-    meal_plan.destroy if meal_plan.persisted?
-    redirect_to meal_plans_path, notice: "Meal removed from plan"
   end
-end
-
-
-  # ... keep destroy action if you still need it
 end
