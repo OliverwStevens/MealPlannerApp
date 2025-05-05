@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   resources :recipes
   resources :pantry_items
   resources :home
-  resources :meal_plans do
+  resources :meal_plans, only: [ :index ] do
     collection do
-      post "update_plan", action: :create_or_update, as: :update_plan
+      post :update_plan, action: :create_or_update
     end
   end
   devise_for :users, controllers: {
