@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :pantry_items, dependent: :destroy
   has_many :recipes, dependent: :destroy
   has_many :meals, dependent: :destroy
+  has_many :meal_plans, dependent: :destroy
 
   def name
     "#{first_name} #{last_name}"

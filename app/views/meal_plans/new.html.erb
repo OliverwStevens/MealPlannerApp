@@ -1,0 +1,21 @@
+# app/views/meal_plans/new.html.erb
+<div class="container">
+  <h1>Add Meal for <%= @date.strftime('%A, %B %d') %> - <%= @meal_type.capitalize %></h1>
+  
+  <%= form_with(model: @meal_plan, url: meal_plans_path) do |form| %>
+    <%= form.hidden_field :date %>
+    <%= form.hidden_field :meal_type %>
+    
+    <div class="form-group">
+      <%= form.label :meal_id, "Select a meal" %>
+      <%= form.select :meal_id, options_from_collection_for_select(@meals, :id, :name), { include_blank: true }, class: 'form-control' %>
+    </div>
+    
+    <div class="actions">
+      <%= form.submit 'Add to Plan', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', meal_plans_path, class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+  
+  <p>Don't see the meal you want? <%= link_to 'Create a new meal', new_meal_path %></p>
+</div>

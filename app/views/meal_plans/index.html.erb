@@ -1,0 +1,39 @@
+# app/views/meal_plans/index.html.erb
+<div class="container">
+  <h1>My Meal Plan</h1>
+  
+  <%# Navigation links for previous/next week %>
+<div class="week-navigation">
+  <%= link_to 'Previous Week', meal_plans_path(start_date: @start_date.advance(weeks: -1)) %>
+  <span>Week of <%= @start_date.strftime('%B %d, %Y') %> to <%= @end_date.strftime('%B %d, %Y') %></span>
+  <%= link_to 'Next Week', meal_plans_path(start_date: @start_date.advance(weeks: 1)) %>
+</div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Breakfast</th>
+        <th>Lunch</th>
+        <th>Dinner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% (@start_date..@end_date).each do |date| %>
+        <tr>
+          <td><%= date.strftime('%A, %b %d') %></td>
+          <% Meal.meal_types.keys.each do |meal_type| %>
+            <td>
+                <% if @grouped_plans[date] && (plan = @grouped_plans[date].find { |mp| mp.meal.meal_type == meal_type }) %>
+                <%= plan.meal.name %>
+                <%= link_to 'Remove', meal_plan_path(plan), method: :delete %>
+                <% else %>
+                <%= link_to 'Add', new_meal_plan_path(date: date, meal_type: meal_type) %>
+                <% end %>
+            </td>
+        <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

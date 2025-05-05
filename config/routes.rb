@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
+  get "meal_plans/index"
+  get "meal_plans/new"
+  get "meal_plans/create"
+  get "meal_plans/destroy"
   resources :meals
   get "home/index"
   resources :recipes
   resources :pantry_items
   resources :home
+  resources :meal_plans
+
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }

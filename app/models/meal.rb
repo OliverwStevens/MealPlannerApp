@@ -3,6 +3,7 @@ class Meal < ApplicationRecord
   has_one_attached :image
   has_many :meal_recipes, dependent: :destroy
   has_many :recipes, through: :meal_recipes
+  has_many :meal_plans
   scope :sharable, -> { where(sharable: true) }
 
 
