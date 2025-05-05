@@ -16,6 +16,10 @@ class MealPlansController < ApplicationController
     @days = (@start_date..@end_date).to_a
     @meal_types = Meal.meal_types.keys
 
+    @todays_meals = current_user.meal_plans
+    .includes(:meal)
+    .where(date: Date.today)
+    .index_by { |plan| plan.meal.meal_type }
     # Initialize empty hash for each meal type
     @meals_by_type = Hash.new { |h, k| h[k] = [] }
     current_user.meals.each { |meal| @meals_by_type[meal.meal_type] << meal }

@@ -39,6 +39,19 @@
     <% end %>
   </table>
 </div>
+<div>
+  <h2>Today's Meals: <%= Date.today.strftime('%A, %b %d') %></h2>
+  <ul>
+    <% @meal_types.each do |meal_type| %>
+      <li>
+        <strong><%= meal_type.capitalize %>:</strong>
+        <%= @todays_meals[meal_type]&.meal&.name || 'Not selected' %>
+
+      </li>
+    <% end %>
+  </ul>
+</div>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
