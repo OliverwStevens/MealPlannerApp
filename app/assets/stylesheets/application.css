@@ -1063,4 +1063,61 @@ label {
   .shopping-list .ingredient-checkbox {
     display: none;
   }
+}
+
+.simple-login {
+  max-width: 375px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: solid #252323 3px;
+  border-radius: 1rem;
+}
+.simple-login h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.simple-login .input-group {
+  margin-bottom: 1rem;
+}
+.simple-login .input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.simple-login .input-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.simple-login .remember {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+.simple-login .remember input {
+  margin-right: 0.5rem;
+}
+.simple-login .btn {
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #DAD2BC;
+  width: 100%;
+  padding: 0.75rem;
+}
+.simple-login .btn:hover {
+  background-color: #A99985;
+}
+.simple-login .links {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.simple-login .links a {
+  color: #252323;
+  text-decoration: underline;
 }/*# sourceMappingURL=application.css.map */

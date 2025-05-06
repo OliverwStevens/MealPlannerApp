@@ -20,5 +20,9 @@ $btn-colors: (
   "red": (
     "normal": $color-danger,
     "hover": $color-danger-hover
+  ),
+  "brown": (
+    "normal": $primary,
+    "hover": $secondary
   )
 );
