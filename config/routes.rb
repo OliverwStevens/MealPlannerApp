@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "shopping_lists/index"
   get "meal_plans/index"
   get "meal_plans/new"
   get "meal_plans/create"
@@ -15,6 +16,9 @@ Rails.application.routes.draw do
       delete :clear_week
     end
   end
+
+  resources :shopping_lists, only: [ :index ]
+
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
