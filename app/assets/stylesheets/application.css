@@ -1120,4 +1120,140 @@ label {
 .simple-login .links a {
   color: #252323;
   text-decoration: underline;
+}
+.simple-login input[type=email],
+.simple-login input[type=password] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.simple-login input[type=email]:focus,
+.simple-login input[type=password]:focus {
+  outline: 2px solid #252323;
+  outline-offset: -1px;
+}
+
+.sign-up-form {
+  max-width: 375px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: solid #252323 3px;
+  border-radius: 1rem;
+}
+.sign-up-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.sign-up-form .field {
+  margin-bottom: 1rem;
+}
+.sign-up-form .field label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.sign-up-form .field em {
+  font-size: 0.8rem;
+  color: #666;
+  font-style: normal;
+}
+.sign-up-form .field input[type=email],
+.sign-up-form .field input[type=text],
+.sign-up-form .field input[type=password] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.sign-up-form .field input[type=email]:focus,
+.sign-up-form .field input[type=text]:focus,
+.sign-up-form .field input[type=password]:focus {
+  outline: 2px solid #252323;
+  outline-offset: -1px;
+}
+.sign-up-form .actions {
+  margin-top: 1.5rem;
+}
+.sign-up-form .actions input[type=submit] {
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #DAD2BC;
+  width: 100%;
+  padding: 0.75rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+.sign-up-form .actions input[type=submit]:hover {
+  background-color: #A99985;
+}
+.sign-up-form .devise-links {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.sign-up-form .devise-links a {
+  color: #252323;
+  text-decoration: underline;
+}
+
+.resend-confirmation {
+  max-width: 375px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: solid #252323 3px;
+  border-radius: 1rem;
+}
+.resend-confirmation h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.resend-confirmation .field {
+  margin-bottom: 1rem;
+}
+.resend-confirmation .field label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.resend-confirmation .field input[type=email] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.resend-confirmation .field input[type=email]:focus {
+  outline: 2px solid #252323;
+  outline-offset: -1px;
+}
+.resend-confirmation .actions {
+  margin-top: 1.5rem;
+}
+.resend-confirmation .actions input[type=submit] {
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #DAD2BC;
+  width: 100%;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.resend-confirmation .actions input[type=submit]:hover {
+  background-color: #A99985;
+}
+.resend-confirmation .devise-links {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.resend-confirmation .devise-links a {
+  color: #252323;
+  text-decoration: underline;
 }/*# sourceMappingURL=application.css.map */
