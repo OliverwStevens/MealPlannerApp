@@ -353,16 +353,17 @@ label {
   
   /* Mobile-first approach */
   grid-template-areas: 
+    "panel"
     "main"
-    "sidebar"
-    "panel";
+    "sidebar";
   
   /* Desktop layout (media query) */
   @media (min-width: 768px) {
     grid-template-columns: 3fr 1fr;
-    grid-template-areas: 
-      "main sidebar"
-      "panel panel";
+    grid-template-areas:
+      "panel panel" 
+      "main sidebar";
+      
   }
   
   /* For larger screens */
@@ -374,9 +375,8 @@ label {
     grid-area: main;
     
     .table-container {
-      background-color: $tertiary;
-      border-radius: 1rem;
       padding: 1rem;
+      border-radius: 1rem;
       
       @media (min-width: 768px) {
         background-color: $secondary;

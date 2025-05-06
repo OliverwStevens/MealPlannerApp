@@ -60,24 +60,31 @@ class MealPlansController < ApplicationController
     meals_by_type = Hash.new { |h, k| h[k] = [] }
     current_user.meals.each { |meal| meals_by_type[meal.meal_type] << meal }
 
-    # Get existing meal plans
-    existing_meal_plans = current_user.meal_plans
-                        .joins(:meal)
-                        .where(date: start_date..end_date)
-                        .select("meal_plans.*, meals.meal_type as meal_type, meal_plans.date")
+    # Create a more reliable way to track filled slots
+    # This approach directly checks for existing combinations in the database
+    filled_slots = {}
 
-    # Create a lookup for existing plans
-    existing_plans_lookup = {}
-    existing_meal_plans.each do |plan|
-      existing_plans_lookup["#{plan.date}_#{plan.meal_type}"] = true
+    # First, load all meal plans for this date range
+    existing_plans = current_user.meal_plans
+                      .includes(:meal)
+                      .where(date: start_date..end_date)
+
+    # Create a lookup hash for filled slots
+    existing_plans.each do |plan|
+      # Use both date and meal type to create a unique key
+      key = "#{plan.date}_#{plan.meal.meal_type}"
+      filled_slots[key] = true
     end
 
     # Generate missing meal plans
     generated_count = 0
     days.each do |day|
       meal_types.each do |meal_type|
-        # Skip if this day/meal_type combination already has a plan
-        next if existing_plans_lookup["#{day}_#{meal_type}"]
+        # Create a lookup key matching the format we used above
+        slot_key = "#{day}_#{meal_type}"
+
+        # Skip if this slot is already filled
+        next if filled_slots[slot_key]
 
         # Skip if no meals are available for this meal type
         next if meals_by_type[meal_type].empty?
@@ -89,6 +96,8 @@ class MealPlansController < ApplicationController
         meal_plan = current_user.meal_plans.new(date: day, meal_id: random_meal.id)
         if meal_plan.save
           generated_count += 1
+          # Mark this slot as filled to prevent duplicates if there's an error later
+          filled_slots[slot_key] = true
         end
       end
     end

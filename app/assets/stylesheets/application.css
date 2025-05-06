@@ -667,14 +667,14 @@ label {
   grid-template-columns: 1fr;
   gap: 1.5rem;
   /* Mobile-first approach */
-  grid-template-areas: "main" "sidebar" "panel";
+  grid-template-areas: "panel" "main" "sidebar";
   /* Desktop layout (media query) */
   /* For larger screens */
 }
 @media (min-width: 768px) {
   #mealplan-layout {
     grid-template-columns: 3fr 1fr;
-    grid-template-areas: "main sidebar" "panel panel";
+    grid-template-areas: "panel panel" "main sidebar";
   }
 }
 @media (min-width: 1200px) {
@@ -686,9 +686,8 @@ label {
   grid-area: main;
 }
 #mealplan-layout div:nth-child(1) .table-container {
-  background-color: #70798C;
-  border-radius: 1rem;
   padding: 1rem;
+  border-radius: 1rem;
 }
 @media (min-width: 768px) {
   #mealplan-layout div:nth-child(1) .table-container {
