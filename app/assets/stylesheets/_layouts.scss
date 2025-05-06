@@ -930,6 +930,11 @@ label {
       
     }
   }
+  button {
+    @include form-btn;
+    @include button-variant("red");
+    width: 100%;
+  }
 }
 
 .resend-confirmation {
