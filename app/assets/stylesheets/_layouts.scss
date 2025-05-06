@@ -92,20 +92,21 @@
 /* ======================
    Food Display Components
    ====================== */
-.food-display {
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-  grid-auto-rows: 1fr;
-  gap: 2rem;
-  place-items: center;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
-    gap: 1rem;
-    padding: 1rem;
+   .food-display {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    gap: 2rem;
+    align-items: stretch; // Critical! Overrides place-items: center
+    
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+    
+    // Remove or replace 'place-items: center' if present
   }
-}
 
 .pantry-item {
   display: grid;
@@ -195,25 +196,30 @@
    Recipe Display Components
    ====================== */
   
-  .recipe-container {
+   .recipe-container {
+    // Structural
+    width: 100%;
+    height: 100%; 
+    min-height: 0;
+    min-width: 0; 
+    
     // Layout
     display: flex;
     flex-direction: column;
-    min-width: 20%; // Fix overflow
-    width: 100%;
-    flex: 1 0 auto;
-    
-    // Sizing (now controlled by grid)
-    height: 100%; // Fills grid row
     
     // Styling
     border: 5px solid $quaternary;
     border-radius: 2%;
     background: $primary;
     padding: 0.5rem;
+    overflow: hidden;
     
-    // Text
-    overflow-wrap: break-word;
+    // Force internal elements to behave
+    > * {
+      min-width: 0; // Fix flex children overflow
+      max-width: 100%; // Prevent horizontal expansion
+    }
+    
   }
 .ingredients-container {
   display: flex;
