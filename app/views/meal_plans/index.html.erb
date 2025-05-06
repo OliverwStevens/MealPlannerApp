@@ -1,6 +1,6 @@
+<!-- HTML Structure -->
 <div id="mealplan-layout">
-
-  <div>
+  <div class="main-content">
     <h1>Weekly Meal Plan</h1>
     
     <% if notice %>
@@ -10,21 +10,57 @@
       <div class="alert alert-danger"><%= alert %></div>
     <% end %>
 
-    <table class="table meal-plan-table">
-      <thead>
-        <tr>
-          <th>Day</th> 
-          <% @meal_types.each do |meal_type| %>
-            <th><%= meal_type.capitalize %></th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @days.each do |day| %>
+    <div class="table-container">
+      <!-- Desktop Table -->
+      <table class="table meal-plan-table meal-desktop-table">
+        <thead>
           <tr>
-            <td><%= day.strftime('%A, %b %d') %></td>
+            <th>Day</th> 
             <% @meal_types.each do |meal_type| %>
-              <td>
+              <th><%= meal_type.capitalize %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @days.each do |day| %>
+            <tr>
+              <td><%= day.strftime('%A, %b %d') %></td>
+              <% @meal_types.each do |meal_type| %>
+                <td>
+                  <% meal_plan = current_user.meal_plans
+                                  .joins(:meal)
+                                  .find_by(date: day, meals: { meal_type: meal_type }) %>
+                  
+                  <%= form_with url: update_plan_meal_plans_path, method: :post do |f| %>
+                    <%= f.hidden_field :date, value: day %>
+                    <%= f.hidden_field :meal_type, value: meal_type %>
+                    
+                    <%= f.select :meal_id,
+                        options_for_select(
+                          [['Select meal...', '']] + 
+                          (@meals_by_type[meal_type] || []).map { |m| [m.name, m.id] },
+                          meal_plan&.meal_id
+                        ),
+                        {},
+                        class: 'form-control meal-select',
+                        onchange: 'this.form.submit()'
+                    %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      
+      <!-- Mobile Cards -->
+      <div class="meal-mobile-cards">
+        <% @days.each do |day| %>
+          <div class="meal-day-card">
+            <div class="day-title"><%= day.strftime('%A, %b %d') %></div>
+            <% @meal_types.each do |meal_type| %>
+              <div class="meal-slot">
+                <div class="meal-label"><%= meal_type.capitalize %></div>
                 <% meal_plan = current_user.meal_plans
                                 .joins(:meal)
                                 .find_by(date: day, meals: { meal_type: meal_type }) %>
@@ -44,34 +80,38 @@
                       onchange: 'this.form.submit()'
                   %>
                 <% end %>
-              </td>
+              </div>
             <% end %>
-          </tr>
+          </div>
         <% end %>
-      </tbody>
-    </table>
+      </div>
+    </div>
   </div>
-  <div>
+  
+  <div class="sidebar-content">
     <h2>Today's Meals: <%= Date.today.strftime('%A, %b %d') %></h2>
-    <ul>
+    <ul class="todays-meals-list">
       <% @meal_types.each do |meal_type| %>
         <li>
           <strong><%= meal_type.capitalize %>:</strong>
           <%= @todays_meals[meal_type]&.meal&.name || 'Not selected' %>
         </li>
       <% end %>
+    </ul>
 
     <div class="food-display">
-      <% @todays_meals.each do |meal_data| %>
+      <% @todays_meals.sort_by { |meal_type, _| Meal.meal_types[meal_type] }.each do |meal_data| %>
         <% meal_type, meal_plan = meal_data %>
-          <%= link_to meal_plan.meal, class: "centered-text hover-move" do %>
-            <%= render meal_plan.meal %>
-          <% end %>
+        <%= link_to meal_plan.meal, class: "centered-text hover-move" do %>
+          <%= render meal_plan.meal %>
+        <% end %>
       <% end %>
     </div>
-    </ul>
   </div>
-
+  
+  <div class="panel-content">
+    Here is the button
+  </div>
 </div>
 
 
