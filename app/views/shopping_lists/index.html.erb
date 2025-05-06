@@ -49,7 +49,7 @@
       <!-- Shopping List -->
       <div class="bg-white p-6 rounded-lg shadow">
         <h2 class="text-2xl font-semibold mb-4">Shopping List</h2>
-        <% if @grouped_items.any? %>
+        <% if @aggregated_ingredients.any? %>
           <div class="space-y-4">
             <p class="text-sm text-gray-500 mb-4">
               Showing ingredients for all meals from <%= @start_date.strftime("%B %d") %> to <%= @end_date.strftime("%B %d") %>
@@ -62,7 +62,7 @@
             </div>
             
             <ul id="shopping-list" class="space-y-2">
-              <% @grouped_items.keys.sort.each do |ingredient_name| %>
+              <% @aggregated_ingredients.keys.sort.each do |ingredient_name| %>
                 <li class="shopping-item flex items-center justify-between py-2 border-b">
                   <div>
                     <input type="checkbox" id="item-<%= ingredient_name.gsub(/\s+/, '-') %>" 
@@ -72,8 +72,8 @@
                     </label>
                   </div>
                   <div class="text-gray-600">
-                    <% @grouped_items[ingredient_name].each do |item| %>
-                      <div><%= item.amount %></div>
+                    <% @aggregated_ingredients[ingredient_name].each do |amount| %>
+                      <div><%= amount %></div>
                     <% end %>
                   </div>
                 </li>
@@ -87,7 +87,7 @@
       </div>
     </div>
     
-    <% if @grouped_items.any? %>
+    <% if @aggregated_ingredients.any? %>
       <div class="mt-8">
         <button id="print-list" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
           Print Shopping List
