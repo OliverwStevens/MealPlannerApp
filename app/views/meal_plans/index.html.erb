@@ -110,7 +110,11 @@
   </div>
   
   <div class="panel-content">
-    Here is the button
+    <%= button_to auto_generate_meal_plans_path(start_date: @start_date), 
+               class: "basic-green-btn", 
+               data: { confirm: "This will randomly assign meals to all empty slots in your weekly plan. Continue?" } do %>
+   <i class="fas fa-magic"></i> Auto-Generate Meals
+ <% end %>
   </div>
 </div>
 

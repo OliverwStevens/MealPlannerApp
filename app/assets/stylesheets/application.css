@@ -120,6 +120,20 @@ body {
 /* ======================
    Buttons & Interactive Elements
    ====================== */
+.basic-green-btn {
+  background-color: #00CC66;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.basic-green-btn:hover {
+  background-color: #137547;
+}
+
 .floating-right-btn-container {
   position: fixed;
   z-index: 1000;

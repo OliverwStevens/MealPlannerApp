@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :meal_plans, only: [ :index ] do
     collection do
       post :update_plan, action: :create_or_update
+      post :auto_generate
     end
   end
   devise_for :users, controllers: {

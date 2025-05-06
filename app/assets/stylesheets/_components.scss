@@ -42,6 +42,12 @@
 /* ======================
    Buttons & Interactive Elements
    ====================== */
+
+.basic-green-btn {
+
+  @include button-variant("green");
+  @include form-btn;
+}
 // Floating Button System
 .floating-right-btn-container {
   @include floating-btn-container;
