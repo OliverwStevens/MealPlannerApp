@@ -46,9 +46,17 @@
       <li>
         <strong><%= meal_type.capitalize %>:</strong>
         <%= @todays_meals[meal_type]&.meal&.name || 'Not selected' %>
-
       </li>
     <% end %>
+
+   <div class="food-display">
+    <% @todays_meals.each do |meal_data| %>
+      <% meal_type, meal_plan = meal_data %>
+        <%= link_to meal_plan.meal, class: "centered-text hover-move" do %>
+          <%= render meal_plan.meal %>
+        <% end %>
+    <% end %>
+   </div>
   </ul>
 </div>
 
