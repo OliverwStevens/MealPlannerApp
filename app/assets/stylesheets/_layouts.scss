@@ -344,3 +344,69 @@ label {
   border-radius: 4px;
   border: 1px solid #ddd;
 }
+
+#mealplan-layout {
+  display: grid;
+  grid-template-rows: 4fr 1fr;
+  grid-template-columns: 4fr 1fr;
+
+  grid-template-areas: 
+    "main sidebar"
+    "panel panel";
+  
+  div:nth-child(1) {
+    grid-area: main;
+
+    table {
+      height: 30rem;
+
+      select.form-control.meal-select {
+        padding: .8rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background-color: white;
+        font-size: 16px;
+        color: #333;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s, box-shadow 0.3s;
+        appearance: none;
+        -webkit-appearance: none; /* For Safari */
+        -moz-appearance: none; /* For Firefox */
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-size: 16px;
+      }
+      
+      /* Hover & Focus Effects */
+      select.form-control.meal-select:hover {
+        border-color: #aaa;
+      }
+      
+      select.form-control.meal-select:focus {
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+        outline: none;
+      }
+      
+      /* Style the dropdown options */
+      select.form-control.meal-select option {
+        padding: 10px;
+        background: white;
+        color: #333;
+      }
+      
+      /* Disabled state styling */
+      select.form-control.meal-select:disabled {
+        background-color: #f5f5f5;
+        color: #999;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  div:nth-child(2) {
+    grid-area: sidebar;
+  }
+}

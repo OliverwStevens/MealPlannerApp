@@ -1,64 +1,79 @@
-<div class="container">
-  <h1>Weekly Meal Plan</h1>
-  
-  <% if notice %>
-    <div class="alert alert-success"><%= notice %></div>
-  <% end %>
-  <% if alert %>
-    <div class="alert alert-danger"><%= alert %></div>
-  <% end %>
+<div id="mealplan-layout">
 
-  <table class="table meal-plan-table">
-    <% @days.each do |day| %>
-      <tr>
-        <td><%= day.strftime('%A, %b %d') %></td>
-        <% @meal_types.each do |meal_type| %>
-          <td>
-            <% meal_plan = current_user.meal_plans
-                             .joins(:meal)
-                             .find_by(date: day, meals: { meal_type: meal_type }) %>
-            
-            <%= form_with url: update_plan_meal_plans_path, method: :post do |f| %>
-              <%= f.hidden_field :date, value: day %>
-              <%= f.hidden_field :meal_type, value: meal_type %>
-              
-              <%= f.select :meal_id,
-                  options_for_select(
-                    [['Select meal...', '']] + 
-                    (@meals_by_type[meal_type] || []).map { |m| [m.name, m.id] },
-                    meal_plan&.meal_id
-                  ),
-                  {},
-                  class: 'form-control meal-select',
-                  onchange: 'this.form.submit()'
-              %>
+  <div>
+    <h1>Weekly Meal Plan</h1>
+    
+    <% if notice %>
+      <div class="alert alert-success"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-danger"><%= alert %></div>
+    <% end %>
+
+    <table class="table meal-plan-table">
+      <thead>
+        <tr>
+          <th>Day</th> 
+          <% @meal_types.each do |meal_type| %>
+            <th><%= meal_type.capitalize %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @days.each do |day| %>
+          <tr>
+            <td><%= day.strftime('%A, %b %d') %></td>
+            <% @meal_types.each do |meal_type| %>
+              <td>
+                <% meal_plan = current_user.meal_plans
+                                .joins(:meal)
+                                .find_by(date: day, meals: { meal_type: meal_type }) %>
+                
+                <%= form_with url: update_plan_meal_plans_path, method: :post do |f| %>
+                  <%= f.hidden_field :date, value: day %>
+                  <%= f.hidden_field :meal_type, value: meal_type %>
+                  
+                  <%= f.select :meal_id,
+                      options_for_select(
+                        [['Select meal...', '']] + 
+                        (@meals_by_type[meal_type] || []).map { |m| [m.name, m.id] },
+                        meal_plan&.meal_id
+                      ),
+                      {},
+                      class: 'form-control meal-select',
+                      onchange: 'this.form.submit()'
+                  %>
+                <% end %>
+              </td>
             <% end %>
-          </td>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
-  </table>
-</div>
-<div>
-  <h2>Today's Meals: <%= Date.today.strftime('%A, %b %d') %></h2>
-  <ul>
-    <% @meal_types.each do |meal_type| %>
-      <li>
-        <strong><%= meal_type.capitalize %>:</strong>
-        <%= @todays_meals[meal_type]&.meal&.name || 'Not selected' %>
-      </li>
-    <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h2>Today's Meals: <%= Date.today.strftime('%A, %b %d') %></h2>
+    <ul>
+      <% @meal_types.each do |meal_type| %>
+        <li>
+          <strong><%= meal_type.capitalize %>:</strong>
+          <%= @todays_meals[meal_type]&.meal&.name || 'Not selected' %>
+        </li>
+      <% end %>
 
-   <div class="food-display">
-    <% @todays_meals.each do |meal_data| %>
-      <% meal_type, meal_plan = meal_data %>
-        <%= link_to meal_plan.meal, class: "centered-text hover-move" do %>
-          <%= render meal_plan.meal %>
-        <% end %>
-    <% end %>
-   </div>
-  </ul>
+    <div class="food-display">
+      <% @todays_meals.each do |meal_data| %>
+        <% meal_type, meal_plan = meal_data %>
+          <%= link_to meal_plan.meal, class: "centered-text hover-move" do %>
+            <%= render meal_plan.meal %>
+          <% end %>
+      <% end %>
+    </div>
+    </ul>
+  </div>
+
 </div>
+
 
 
 <script>
