@@ -493,7 +493,6 @@ label {
   div:nth-child(2) {
     grid-area: sidebar;
     padding: 0.5rem;
-    
     @media (min-width: 768px) {
       padding: 1rem;
     }
@@ -502,7 +501,9 @@ label {
   div:nth-child(3) {
     grid-area: panel;
     padding: 0.5rem;
-    
+    > * {
+      display: inline;
+    }
     @media (min-width: 768px) {
       padding: 1rem;
     }

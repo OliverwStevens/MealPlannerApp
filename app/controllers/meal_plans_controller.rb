@@ -108,4 +108,20 @@ class MealPlansController < ApplicationController
       redirect_to meal_plans_path, notice: "No meal plans needed to be generated!"
     end
   end
+
+  def clear_week
+    start_date = params[:start_date] ? Date.parse(params[:start_date]) : Date.current.beginning_of_week
+    end_date = start_date.end_of_week
+
+    # Find all meal plans for the current week
+    meal_plans = current_user.meal_plans.where(date: start_date..end_date)
+
+    # Count how many are being deleted
+    count = meal_plans.count
+
+    # Delete them all
+    meal_plans.destroy_all
+
+    redirect_to meal_plans_path, notice: "Cleared #{count} meal plans from your week!"
+  end
 end

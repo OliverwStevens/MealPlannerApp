@@ -48,6 +48,12 @@
   @include button-variant("green");
   @include form-btn;
 }
+
+.basic-red-btn {
+
+  @include button-variant("red");
+  @include form-btn;
+}
 // Floating Button System
 .floating-right-btn-container {
   @include floating-btn-container;

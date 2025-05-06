@@ -111,12 +111,17 @@
   
   <div class="panel-content">
     <%= button_to auto_generate_meal_plans_path(start_date: @start_date), 
-               class: "basic-green-btn", 
-               data: { confirm: "This will randomly assign meals to all empty slots in your weekly plan. Continue?" } do %>
+               class: "basic-green-btn" do %>
     Auto-Generate Meals
     <% end %>
 
-    
+    <%= button_to clear_week_meal_plans_path(start_date: @start_date), 
+                method: :delete, 
+                class: "basic-red-btn" do %>
+    Clear Week
+    <% end %>
+
+
   </div>
 </div>
 

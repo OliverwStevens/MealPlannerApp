@@ -134,6 +134,20 @@ body {
   background-color: #137547;
 }
 
+.basic-red-btn {
+  background-color: #BD1E1E;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.basic-red-btn:hover {
+  background-color: #88292F;
+}
+
 .floating-right-btn-container {
   position: fixed;
   z-index: 1000;
@@ -797,6 +811,9 @@ label {
 #mealplan-layout div:nth-child(3) {
   grid-area: panel;
   padding: 0.5rem;
+}
+#mealplan-layout div:nth-child(3) > * {
+  display: inline;
 }
 @media (min-width: 768px) {
   #mealplan-layout div:nth-child(3) {
