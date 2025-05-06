@@ -1,37 +1,37 @@
 <%# app/views/shopping_lists/index.html.erb %>
 
-<div class="container mx-auto px-4 py-8">
-  <h1 class="text-3xl font-bold mb-6">Shopping List</h1>
+<div class="shopping-list">
+  <h1 class="shopping-list-title">Shopping List</h1>
   
-  <div class="mb-8">
-    <%= form_with url: shopping_lists_path, method: :get, class: "flex items-center space-x-4" do |f| %>
-      <div>
-        <%= f.label :start_date, "Week starting:", class: "block text-sm font-medium text-gray-700" %>
-        <%= f.date_field :start_date, value: @start_date, class: "mt-1 p-2 border rounded-md" %>
+  <div class="shopping-list-date-selector">
+    <%= form_with url: shopping_lists_path, method: :get, class: "shopping-list-form" do |f| %>
+      <div class="form-field">
+        <%= f.label :start_date, "Week starting:", class: "form-label" %>
+        <%= f.date_field :start_date, value: @start_date, class: "form-input" %>
       </div>
-      <%= f.submit "Update", class: "mt-6 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" %>
+      <%= f.submit "Update", class: "form-submit" %>
     <% end %>
   </div>
 
   <% if @meal_plans.any? %>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="shopping-list-grid">
       <!-- Meal Plan Summary -->
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h2 class="text-2xl font-semibold mb-4">Meal Plan Summary</h2>
-        <div class="space-y-6">
+      <div class="shopping-list-card">
+        <h2 class="card-title">Meal Plan Summary</h2>
+        <div class="meal-plan-days">
           <% (@start_date..@end_date).each do |date| %>
-            <div class="border-b pb-4">
-              <h3 class="font-medium text-lg mb-2"><%= date.strftime("%A, %B %d") %></h3>
+            <div class="meal-plan-day">
+              <h3 class="day-title"><%= date.strftime("%A, %B %d") %></h3>
               <% if @meal_plans_by_date[date].present? %>
-                <ul class="list-disc list-inside space-y-1">
+                <ul class="meal-list">
                   <% @meal_plans_by_date[date].each do |meal_plan| %>
-                    <li>
-                      <span class="font-medium"><%= meal_plan.meal.meal_type.titleize %>:</span>
-                      <%= meal_plan.meal.name %>
+                    <li class="meal-item">
+                      <span class="meal-type"><%= meal_plan.meal.meal_type.titleize %>:</span>
+                      <span class="meal-name"><%= meal_plan.meal.name %></span>
                       <% if meal_plan.meal.recipes.any? %>
-                        <ul class="ml-6 list-circle text-sm text-gray-600">
+                        <ul class="recipe-list">
                           <% meal_plan.meal.recipes.each do |recipe| %>
-                            <li><%= recipe.name %></li>
+                            <li class="recipe-item"><%= recipe.name %></li>
                           <% end %>
                         </ul>
                       <% end %>
@@ -39,7 +39,7 @@
                   <% end %>
                 </ul>
               <% else %>
-                <p class="text-gray-500 italic">No meals planned</p>
+                <p class="no-meals">No meals planned</p>
               <% end %>
             </div>
           <% end %>
@@ -47,33 +47,33 @@
       </div>
 
       <!-- Shopping List -->
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h2 class="text-2xl font-semibold mb-4">Shopping List</h2>
+      <div class="shopping-list-card">
+        <h2 class="card-title">Shopping List</h2>
         <% if @aggregated_ingredients.any? %>
-          <div class="space-y-4">
-            <p class="text-sm text-gray-500 mb-4">
+          <div class="shopping-list-content">
+            <p class="date-range">
               Showing ingredients for all meals from <%= @start_date.strftime("%B %d") %> to <%= @end_date.strftime("%B %d") %>
             </p>
             
-            <div class="mb-4">
+            <div class="search-container">
               <input type="text" id="ingredient-search" 
-                     class="w-full p-2 border rounded-md" 
+                     class="search-input" 
                      placeholder="Search ingredients...">
             </div>
             
-            <ul id="shopping-list" class="space-y-2">
+            <ul id="shopping-list" class="ingredient-list">
               <% @aggregated_ingredients.keys.sort.each do |ingredient_name| %>
-                <li class="shopping-item flex items-center justify-between py-2 border-b">
-                  <div>
+                <li class="ingredient-item">
+                  <div class="ingredient-info">
                     <input type="checkbox" id="item-<%= ingredient_name.gsub(/\s+/, '-') %>" 
-                           class="mr-2 h-5 w-5 text-blue-600">
+                           class="ingredient-checkbox">
                     <label for="item-<%= ingredient_name.gsub(/\s+/, '-') %>" class="ingredient-name">
                       <%= ingredient_name.titleize %>
                     </label>
                   </div>
-                  <div class="text-gray-600">
+                  <div class="ingredient-amounts">
                     <% @aggregated_ingredients[ingredient_name].each do |amount| %>
-                      <div><%= amount %></div>
+                      <div class="amount"><%= amount %></div>
                     <% end %>
                   </div>
                 </li>
@@ -81,34 +81,34 @@
             </ul>
           </div>
         <% else %>
-          <p class="text-gray-500 italic">No ingredients found for this time period.</p>
-          <p class="mt-2">Try selecting a different week or adding meals to your meal plan first.</p>
+          <p class="no-ingredients">No ingredients found for this time period.</p>
+          <p class="no-ingredients-help">Try selecting a different week or adding meals to your meal plan first.</p>
         <% end %>
       </div>
     </div>
     
     <% if @aggregated_ingredients.any? %>
-      <div class="mt-8">
-        <button id="print-list" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+      <div class="action-buttons">
+        <button id="print-list" class="action-button print-button">
           Print Shopping List
         </button>
-        <button id="clear-checked" class="ml-4 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
+        <button id="clear-checked" class="action-button clear-button">
           Clear Checked Items
         </button>
       </div>
     <% end %>
   <% else %>
-    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
-      <div class="flex">
-        <div class="flex-shrink-0">
-          <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+    <div class="warning-message">
+      <div class="warning-content">
+        <div class="warning-icon">
+          <svg class="warning-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
           </svg>
         </div>
-        <div class="ml-3">
-          <p class="text-sm text-yellow-700">
+        <div class="warning-text">
+          <p>
             No meal plans found for the selected week. 
-            <a href="<%= meal_plans_path %>" class="font-medium underline text-yellow-700 hover:text-yellow-600">
+            <a href="<%= meal_plans_path %>" class="warning-link">
               Create a meal plan first
             </a>
           </p>
@@ -125,7 +125,7 @@
     if (searchInput) {
       searchInput.addEventListener('input', function() {
         const query = this.value.toLowerCase();
-        const items = document.querySelectorAll('.shopping-item');
+        const items = document.querySelectorAll('.ingredient-item');
         
         items.forEach(item => {
           const name = item.querySelector('.ingredient-name').textContent.toLowerCase();
@@ -173,7 +173,7 @@
       top: 0;
       width: 100%;
     }
-    .shopping-item input[type="checkbox"] {
+    .ingredient-checkbox {
       display: none;
     }
   }
