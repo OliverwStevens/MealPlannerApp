@@ -1,7 +1,7 @@
 <!-- HTML Structure -->
 <div id="mealplan-layout">
   <div class="main-content">
-    <h1>Weekly Meal Plan</h1>
+    <h1 class="large-text">Weekly Meal Plan</h1>
     
     <% if notice %>
       <div class="alert alert-success"><%= notice %></div>
@@ -12,7 +12,7 @@
 
     <div class="table-container">
       <!-- Desktop Table -->
-      <table class="table meal-plan-table meal-desktop-table">
+      <table class="meal-desktop-table">
         <thead>
           <tr>
             <th>Day</th> 
@@ -113,8 +113,10 @@
     <%= button_to auto_generate_meal_plans_path(start_date: @start_date), 
                class: "basic-green-btn", 
                data: { confirm: "This will randomly assign meals to all empty slots in your weekly plan. Continue?" } do %>
-   <i class="fas fa-magic"></i> Auto-Generate Meals
- <% end %>
+    Auto-Generate Meals
+    <% end %>
+
+    
   </div>
 </div>
 
