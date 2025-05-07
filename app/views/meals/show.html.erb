@@ -9,8 +9,8 @@
 </p>
 <h3>Recipes in this meal:</h3>
 <div class="food-display">
-  <% @meal.recipes.each do |recipe| %>
-    <%= render recipe, info: true %>
+  <% @meal.recipes.each do |meal| %>
+    <%= render meal, info: true %>
   <% end %>
 </div>
 <div>

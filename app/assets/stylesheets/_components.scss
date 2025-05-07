@@ -7,11 +7,11 @@
 .centered-text {
   @include basic-text;
   text-align: center;
+  
 }
 .large-text {
   @include basic-text;
   font-size: larger;
-  margin: 1rem;
 
 }
 

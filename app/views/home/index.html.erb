@@ -1,29 +1,15 @@
-<!-- app/views/home/index.html.erb -->
 <h1>Tasty Shares</h1>
 
-<h2>Public Recipes</h2>
-<% if @public_recipes.any? %>
- 
+<h2>Public Content</h2>
+<% if @items.any? %>
+  <%= paginate @items %>
   <div class="food-display">
-    <% @public_recipes.each do |recipe| %>
-      <%= link_to home_show_path(type: "recipe", id: recipe.id), class: "centered-text hover-move" do %>
-        <%= render recipe, info: false %>
+    <% @items.each do |item| %>
+      <%= link_to home_show_path(type: item.class.name.downcase, id: item.id), class: "centered-text hover-move" do %>
+        <%= render item, info: item.is_a?(Recipe) ? false : nil %>
       <% end %>
     <% end %>
   </div>
 <% else %>
-  <p>No public recipes available</p>
-<% end %>
-
-<h2>Public Meals</h2>
-<% if @public_meals.any? %>
-  <div class="food-display">
-    <% @public_meals.each do |meal| %>
-      <%= link_to home_show_path(type: "meal", id: meal.id), class: "centered-text hover-move" do %>
-        <%= render meal %>
-      <% end %>
-    <% end %>
-</div>
-<% else %>
-  <p>No public meals available</p>
+  <p>No public content available</p>
 <% end %>

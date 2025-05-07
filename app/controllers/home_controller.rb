@@ -1,8 +1,12 @@
 class HomeController < ApplicationController
-  def index
-    @public_recipes = Recipe.sharable
-    @public_meals = Meal.sharable
-  end
+def index
+  recipes = Recipe.sharable
+  meals = Meal.sharable
+
+  # Combine and sort by creation date
+  @combined_feed = (recipes + meals).sort_by(&:created_at).reverse
+  @items = Kaminari.paginate_array(@combined_feed).page(params[:page]).per(24)
+end
 
   def show
     type = params[:type]

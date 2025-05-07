@@ -12,7 +12,14 @@
     <%= meal.name %>
   </p>
 
-  <p class="centered-text">
-    <%= meal.description %>
-  </p>
+  <% if local_assigns[:info]%>
+    <p class="centered-text">
+      <%= meal.meal_type %>
+    </p>
+   
+
+    <p class="centered-text">
+      <%= meal.description %>
+    </p>
+  <% end %>
 </div>

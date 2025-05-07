@@ -89,7 +89,6 @@ body {
   text-decoration: none;
   color: #252323;
   font-size: larger;
-  margin: 1rem;
 }
 
 .centered-big-title {
@@ -518,7 +517,7 @@ body {
   border: 5px solid #252323;
   border-radius: 2%;
   background: #DAD2BC;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   overflow: hidden;
 }
 .recipe-container > * {
