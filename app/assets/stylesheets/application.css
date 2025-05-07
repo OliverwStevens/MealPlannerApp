@@ -1270,4 +1270,15 @@ label {
 .resend-confirmation .devise-links a {
   color: #252323;
   text-decoration: underline;
+}
+
+.page-next, .page, .current, .pagination, .page-prev {
+  color: green;
+  margin: 0 1rem;
+  background-color: red;
+}
+.page-next *, .page *, .current *, .pagination *, .page-prev * {
+  font-size: 1.25rem;
+  display: flex;
+  color: #252323;
 }/*# sourceMappingURL=application.css.map */

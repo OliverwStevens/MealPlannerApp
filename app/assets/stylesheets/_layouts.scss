@@ -993,3 +993,14 @@ label {
     }
   }
 }
+
+.page-next, .page, .current, .pagination, .page-prev {
+  color: green;
+  margin: 0 1rem;
+  background-color: red;
+  * {
+    font-size: 1.25rem;
+    display: flex;
+    color: $quaternary;
+  }
+}
