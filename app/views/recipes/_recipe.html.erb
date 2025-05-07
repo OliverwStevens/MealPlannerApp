@@ -3,9 +3,6 @@
 
     <%= image_tag("recipes.svg", alt: "Recipe icon", class: "media-icon") %>
   <% end %>
-  <p class="centered-text">
-    <%= recipe.name %>
-  </p>
 
   <div class="image-container">
     <% if recipe.image.attached? %>
@@ -15,6 +12,10 @@
     <% end %>
 
   </div>
+
+  <p class="centered-text">
+    <%= recipe.name %>
+  </p>
   <% if local_assigns[:info]%>
     <strong> Ingredients: </strong>
 
