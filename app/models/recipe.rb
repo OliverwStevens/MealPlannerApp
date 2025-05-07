@@ -31,8 +31,6 @@ class Recipe < ApplicationRecord
   # Validate nested recipe_items
   validates :recipe_items, presence: true
 
-  max_paginates_per 2
-
   before_create :generate_uuid
 
   private

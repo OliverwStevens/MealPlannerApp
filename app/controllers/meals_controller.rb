@@ -4,7 +4,7 @@ class MealsController < ApplicationController
 
   # GET /meals or /meals.json
   def index
-    @meals = current_user.meals
+    @meals = current_user.meals.order(:name).page params[:page]
   end
 
   # GET /meals/1 or /meals/1.json

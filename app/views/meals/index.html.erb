@@ -13,6 +13,7 @@
 
 </div>
 
+<%= paginate @meals %>
 <div id="meals" class="food-display">
   <% @meals.each do |meal| %>
     <%= link_to meal, class: "centered-text hover-move" do %>

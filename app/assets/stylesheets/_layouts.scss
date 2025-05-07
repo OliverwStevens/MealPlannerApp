@@ -993,12 +993,17 @@ label {
     }
   }
 }
-
-.page-next, .page, .current, .pagination, .page-prev {
-  color: green;
+.pagination {
+  border: solid $quaternary 2px;
+  border-radius: .5rem;
+  width: fit-content;
+  padding: .25rem;
   margin: 0 1rem;
-  background-color: red;
+}
+.page-next, .page, .current, .pagination, .page-prev {
   * {
+    margin: 0 .25rem;
+
     font-size: 1.25rem;
     display: flex;
     color: $quaternary;

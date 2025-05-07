@@ -1272,12 +1272,17 @@ label {
   text-decoration: underline;
 }
 
-.page-next, .page, .current, .pagination, .page-prev {
-  color: green;
+.pagination {
+  border: solid #252323 2px;
+  border-radius: 0.5rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.25rem;
   margin: 0 1rem;
-  background-color: red;
 }
+
 .page-next *, .page *, .current *, .pagination *, .page-prev * {
+  margin: 0 0.25rem;
   font-size: 1.25rem;
   display: flex;
   color: #252323;

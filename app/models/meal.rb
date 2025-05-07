@@ -14,6 +14,7 @@ class Meal < ApplicationRecord
   validates :description, presence: true
   validates :meal_type, presence: true
   validates :sharable, inclusion: { in: [ true, false ] }
+
   # This ensures recipes exist but doesn't require them
   def recipes=(new_recipes)
     super(Array(new_recipes).reject(&:blank?))
