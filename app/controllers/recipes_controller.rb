@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [ :show, :edit, :update, :destroy ]
   # GET /recipes or /recipes.json
   def index
-    @recipes = current_user.recipes
+    @recipes = current_user.recipes.order(:name).page params[:page]
   end
 
   # GET /recipes/1 or /recipes/1.json

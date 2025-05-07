@@ -11,6 +11,7 @@
 </div>
 
 <h1>Recipes</h1>
+<%= paginate @recipes %>
 
 <div id="recipes" class="food-display">
   <% @recipes.each do |recipe| %>
