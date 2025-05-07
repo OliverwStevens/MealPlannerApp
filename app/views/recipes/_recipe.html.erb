@@ -1,4 +1,8 @@
 <div id="<%= dom_id recipe %>" class="recipe-container large-text padded">
+  <% if local_assigns[:icon]%>
+
+    <%= image_tag("recipes.svg", alt: "Recipe icon", class: "media-icon") %>
+  <% end %>
   <p class="centered-text">
     <%= recipe.name %>
   </p>

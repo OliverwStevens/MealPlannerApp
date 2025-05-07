@@ -1,5 +1,9 @@
 <div id="<%= dom_id meal %>" class="recipe-container">
 
+  <% if local_assigns[:icon]%>
+
+    <%= image_tag("meals.svg", alt: "Meal icon", class: "media-icon") %>
+  <% end %>
   <div class="image-container">
     <% if meal.image.attached? %>
       <%= image_tag meal.image, class: "image-card" %>

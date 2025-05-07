@@ -147,6 +147,15 @@ body {
   background-color: #88292F;
 }
 
+.media-icon {
+  position: absolute;
+  right: -1.25rem;
+  top: -1.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0;
+}
+
 .floating-right-btn-container {
   position: fixed;
   z-index: 1000;
@@ -242,9 +251,6 @@ body {
   padding: 5px;
   width: 2rem;
   height: 2rem;
-}
-.header-button:hover {
-  color: white;
 }
 
 .no-background {
@@ -508,6 +514,7 @@ body {
    Recipe Display Components
    ====================== */
 .recipe-container {
+  position: relative;
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -518,7 +525,6 @@ body {
   border-radius: 2%;
   background: #DAD2BC;
   padding: 0 0.5rem;
-  overflow: hidden;
 }
 .recipe-container > * {
   min-width: 0;
