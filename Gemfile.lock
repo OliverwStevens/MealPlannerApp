@@ -149,6 +149,7 @@ GEM
     google-protobuf (4.30.2-x86_64-linux)
       bigdecimal
       rake (>= 13)
+    hashie (5.0.0)
     httparty (0.23.1)
       csv
       mini_mime (>= 1.0.0)
@@ -377,6 +378,9 @@ GEM
       google-protobuf (~> 4.30)
     sass-embedded (1.86.3-x86_64-linux-musl)
       google-protobuf (~> 4.30)
+    searchkick (5.5.1)
+      activemodel (>= 7.1)
+      hashie
     securerandom (0.4.1)
     selenium-webdriver (4.31.0)
       base64 (~> 0.2)
@@ -474,6 +478,7 @@ DEPENDENCIES
   rails (~> 8.0.2)
   rspec-rails (~> 6.1)
   rubocop-rails-omakase
+  searchkick
   selenium-webdriver
   solid_cable
   solid_cache

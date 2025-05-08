@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "search/index"
   get "shopping_lists/index"
   get "meal_plans/index"
   get "meal_plans/new"
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :shopping_lists, only: [ :index ]
-
+  get "/search", to: "search#index", as: :search
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }

@@ -33,6 +33,8 @@ class Recipe < ApplicationRecord
 
   before_create :generate_uuid
 
+  searchkick
+  Recipe.reindex
   private
 
   def generate_uuid

@@ -71,4 +71,6 @@ gem "devise", "~> 4.9"
 gem "httparty"
 gem "dartsass-rails"
 gem "kaminari"
+gem "searchkick"
+
 gem "opensearch-ruby"

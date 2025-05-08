@@ -15,6 +15,9 @@ class Meal < ApplicationRecord
   validates :meal_type, presence: true
   validates :sharable, inclusion: { in: [ true, false ] }
 
+  searchkick
+
+  Meal.reindex
   # This ensures recipes exist but doesn't require them
   def recipes=(new_recipes)
     super(Array(new_recipes).reject(&:blank?))

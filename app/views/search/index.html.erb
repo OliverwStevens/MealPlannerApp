@@ -1,0 +1,22 @@
+<!-- app/views/search/index.html.erb -->
+<h1>Search Results</h1>
+
+<% if params[:query].present? %>
+  <h2>Results for "<%= params[:query] %>"</h2>
+<% else %>
+  <h2>Public Content</h2>
+<% end %>
+
+<% if @items.any? %>
+  <%= paginate @items %>
+  <div class="food-display">
+    <% @items.each do |item| %>
+      <%= link_to home_show_path(type: item.class.name.downcase, id: item.id), class: "centered-text hover-move" do %>
+        <%= render item, icon: true %>
+      <% end %>
+    <% end %>
+  </div>
+  <%= paginate @items %>
+<% else %>
+  <p><%= params[:query].present? ? "No results found" : "No public content available" %></p>
+<% end %>

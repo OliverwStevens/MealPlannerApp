@@ -72,7 +72,10 @@
               <button class="header-button">
                 <%= image_tag "magnify.svg", alt: "Search" %>
               </button>
-              <input type="text" class="search-bar" placeholder="Search...">
+              <%= form_tag search_path, method: :get do %>
+                <%= text_field_tag :query, params[:query], class: "search-bar", placeholder: "Search products..." %>
+                <%= submit_tag "Search" %>
+              <% end %>
             </div>
             <%= link_to edit_user_registration_path, class: "flex-vertical centered-text" do %>
               <%= image_tag("account-edit.svg", alt: "Account", class: "header-button") %>
@@ -120,7 +123,10 @@
               <button class="header-button">
                 <%= image_tag "magnify.svg", alt: "Search" %>
               </button>
-              <input type="text" class="search-bar" placeholder="Search...">
+              <%= form_tag search_path, method: :get do %>
+                <%= text_field_tag :query, params[:query], class: "search-bar", placeholder: "Search products..." %>
+                <%= submit_tag "Search" %>
+              <% end %>
             </div>
             
             <%= link_to edit_user_registration_path, class: "flex-vertical centered-text" do %>
