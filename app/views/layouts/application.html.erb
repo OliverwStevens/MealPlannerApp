@@ -69,12 +69,27 @@
             <% end %>
         
             <div class="search-container">
-              <button class="header-button">
-                <%= image_tag "magnify.svg", alt: "Search" %>
-              </button>
-              <%= form_tag search_path, method: :get do %>
-                <%= text_field_tag :query, params[:query], class: "search-bar", placeholder: "Search products..." %>
-                <%= submit_tag "Search" %>
+              <%= form_tag search_path, 
+                  method: :get, 
+                  data: { 
+                    controller: "search",
+                    search_target: "form",
+                    action: "keypress->search#input_keypress input->search#input_input"
+                  } do %>
+                <%= text_field_tag :query, 
+                    params[:query], 
+                    class: "search-bar", 
+                    placeholder: "Search products...", 
+                    autocomplete: "off",
+                    data: { 
+                      search_target: "input"
+                    } %>
+                <button type="button" 
+                        class="header-button search-icon" 
+                        data-search-target="icon" 
+                        data-action="click->search#handleIconClick">
+                  <%= image_tag "magnify.svg", alt: "Search" %>
+                </button>
               <% end %>
             </div>
             <%= link_to edit_user_registration_path, class: "flex-vertical centered-text" do %>
@@ -120,12 +135,27 @@
             <% end %>
             
             <div class="search-container mobile-search">
-              <button class="header-button">
-                <%= image_tag "magnify.svg", alt: "Search" %>
-              </button>
-              <%= form_tag search_path, method: :get do %>
-                <%= text_field_tag :query, params[:query], class: "search-bar", placeholder: "Search products..." %>
-                <%= submit_tag "Search" %>
+              <%= form_tag search_path, 
+                  method: :get, 
+                  data: { 
+                    controller: "search",
+                    search_target: "form",
+                    action: "keypress->search#input_keypress input->search#input_input"
+                  } do %>
+                <%= text_field_tag :query, 
+                    params[:query], 
+                    class: "search-bar", 
+                    placeholder: "Search products...", 
+                    autocomplete: "off",
+                    data: { 
+                      search_target: "input"
+                    } %>
+                <button type="button" 
+                        class="header-button search-icon" 
+                        data-search-target="icon" 
+                        data-action="click->search#handleIconClick">
+                  <%= image_tag "magnify.svg", alt: "Search" %>
+                </button>
               <% end %>
             </div>
             
