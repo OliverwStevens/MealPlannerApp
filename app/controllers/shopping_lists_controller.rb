@@ -322,11 +322,22 @@ class ShoppingListsController < ApplicationController
     result
   end
 
+
   def format_unit_for_display(unit, value)
     # Pluralize units if value is not 1
     if value == 1
       unit
     else
+      # Units that should not be pluralized
+      non_pluralizing_units = [
+        # Weight units
+        "g", "kg", "oz", "lb",
+        # Volume units
+        "ml", "l", "fl oz",
+        # Other standard abbreviations
+        "tsp", "tbsp"
+      ]
+
       # Handle special pluralization cases
       case unit
       when "leaf"
@@ -337,6 +348,8 @@ class ShoppingListsController < ApplicationController
         "boxes"
       when "bunch"
         "bunches"
+      when *non_pluralizing_units
+        unit  # Don't pluralize these units
       else
         # Default pluralization by adding 's'
         "#{unit}s"
