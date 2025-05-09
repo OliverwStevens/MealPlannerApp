@@ -103,6 +103,20 @@ body {
   }
 }
 
+/* Cross-browser support */
+input::-webkit-input-placeholder { /* Chrome/Edge/Safari */
+  color: #252323;
+}
+
+input::-moz-placeholder { /* Firefox 18- */
+  color: #252323;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder { /* IE 10-11 */
+  color: #252323;
+}
+
 /* ======================
    Layout & Spacing
    ====================== */
@@ -265,7 +279,7 @@ body {
 /* ======================
    Form Elements
    ====================== */
-.search-container {
+.search-container form {
   display: flex;
   align-items: center;
   max-width: 15rem;
