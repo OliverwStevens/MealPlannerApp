@@ -1,0 +1,9 @@
+<div data-infinite-scroll-target="entries">
+  <% @items.each do |item| %>
+    <%= link_to item, class: "centered-text hover-move" do %>
+      <%= render item, icon: true %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= render "shared/pagination_loader", collection: @items %>

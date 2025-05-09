@@ -5,7 +5,14 @@ def index
 
   # Combine and sort by creation date
   @combined_feed = (recipes + meals).sort_by(&:created_at).reverse
-  @items = Kaminari.paginate_array(@combined_feed).page(params[:page]).per(24)
+  @items = Kaminari.paginate_array(@combined_feed).page(params[:page]).per(12)
+
+  @total_items_count = @combined_feed.count
+
+
+    if request.headers["Turbo-Frame"] || request.xhr?
+      render partial: "index", locals: { items: @items }
+    end
 end
 
   def show

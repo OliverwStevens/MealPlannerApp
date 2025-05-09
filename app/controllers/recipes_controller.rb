@@ -3,7 +3,13 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [ :show, :edit, :update, :destroy ]
   # GET /recipes or /recipes.json
   def index
-    @recipes = current_user.recipes.order(:name).page params[:page]
+    @recipes = current_user.recipes.order(:name).page(params[:page]).per(12)
+    @total_recipes_count = current_user.recipes.count
+
+
+    if request.headers["Turbo-Frame"] || request.xhr?
+      render partial: "index", locals: { recipes: @recipes }
+    end
   end
 
   # GET /recipes/1 or /recipes/1.json

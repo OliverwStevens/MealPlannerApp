@@ -2,7 +2,7 @@
 
 <% content_for :title, "Meals" %>
 
-<p> You have <%= @meals.count %> meal(s). </p>
+<p> You have <%= @total_meals_count %> meal(s). </p>
 
 <h1>Meals</h1>
 
@@ -13,13 +13,20 @@
 
 </div>
 
-<%= paginate @meals %>
-<div id="meals" class="food-display">
-  <% @meals.each do |meal| %>
-    <%= link_to meal, class: "centered-text hover-move" do %>
-      <%= render meal %>
+<div data-controller="infinite-scroll" 
+     data-infinite-scroll-url-value="<%= request.path %>" 
+     data-infinite-scroll-page-value="<%= params[:page] || 1 %>">
+  
+  <div id="meals" class="food-display" data-infinite-scroll-target="entries">
+    <% @meals.each do |meal| %>
+      <%= link_to meal, class: "centered-text hover-move" do %>
+        <%= render meal %>
+      <% end %>
     <% end %>
-  <% end %>
+    
+  </div>
+  
+  <%= render "shared/pagination_loader", collection: @meals %>
 </div>
 
 

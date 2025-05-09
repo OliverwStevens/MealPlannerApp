@@ -1,0 +1,10 @@
+<%# app/views/recipes/_index.html.erb %>
+<div data-infinite-scroll-target="entries">
+  <% @recipes.each do |recipe| %>
+    <%= link_to recipe, class: "centered-text hover-move" do %>
+      <%= render recipe, info: false %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= render "shared/pagination_loader", collection: @recipes %>

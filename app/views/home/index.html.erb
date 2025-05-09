@@ -2,14 +2,20 @@
 
 <h2>Public Content</h2>
 <% if @items.any? %>
-  <%= paginate @items %>
-  <div class="food-display">
-    <% @items.each do |item| %>
+  <div data-controller="infinite-scroll" 
+     data-infinite-scroll-url-value="<%= request.path %>" 
+     data-infinite-scroll-page-value="<%= params[:page] || 1 %>">
+  
+  <div id="home-items" class="food-display" data-infinite-scroll-target="entries">
+     <% @items.each do |item| %>
       <%= link_to home_show_path(type: item.class.name.downcase, id: item.id), class: "centered-text hover-move" do %>
         <%= render item, icon: true %>
       <% end %>
     <% end %>
   </div>
+  
+  <%= render "shared/pagination_loader", collection: @items %>
+</div>
 <% else %>
   <p>No public content available</p>
 <% end %>

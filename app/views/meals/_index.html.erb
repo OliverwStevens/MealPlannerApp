@@ -1,0 +1,9 @@
+<div data-infinite-scroll-target="entries">
+  <% @meals.each do |meal| %>
+    <%= link_to meal, class: "centered-text hover-move" do %>
+      <%= render meal %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= render "shared/pagination_loader", collection: @meals %>

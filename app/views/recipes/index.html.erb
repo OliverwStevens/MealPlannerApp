@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Recipes" %>
-<p> You have <%= @recipes.count %> recipe(s). </p>
+<p> You have <%= @total_recipes_count %> recipe(s). </p>
 
 <div class="floating-right-btn-container">
   <%= link_to new_recipe_path, class: "floating-green-button" do %>
@@ -11,12 +11,17 @@
 </div>
 
 <h1>Recipes</h1>
-<%= paginate @recipes %>
-
-<div id="recipes" class="food-display">
-  <% @recipes.each do |recipe| %>
-    <%= link_to recipe, class: "centered-text hover-move" do %>
-      <%= render recipe, info: false %>
+<div data-controller="infinite-scroll" 
+     data-infinite-scroll-url-value="<%= request.path %>" 
+     data-infinite-scroll-page-value="<%= params[:page] || 1 %>">
+  
+  <div id="recipes" class="food-display" data-infinite-scroll-target="entries">
+    <% @recipes.each do |recipe| %>
+      <%= link_to recipe, class: "centered-text hover-move" do %>
+        <%= render recipe, info: false %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  
+  <%= render "shared/pagination_loader", collection: @recipes %>
 </div>

@@ -4,7 +4,13 @@ class MealsController < ApplicationController
 
   # GET /meals or /meals.json
   def index
-    @meals = current_user.meals.order(:name).page params[:page]
+    @meals = current_user.meals.order(:name).page(params[:page]).per(12)
+    @total_meals_count = current_user.meals.count
+
+
+    if request.headers["Turbo-Frame"] || request.xhr?
+      render partial: "index", locals: { meals: @meals }
+    end
   end
 
   # GET /meals/1 or /meals/1.json
