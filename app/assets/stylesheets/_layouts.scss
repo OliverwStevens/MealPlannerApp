@@ -28,13 +28,10 @@
 
 .header-container {
   @include display;
+  gap: 1rem;
 
   @media (min-width: 769px) {
     justify-content: left;
-  }
-
-  @media (max-width: 768px) {
-    gap: 5rem;
   }
 }
 

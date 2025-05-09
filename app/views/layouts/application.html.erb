@@ -31,44 +31,8 @@
     <header class="sticky-header" data-controller="mobile-menu">
       <div class="header-container">
         <%= link_to "Your Logo", root_path, class: "logo centered-text" %>
-        
-        <!-- Mobile menu button (hamburger icon) -->
-        <button class="mobile-menu-button" 
-            data-action="click->mobile-menu#toggle"
-            data-mobile-menu-target="button"
-            aria-label="Toggle menu">
-          <%= image_tag("menu.svg", alt: "Menu", class: "header-button") %>
-        </button>
-        
-        <!-- Desktop navigation (hidden on mobile) -->
-        <nav class="desktop-nav">
-          <%= link_to root_path, class: "flex-vertical centered-text" do %>
-            <%= image_tag("tasty_shares.svg", alt: "Symbol of working together", class: "header-button") %>
-            <span>Tasty Shares</span>
-          <% end %>
-          <% if user_signed_in? %>
-            <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
-              <%= image_tag("pantry.svg", alt: "Pantry", class: "header-button") %>
-              <span>Pantry</span>
-            <% end %>
-            <%= link_to recipes_path, class: "flex-vertical centered-text" do %>
-              <%= image_tag("recipes.svg", alt: "Recipes", class: "header-button") %>
-              <span>Recipes</span>
-            <% end %>
-            <%= link_to meals_path, class: "flex-vertical centered-text" do %>
-              <%= image_tag("meals.svg", alt: "Meals", class: "header-button") %>
-              <span>Meals</span>
-            <% end %>
-            <%= link_to meal_plans_path, class: "flex-vertical centered-text" do %>
-              <%= image_tag("meal_plan.svg", alt: "Meal plan", class: "header-button") %>
-              <span>Meal Plan</span>
-            <% end %>
-            <%= link_to shopping_lists_path, class: "flex-vertical centered-text" do %>
-              <%= image_tag("shopping_list.svg", alt: "Shopping list", class: "header-button") %>
-              <span>Shopping List</span>
-            <% end %>
-        
-            <div class="search-container">
+
+        <div class="search-container">
               <%= form_tag search_path, 
                   method: :get, 
                   data: { 
@@ -93,26 +57,23 @@
                
               <% end %>
             </div>
-            <%= link_to edit_user_registration_path, class: "flex-vertical centered-text" do %>
-              <%= image_tag("account-edit.svg", alt: "Account", class: "header-button") %>
-              <span><%= current_user.name %></span>
-            <% end %>
-            <%= button_to destroy_user_session_path, method: :delete, class: "flex-vertical centered-text no-background" do %>
-              <%= image_tag("logout.svg", alt: "Log out", class: "header-button") %>
-              <span class="clickable">Log Out</span>
-            <% end %>
-          <% else %>
-            <%= link_to "Sign up", new_user_registration_path %> |
-            <%= link_to "Login", new_user_session_path %>
-          <% end %>
-        </nav>
         
-        <!-- Mobile dropdown menu (hidden by default) -->
-        <nav class="mobile-nav" data-mobile-menu-target="menu" data-action="click@window->mobile-menu#hide">
+        <!-- Mobile menu button (hamburger icon) -->
+        <button class="mobile-menu-button" 
+            data-action="click->mobile-menu#toggle"
+            data-mobile-menu-target="button"
+            aria-label="Toggle menu">
+          <%= image_tag("menu.svg", alt: "Menu", class: "header-button") %>
+        </button>
+        
+        <!-- Desktop navigation (hidden on mobile) -->
+        <nav class="desktop-nav">
           <%= link_to root_path, class: "flex-vertical centered-text" do %>
             <%= image_tag("tasty_shares.svg", alt: "Symbol of working together", class: "header-button") %>
             <span>Tasty Shares</span>
           <% end %>
+
+          
           <% if user_signed_in? %>
             <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
               <%= image_tag("pantry.svg", alt: "Pantry", class: "header-button") %>
@@ -134,33 +95,50 @@
               <%= image_tag("shopping_list.svg", alt: "Shopping list", class: "header-button") %>
               <span>Shopping List</span>
             <% end %>
+        
             
-            <div class="search-container mobile-search">
-              <%= form_tag search_path, 
-                  method: :get, 
-                  data: { 
-                    controller: "search",
-                    search_target: "form",
-                    action: "keypress->search#input_keypress input->search#input_input"
-                  } do %>
-
-                  <button type="button" 
-                        class="header-button search-icon" 
-                        data-search-target="icon" 
-                        data-action="click->search#handleIconClick">
-                  <%= image_tag "magnify.svg", alt: "Search" %>
-                </button>
-                <%= text_field_tag :query, 
-                    params[:query], 
-                    class: "search-bar", 
-                    placeholder: "Search products...", 
-                    autocomplete: "off",
-                    data: { 
-                      search_target: "input"
-                    } %>
-                
-              <% end %>
-            </div>
+            <%= link_to edit_user_registration_path, class: "flex-vertical centered-text" do %>
+              <%= image_tag("account-edit.svg", alt: "Account", class: "header-button") %>
+              <span><%= current_user.name %></span>
+            <% end %>
+            <%= button_to destroy_user_session_path, method: :delete, class: "flex-vertical centered-text no-background" do %>
+              <%= image_tag("logout.svg", alt: "Log out", class: "header-button") %>
+              <span class="clickable">Log Out</span>
+            <% end %>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path %> |
+            <%= link_to "Login", new_user_session_path %>
+          <% end %>
+        </nav>
+        
+        <!-- Mobile dropdown menu (hidden by default) -->
+        <nav class="mobile-nav" data-mobile-menu-target="menu" data-action="click@window->mobile-menu#hide">
+          <%= link_to root_path, class: "flex-vertical centered-text" do %>
+            <%= image_tag("tasty_shares.svg", alt: "Symbol of working together", class: "header-button") %>
+            <span>Tasty Shares</span>
+          <% end %>
+          
+          <% if user_signed_in? %>
+            <%= link_to pantry_items_path, class: "flex-vertical centered-text" do %>
+              <%= image_tag("pantry.svg", alt: "Pantry", class: "header-button") %>
+              <span>Pantry</span>
+            <% end %>
+            <%= link_to recipes_path, class: "flex-vertical centered-text" do %>
+              <%= image_tag("recipes.svg", alt: "Recipes", class: "header-button") %>
+              <span>Recipes</span>
+            <% end %>
+            <%= link_to meals_path, class: "flex-vertical centered-text" do %>
+              <%= image_tag("meals.svg", alt: "Meals", class: "header-button") %>
+              <span>Meals</span>
+            <% end %>
+            <%= link_to meal_plans_path, class: "flex-vertical centered-text" do %>
+              <%= image_tag("meal_plan.svg", alt: "Meal plan", class: "header-button") %>
+              <span>Meal Plan</span>
+            <% end %>
+            <%= link_to shopping_lists_path, class: "flex-vertical centered-text" do %>
+              <%= image_tag("shopping_list.svg", alt: "Shopping list", class: "header-button") %>
+              <span>Shopping List</span>
+            <% end %>
             
             <%= link_to edit_user_registration_path, class: "flex-vertical centered-text" do %>
               <%= image_tag("account-edit.svg", alt: "Account", class: "header-button") %>

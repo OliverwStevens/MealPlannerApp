@@ -415,15 +415,11 @@ input:-ms-input-placeholder { /* IE 10-11 */
   -moz-column-gap: 2rem;
        column-gap: 2rem;
   justify-content: center;
+  gap: 1rem;
 }
 @media (min-width: 769px) {
   .header-container {
     justify-content: left;
-  }
-}
-@media (max-width: 768px) {
-  .header-container {
-    gap: 5rem;
   }
 }
 
