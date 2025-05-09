@@ -68,7 +68,8 @@
   display: flex;
   align-items: center; 
   max-width: 15rem;
-  border: 1px solid $background;
+  border: 1px solid $quaternary;
+  background-color: $primary;
   border-radius: 25px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
