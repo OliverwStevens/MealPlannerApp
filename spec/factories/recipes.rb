@@ -1,4 +1,3 @@
-# spec/factories/recipes.rb
 FactoryBot.define do
   factory :recipe do
     sequence(:name) { |n| "Recipe #{n}" }
@@ -11,6 +10,21 @@ FactoryBot.define do
     sharable { [ true, false ].sample }
     association :user
 
+    # Define how many items to create (default: 1-5)
+    transient do
+      items_count { rand(1..5) }
+    end
+
+    # Build recipe_items in memory before validation
+    after(:build) do |recipe, evaluator|
+      recipe.recipe_items = build_list(
+        :recipe_item,
+        evaluator.items_count,
+        recipe: recipe
+      )
+    end
+
+    # Properly formatted traits
     trait :vegetarian do
       diet { 'vegetarian' }
     end
@@ -49,5 +63,10 @@ FactoryBot.define do
     trait :dessert do
       recipe_type { 3 }
     end
+  end
+
+  factory :recipe_item do
+    name { Faker::Food.ingredient }
+    amount { "#{rand(1..4)} #{[ 'cup', 'tbsp', 'tsp', 'oz' ].sample}" }
   end
 end
