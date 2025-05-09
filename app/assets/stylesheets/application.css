@@ -279,13 +279,33 @@ input:-ms-input-placeholder { /* IE 10-11 */
 /* ======================
    Form Elements
    ====================== */
-.search-container form {
+.mobile-search-container form {
   display: flex;
   align-items: center;
   max-width: 15rem;
   border: 1px solid #F5F1ED;
   border-radius: 25px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 769px) {
+  .mobile-search-container form {
+    display: none;
+  }
+}
+
+.desktop-search-container form {
+  display: flex;
+  align-items: center;
+  max-width: 15rem;
+  border: 1px solid #F5F1ED;
+  border-radius: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+@media (min-width: 769px) {
+  .desktop-search-container form {
+    display: flex;
+  }
 }
 
 .search-bar {

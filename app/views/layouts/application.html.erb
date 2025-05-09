@@ -32,7 +32,7 @@
       <div class="header-container">
         <%= link_to "Your Logo", root_path, class: "logo centered-text" %>
 
-        <div class="search-container">
+        <div class="mobile-search-container">
               <%= form_tag search_path, 
                   method: :get, 
                   data: { 
@@ -72,6 +72,34 @@
             <%= image_tag("tasty_shares.svg", alt: "Symbol of working together", class: "header-button") %>
             <span>Tasty Shares</span>
           <% end %>
+
+          <div class="desktop-search-container">
+              <%= form_tag search_path, 
+                  method: :get, 
+                  data: { 
+                    controller: "search",
+                    search_target: "form",
+                    action: "keypress->search#input_keypress input->search#input_input"
+                  } do %>
+                  <button type="button" 
+                        class="header-button search-icon" 
+                        data-search-target="icon" 
+                        data-action="click->search#handleIconClick">
+                  <%= image_tag "magnify.svg", alt: "Search" %>
+                </button>
+                <%= text_field_tag :query, 
+                    params[:query], 
+                    class: "search-bar", 
+                    placeholder: "Search products...", 
+                    autocomplete: "off",
+                    data: { 
+                      search_target: "input"
+                    } %>
+               
+              <% end %>
+            </div>
+
+          
 
           
           <% if user_signed_in? %>
