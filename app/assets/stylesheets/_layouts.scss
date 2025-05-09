@@ -383,6 +383,7 @@ label {
       border-radius: 1rem;
       
       @media (min-width: 768px) {
+        margin: 1rem;
         background-color: $secondary;
         .meal-desktop-table {
           display: table;

@@ -124,6 +124,10 @@ input:-ms-input-placeholder { /* IE 10-11 */
   padding: 0.5rem;
 }
 
+.left-margin {
+  margin-left: 1rem;
+}
+
 .flex-vertical {
   display: flex;
   flex-direction: column;
@@ -804,6 +808,7 @@ label {
 }
 @media (min-width: 768px) {
   #mealplan-layout div:nth-child(1) .table-container {
+    margin: 1rem;
     background-color: #A99985;
   }
   #mealplan-layout div:nth-child(1) .table-container .meal-desktop-table {
