@@ -2,7 +2,9 @@ class MealPlansController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @start_date = params[:start_date] ? Date.parse(params[:start_date]) : Date.current.beginning_of_week
+    # Always ensure we're starting from the beginning of a week, regardless of which date is selected
+    selected_date = params[:start_date] ? Date.parse(params[:start_date]) : Date.current
+    @start_date = selected_date.beginning_of_week
     @end_date = @start_date.end_of_week
 
     # Load existing meal plans with their meal types
@@ -40,13 +42,13 @@ class MealPlansController < ApplicationController
     if meal_id.present?
       meal_plan.meal_id = meal_id
       if meal_plan.save
-        redirect_to meal_plans_path, notice: "Meal plan updated!"
+        redirect_to meal_plans_path(start_date: date.beginning_of_week), notice: "Meal plan updated!"
       else
-        redirect_to meal_plans_path, alert: "Failed to update: #{meal_plan.errors.full_messages.join(', ')}"
+        redirect_to meal_plans_path(start_date: date.beginning_of_week), alert: "Failed to update: #{meal_plan.errors.full_messages.join(', ')}"
       end
     else
       meal_plan.destroy if meal_plan.persisted?
-      redirect_to meal_plans_path, notice: "Meal removed from plan"
+      redirect_to meal_plans_path(start_date: date.beginning_of_week), notice: "Meal removed from plan"
     end
   end
 
@@ -103,9 +105,9 @@ class MealPlansController < ApplicationController
     end
 
     if generated_count > 0
-      redirect_to meal_plans_path, notice: "Successfully generated #{generated_count} meal plans!"
+      redirect_to meal_plans_path(start_date: start_date), notice: "Successfully generated #{generated_count} meal plans!"
     else
-      redirect_to meal_plans_path, notice: "No meal plans needed to be generated!"
+      redirect_to meal_plans_path(start_date: start_date), notice: "No meal plans needed to be generated!"
     end
   end
 
@@ -122,6 +124,6 @@ class MealPlansController < ApplicationController
     # Delete them all
     meal_plans.destroy_all
 
-    redirect_to meal_plans_path, notice: "Cleared #{count} meal plans from your week!"
+    redirect_to meal_plans_path(start_date: start_date), notice: "Cleared #{count} meal plans from your week!"
   end
 end
