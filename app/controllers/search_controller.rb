@@ -45,9 +45,14 @@ class SearchController < ApplicationController
       end
 
       # Paginate the sorted items
-      @items = Kaminari.paginate_array(sorted_items).page(params[:page]).per(24)
+      @search_items = Kaminari.paginate_array(sorted_items).page(params[:page]).per(24)
+
+      @total_items_count = sorted_items.count
+      if request.headers["Turbo-Frame"] || request.xhr?
+        render partial: "index", locals: { search_items: @search_items }
+      end
     else
-      @items = Kaminari.paginate_array([]).page(params[:page]).per(24)
+      @search_items = Kaminari.paginate_array([]).page(params[:page]).per(24)
     end
   end
 end
