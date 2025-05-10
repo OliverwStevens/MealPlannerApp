@@ -5,6 +5,14 @@ class PantryItemsController < ApplicationController
   # GET /pantry_items or /pantry_items.json
   def index
     @pantry_items = current_user.pantry_items
+
+    @pantry_items = current_user.pantry_items.order(:name).page(params[:page]).per(12)
+    @total_pantry_items_count = current_user.pantry_items.count
+
+
+    if request.headers["Turbo-Frame"] || request.xhr?
+      render partial: "index", locals: { meals: @pantry_items }
+    end
   end
 
   # GET /pantry_items/1 or /pantry_items/1.json

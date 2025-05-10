@@ -8,15 +8,24 @@
   <% end %>
 
 </div>
-<h1 class="padded">You have <%= @pantry_items.count %> items in your pantry</h1>
+<h1 class="padded">You have <%= @total_pantry_items_count %> items in your pantry</h1>
 
-<% if @pantry_items.count == 0 %>
+<% if @total_pantry_items_count == 0 %>
   <h2 class="centered-big-title padded"> You need to go shopping! </h2>
 <%end%>
-<div id="pantry_items" class="food-display">
-  <% @pantry_items.each do |pantry_item| %>
-    <%= link_to pantry_item_path(pantry_item), class: "centered-text" do %>
-      <%= render partial: "pantry_item", locals: { pantry_item: pantry_item, show_barcode: false } %>
+
+<div data-controller="infinite-scroll" 
+     data-infinite-scroll-url-value="<%= request.path %>" 
+     data-infinite-scroll-page-value="<%= params[:page] || 1 %>">
+  
+  <div id="pantry_items" class="food-display" data-infinite-scroll-target="entries">
+    <% @pantry_items.each do |pantry_item| %>
+      <%= link_to pantry_item_path(pantry_item), class: "centered-text" do %>
+        <%= render partial: "pantry_item", locals: { pantry_item: pantry_item, show_barcode: false } %>
+      <% end %>
     <% end %>
-  <% end %>
+    
+  </div>
+  
+  <%= render "shared/pagination_loader", collection: @pantry_items %>
 </div>
