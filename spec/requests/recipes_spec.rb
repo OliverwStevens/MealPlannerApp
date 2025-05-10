@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "/recipes", type: :request do
-  let(:user) { create(:user) }
+  # Use sequence to ensure unique emails
+  let(:user) { create(:user, email: "user_#{SecureRandom.hex}@example.com") }
   let(:recipe) { create(:recipe, user: user) }
   let(:valid_attributes) { attributes_for(:recipe) }
   let(:new_attributes) { { name: "Updated Recipe Name" } }
