@@ -7,9 +7,6 @@ RSpec.describe "/meals", type: :request do
   let(:valid_attributes) { attributes_for(:meal) }
   let(:new_attributes) { { name: "Updated Meal Name" } }
 
-  # Add Devise test helpers
-  include Devise::Test::IntegrationHelpers
-
   describe "PATCH /update" do
     context "when not signed in" do
       it "does not update the meal" do
