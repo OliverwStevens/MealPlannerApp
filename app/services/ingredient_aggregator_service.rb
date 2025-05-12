@@ -214,7 +214,8 @@ class IngredientAggregatorService
     # Process volume conversions if we have multiple volume units
     if volume_items.size > 1
       # Choose a target unit (cups is usually a good choice for recipes)
-      target_unit = volume_items.keys.include?("cup") ? "cup" : volume_items.keys.first
+      preferred_order = [ "gal", "qt", "pt", "cup", "tbsp", "tsp" ]
+      target_unit = (preferred_order & volume_items.keys).first || volume_items.keys.first
 
       total_in_target = 0
 
@@ -312,6 +313,16 @@ class IngredientAggregatorService
     if value == 1
       unit
     else
+      # Special cases for units ending with "s"
+      special_plurals = {
+        "leaf" => "leaves",
+        "dash" => "dashes",
+        "box" => "boxes",
+        "bunch" => "bunches",
+        "pinch" => "pinches",
+        "smidgen" => "smidgens"
+      }
+
       # Units that should not be pluralized
       non_pluralizing_units = [
         # Weight units
@@ -322,22 +333,14 @@ class IngredientAggregatorService
         "tsp", "tbsp"
       ]
 
-      # Handle special pluralization cases
-      case unit
-      when "leaf"
-        "leaves"
-      when "dash"
-        "dashes"
-      when "box"
-        "boxes"
-      when "bunch"
-        "bunches"
-      when *non_pluralizing_units
-        unit  # Don't pluralize these units
-      else
-        # Default pluralization by adding 's'
-        "#{unit}s"
-      end
+      # Return special plural if exists
+      return special_plurals[unit] if special_plurals[unit]
+
+      # Don't pluralize special units
+      return unit if non_pluralizing_units.include?(unit)
+
+      # Default pluralization by adding 's' or 'es'
+      unit.end_with?("sh", "ch", "x", "s", "z") ? "#{unit}es" : "#{unit}s"
     end
   end
 end
