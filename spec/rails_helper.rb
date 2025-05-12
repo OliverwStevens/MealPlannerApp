@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'shoulda/matchers'
 
 Dir[Rails.root.join("spec", "support", "**", "*.rb")].each { |f| require f }
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -36,6 +37,8 @@ RSpec.configure do |config|
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
   ]
+  config.include FactoryBot::Syntax::Methods
+
 
   config.include Warden::Test::Helpers, type: :request
   config.after(type: :request) { Warden.test_reset! }
@@ -72,4 +75,10 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+end
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
