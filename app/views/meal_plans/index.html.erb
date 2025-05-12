@@ -132,6 +132,16 @@
     Clear Week
     <% end %>
 
+    <%= link_to shopping_lists_path, 
+                class: "basic-green-btn centered-text" do %>
+    Shopping List
+    <% end %>
+
+    <%= button_to clear_week_meal_plans_path(start_date: @start_date), 
+                class: "basic-red-btn" do %>
+    Generate Meal Plan from Pantry Ingredients
+    <% end %>
+
 
   </div>
 </div>
