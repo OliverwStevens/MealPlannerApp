@@ -41,6 +41,7 @@ class OpenFoodFactsService
         ingredients: product["ingredients_text"].presence || "No ingredients listed",
         # nutrients: product["nutriments"] || {},
         img_url: product["image_front_small_url"],
+        quantity: product["quantity"].presence || "No quantity listed",
         cached_at: Time.current # Helpful for debugging
       }
     else

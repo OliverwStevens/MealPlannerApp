@@ -75,7 +75,7 @@ class PantryItemsController < ApplicationController
 
     def pantry_item_params
       # First, permit only the allowed parameters
-      permitted_params = params.expect(pantry_item: [ :name, :barcode, :img_url ])
+      permitted_params = params.expect(pantry_item: [ :name, :barcode, :img_url, :quantity ])
 
       # Automatically set the user
       permitted_params = permitted_params.merge(user_id: current_user.id)
@@ -87,6 +87,8 @@ class PantryItemsController < ApplicationController
         # Use product name if available, otherwise keep user-submitted name
         permitted_params[:name] = product_data[:name] if product_data[:name].present?
         permitted_params[:img_url] = product_data[:img_url] if product_data[:img_url].present?
+        permitted_params[:quantity] = product_data[:quantity] if product_data[:quantity].present?
+
         Rails.logger.info "Fetched product data: #{product_data.inspect}"
       end
 
