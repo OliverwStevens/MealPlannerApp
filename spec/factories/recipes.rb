@@ -64,10 +64,4 @@ FactoryBot.define do
       recipe_type { 3 }
     end
   end
-
-  factory :recipe_item do
-    name { Faker::Food.ingredient }
-    amount { "#{rand(1..4)} #{[ 'cup', 'tbsp', 'tsp', 'oz' ].sample}" }
-    association :recipe
-  end
 end
