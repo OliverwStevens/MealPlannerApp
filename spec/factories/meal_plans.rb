@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :meal_plan do
-    user { nil }
-    date { "2025-05-05" }
-    meal { nil }
+    association :user
+    association :meal
+    date { Date.today }
   end
 end
