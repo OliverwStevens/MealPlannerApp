@@ -118,14 +118,14 @@ input:-ms-input-placeholder { /* IE 10-11 */
 }
 // Header Buttons
 .header-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  width: 2rem;
-  height: 2rem;
+  @include basic-header-btn;
 }
-
+.header-logo {
+  @include basic-header-btn;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-left: 1rem;
+}
 .no-background {
   background: none;
   border: none;

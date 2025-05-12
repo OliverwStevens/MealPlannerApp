@@ -73,3 +73,11 @@
   border-radius: 25px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+@mixin basic-header-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  width: 2rem;
+  height: 2rem;
+}

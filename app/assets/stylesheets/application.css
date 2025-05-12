@@ -271,6 +271,18 @@ input:-ms-input-placeholder { /* IE 10-11 */
   height: 2rem;
 }
 
+.header-logo {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  width: 2rem;
+  height: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-left: 1rem;
+}
+
 .no-background {
   background: none;
   border: none;
