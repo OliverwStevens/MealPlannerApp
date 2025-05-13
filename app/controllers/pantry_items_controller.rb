@@ -7,7 +7,7 @@ class PantryItemsController < ApplicationController
     @pantry_items = current_user.pantry_items
 
     @pantry_items = current_user.pantry_items.order(:name).page(params[:page]).per(12)
-    @total_pantry_items_count = current_user.pantry_items.count
+    @total_pantry_items_count = @pantry_items.count
 
 
     if request.headers["Turbo-Frame"] || request.xhr?
@@ -70,8 +70,8 @@ class PantryItemsController < ApplicationController
   # Custom actions
   def inventory
     @pantry_items = current_user.pantry_items.order(:name)
-    @total_pantry_items_count = current_user.pantry_items.count
-    @aggregated_ingredients = IngredientAggregatorService.aggregate(@pantry_items)
+    @total_pantry_items_count = @pantry_items.count
+    @aggregated_pantry_items = IngredientAggregatorService.aggregate(@pantry_items)
   end
 
 

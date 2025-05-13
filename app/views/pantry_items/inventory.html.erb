@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-       <% @aggregated_ingredients.keys.sort.each do |ingredient_name| %>
+       <% @aggregated_pantry_items.keys.sort.each do |ingredient_name| %>
                 <tr class="ingredient-item">
                   <td class="ingredient-info">
                     <label for="item-<%= ingredient_name.gsub(/\s+/, '-') %>" class="ingredient-name">
@@ -19,7 +19,7 @@
                     </label>
                   </td>
                   <td class="ingredient-amounts">
-                    <% @aggregated_ingredients[ingredient_name].each do |amount| %>
+                    <% @aggregated_pantry_items[ingredient_name].each do |amount| %>
                       <div class="amount"><%= amount %></div>
                     <% end %>
                   </td>
