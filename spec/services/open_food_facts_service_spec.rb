@@ -8,7 +8,7 @@ RSpec.describe OpenFoodFactsService, type: :service do
       "status" => 1,
       "product" => {
         "product_name" => "Test Product",
-        "ingredients_text" => "Sugar, Salt",
+        "quantity" => "5 g",
         "image_front_small_url" => "http://example.com/image.jpg"
       }
     }
@@ -39,7 +39,7 @@ RSpec.describe OpenFoodFactsService, type: :service do
         response = OpenFoodFactsService.fetch_product(barcode)
 
         expect(response[:name]).to eq("Test Product")
-        expect(response[:ingredients]).to eq("Sugar, Salt")
+        expect(response[:quantity]).to eq("5 g")
         expect(response[:img_url]).to eq("http://example.com/image.jpg")
         expect(Rails.cache).to have_received(:fetch).with(cache_key, expires_in: 12.hours)
       end
