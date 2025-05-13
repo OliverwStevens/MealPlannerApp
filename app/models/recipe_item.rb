@@ -22,4 +22,8 @@ class RecipeItem < ApplicationRecord
       with: /\A\d*\.?\d+\s*(?:to\s*\d*\.?\d+\s*)?(?:#{UNITS.join('|')})\z/i,
       message: "must be like '1 cup', '2.5 lbs', or '500 mL'"
     }
+
+    def amount_value
+      amount
+    end
 end

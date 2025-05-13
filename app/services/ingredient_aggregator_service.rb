@@ -38,7 +38,7 @@ class IngredientAggregatorService
 
       items.each do |item|
         # Parse the amount string to extract value and unit
-        amount_info = parse_amount(item.amount)
+        amount_info = parse_amount(item.amount_value)
         next unless amount_info # Skip if parsing failed
 
         unit = amount_info[:unit]

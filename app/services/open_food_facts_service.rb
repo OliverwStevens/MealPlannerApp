@@ -38,10 +38,10 @@ class OpenFoodFactsService
       product = data["product"]
       {
         name: product["product_name"].presence || "Untitled Product",
-        ingredients: product["ingredients_text"].presence || "No ingredients listed",
+        # ingredients: product["ingredients_text"].presence || "No ingredients listed",
         # nutrients: product["nutriments"] || {},
         img_url: product["image_front_small_url"],
-        quantity: product["quantity"].presence || "No quantity listed",
+        quantity: product["quantity"].presence || "1 package",
         cached_at: Time.current # Helpful for debugging
       }
     else

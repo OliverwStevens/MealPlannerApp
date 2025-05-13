@@ -71,6 +71,7 @@ class PantryItemsController < ApplicationController
   def inventory
     @pantry_items = current_user.pantry_items.order(:name)
     @total_pantry_items_count = current_user.pantry_items.count
+    @aggregated_ingredients = IngredientAggregatorService.aggregate(@pantry_items)
   end
 
 

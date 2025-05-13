@@ -11,12 +11,20 @@
         </tr>
     </thead>
     <tbody>
-        <% @pantry_items.each do |item| %>
-        <tr>
-            <td><%= item.name %></td>
-            <td><%= item.quantity %></td>
-        </tr>
-        <% end %>
+       <% @aggregated_ingredients.keys.sort.each do |ingredient_name| %>
+                <tr class="ingredient-item">
+                  <td class="ingredient-info">
+                    <label for="item-<%= ingredient_name.gsub(/\s+/, '-') %>" class="ingredient-name">
+                      <%= ingredient_name.titleize %>
+                    </label>
+                  </td>
+                  <td class="ingredient-amounts">
+                    <% @aggregated_ingredients[ingredient_name].each do |amount| %>
+                      <div class="amount"><%= amount %></div>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
     </tbody>
     </table>
 </div>
