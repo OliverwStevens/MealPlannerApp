@@ -67,6 +67,12 @@ class PantryItemsController < ApplicationController
     end
   end
 
+  # Custom actions
+  def inventory
+    @pantry_items = current_user.pantry_items.order(:name)
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pantry_item

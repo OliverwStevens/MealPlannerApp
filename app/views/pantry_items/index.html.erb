@@ -8,8 +8,12 @@
   <% end %>
 
 </div>
-<h1 class="padded">You have <%= @total_pantry_items_count %> items in your pantry</h1>
+<div class="header-container">
+  <h1 class="padded">You have <%= @total_pantry_items_count %> items in your pantry</h1>
+  <%= link_to  "Pantry Inventory", inventory_pantry_items_path, class: "centered-text basic-green-btn"%> 
 
+
+</div>
 <% if @total_pantry_items_count == 0 %>
   <h2 class="centered-big-title padded"> You need to go shopping! </h2>
 <%end%>

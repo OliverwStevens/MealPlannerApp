@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   resources :meals
   get "home/index"
   resources :recipes
-  resources :pantry_items
-  resources :home
+  resources :pantry_items do
+    collection do
+      get :inventory
+    end
+  end
+    resources :home
   resources :meal_plans, only: [ :index ] do
     collection do
       post :update_plan, action: :create_or_update
