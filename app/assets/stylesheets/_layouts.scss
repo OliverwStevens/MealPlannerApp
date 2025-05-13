@@ -498,16 +498,42 @@ label {
     }
   }
   
-  div:nth-child(3) {
+  .panel {
     grid-area: panel;
-    padding: 0.5rem;
-    > * {
-      display: inline;
+  
+    display: grid;
+    gap: 1rem;
+    place-items: stretch;
+  
+    // Responsive grid with equal-width columns
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  
+    button,
+    a {
+      width: 100%; // Fill entire grid cell
+      height: 3rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      // Responsive font size
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+  
+      word-wrap: break-word;
+      white-space: normal;
+      text-wrap: balance;
+      text-align: center;
     }
-    @media (min-width: 768px) {
-      padding: 1rem;
+  
+    @media (min-width: 1024px) {
+      gap: 1.5rem;
     }
   }
+  
+  
 }
 
 .shopping-list {

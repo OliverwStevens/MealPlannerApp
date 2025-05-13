@@ -484,6 +484,7 @@ input:-ms-input-placeholder { /* IE 10-11 */
   width: 100%;
   -moz-column-gap: 2rem;
        column-gap: 2rem;
+  margin: 0 1rem;
   justify-content: center;
   gap: 1rem;
 }
@@ -511,6 +512,7 @@ input:-ms-input-placeholder { /* IE 10-11 */
   width: 100%;
   -moz-column-gap: 2rem;
        column-gap: 2rem;
+  margin: 0 1rem;
   justify-content: center;
 }
 
@@ -956,16 +958,32 @@ label {
     padding: 1rem;
   }
 }
-#mealplan-layout div:nth-child(3) {
+#mealplan-layout .panel {
   grid-area: panel;
+  display: grid;
+  gap: 1rem;
+  place-items: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+#mealplan-layout .panel button,
+#mealplan-layout .panel a {
+  width: 100%;
+  height: 3rem;
   padding: 0.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  word-wrap: break-word;
+  white-space: normal;
+  text-wrap: balance;
+  text-align: center;
 }
-#mealplan-layout div:nth-child(3) > * {
-  display: inline;
-}
-@media (min-width: 768px) {
-  #mealplan-layout div:nth-child(3) {
-    padding: 1rem;
+@media (min-width: 1024px) {
+  #mealplan-layout .panel {
+    gap: 1.5rem;
   }
 }
 

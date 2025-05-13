@@ -70,6 +70,7 @@ class PantryItemsController < ApplicationController
   # Custom actions
   def inventory
     @pantry_items = current_user.pantry_items.order(:name)
+    @total_pantry_items_count = current_user.pantry_items.count
   end
 
 
