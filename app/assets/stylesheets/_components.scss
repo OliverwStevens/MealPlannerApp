@@ -69,6 +69,11 @@ input:-ms-input-placeholder { /* IE 10-11 */
   @include button-variant("red");
   @include form-btn;
 }
+
+.basic-brown-btn {
+  @include form-btn;
+  @include button-variant("brown");
+}
 .media-icon {
   position: absolute;
   right: -1.25rem;

@@ -115,6 +115,7 @@
   cursor: pointer;
   transition: transform 0.2s;
   place-items: center;
+  margin: auto;
   
   &:hover {
     transform: translateY(-10px);
@@ -501,6 +502,9 @@ label {
   .panel {
     grid-area: panel;
   
+    border: solid $quaternary 2px;
+    padding: .5rem;
+    margin: .5rem;
     display: grid;
     gap: 1rem;
     place-items: stretch;

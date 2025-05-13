@@ -76,6 +76,20 @@ body {
   overflow-x: hidden;
 }
 
+* {
+  outline: 1px solid red;
+  max-width: 100%;
+}
+
+/* Add to your base CSS */
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 /* ======================
    Text & Typography
    ====================== */
@@ -142,7 +156,6 @@ input:-ms-input-placeholder { /* IE 10-11 */
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -156,13 +169,25 @@ input:-ms-input-placeholder { /* IE 10-11 */
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
 }
 .basic-red-btn:hover {
   background-color: #88292F;
+}
+
+.basic-brown-btn {
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #DAD2BC;
+}
+.basic-brown-btn:hover {
+  background-color: #A99985;
 }
 
 .media-icon {
@@ -396,7 +421,6 @@ input:-ms-input-placeholder { /* IE 10-11 */
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -484,7 +508,6 @@ input:-ms-input-placeholder { /* IE 10-11 */
   width: 100%;
   -moz-column-gap: 2rem;
        column-gap: 2rem;
-  margin: 0 1rem;
   justify-content: center;
   gap: 1rem;
 }
@@ -512,7 +535,6 @@ input:-ms-input-placeholder { /* IE 10-11 */
   width: 100%;
   -moz-column-gap: 2rem;
        column-gap: 2rem;
-  margin: 0 1rem;
   justify-content: center;
 }
 
@@ -579,6 +601,7 @@ input:-ms-input-placeholder { /* IE 10-11 */
   cursor: pointer;
   transition: transform 0.2s;
   place-items: center;
+  margin: auto;
 }
 .pantry-item:hover {
   transform: translateY(-10px);
@@ -753,7 +776,6 @@ label {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -766,7 +788,6 @@ label {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -779,7 +800,6 @@ label {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -808,7 +828,6 @@ label {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -960,6 +979,9 @@ label {
 }
 #mealplan-layout .panel {
   grid-area: panel;
+  border: solid #252323 2px;
+  padding: 0.5rem;
+  margin: 0.5rem;
   display: grid;
   gap: 1rem;
   place-items: stretch;
@@ -1042,7 +1064,6 @@ label {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -1167,7 +1188,6 @@ label {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -1267,7 +1287,6 @@ label {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -1344,7 +1363,6 @@ label {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -1370,7 +1388,6 @@ label {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
@@ -1416,7 +1433,6 @@ label {
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  margin-top: 1rem;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;

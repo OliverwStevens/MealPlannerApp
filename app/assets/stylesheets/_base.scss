@@ -6,3 +6,14 @@ body {
     background: $background;
     overflow-x: hidden;
 }
+* {
+    outline: 1px solid red;
+    max-width: 100%;
+  }
+  /* Add to your base CSS */
+  html {
+    box-sizing: border-box;
+  }
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
