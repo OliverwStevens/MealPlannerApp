@@ -14,7 +14,7 @@ class RecipeItem < ApplicationRecord
     square squares dash dashes handful handfuls
   ].freeze
 
-  validates :name, presence: true, length: { minimum: 2, maximum: 100 }
+  validates :name, presence: true, length: { minimum: 2, maximum: 200 }
   validates :amount,
     presence: true,
     length: { minimum: 1, maximum: 50 },
