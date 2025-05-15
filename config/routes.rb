@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     collection do
       post :update_plan, action: :create_or_update
       post :auto_generate
+      get :generate_from_pantry
+
       delete :clear_week
     end
   end

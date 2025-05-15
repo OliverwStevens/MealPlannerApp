@@ -1,0 +1,9 @@
+<h2>Pantry-Based Meal Suggestions</h2>
+
+<h3>Recipe Items</h3>
+<pre><%= @recipe_items.inspect %></pre>
+
+<h3>Aggregated Pantry Items</h3>
+<pre><%= @calculated_pantry_items.inspect %></pre>
+
+<%= link_to "Back to Meal Plans", meal_plans_path(start_date: @start_date), class: "basic-red-btn centered-text" %>
