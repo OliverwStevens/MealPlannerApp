@@ -131,11 +131,12 @@ class MealPlansController < ApplicationController
     @pantry_items = current_user.pantry_items
     @aggregated_pantry_items = IngredientAggregatorService.aggregate(@pantry_items)
     @calculated_pantry_items = MetricConversionService.convert_hash_to_metric(@aggregated_pantry_items)
-
-    @recipe_items = {}
-    current_user.recipes.last.recipe_items.each do |item|
-      @recipe_items[item.name] = item.amount
-    end
-    @recipe_items = MetricConversionService.convert_hash_to_metric(@recipe_items)
+    # @recipe_items = {}
+    # current_user.recipes.last.recipe_items.each do |item|
+    #  @recipe_items[item.name] = item.amount
+    # end
+    # @recipe_items = MetricConversionService.convert_hash_to_metric(@recipe_items)
+    recipes = current_user.recipes
+    @calculated_recipes = RecipesFromPantryService.pantry_to_recipes(@calculated_pantry_items, recipes)
   end
 end
