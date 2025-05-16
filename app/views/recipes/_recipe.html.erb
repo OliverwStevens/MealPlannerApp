@@ -53,4 +53,9 @@
       <%= recipe.prep_time %>
     </p>
   <% end %>
+
+  <% if local_assigns[:counter]%>
+    <p class="recipe-counter"> <%= counter %></p>
+
+  <% end %>
 </div>

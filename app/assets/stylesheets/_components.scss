@@ -14,7 +14,12 @@
   font-size: larger;
 
 }
-
+.title-text {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: $quaternary;
+}
 .centered-big-title {
   color: $quaternary;
   text-align: center;
@@ -83,6 +88,18 @@ input:-ms-input-placeholder { /* IE 10-11 */
   margin: 0;
 }
 
+.recipe-counter {
+  position: absolute;
+  right: -1.25rem;
+  bottom: -1.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0;
+  background-color: $color-success;
+  align-content: center;
+  justify-content: center;
+  border-radius: 50%;
+}
 // Floating Button System
 .floating-right-btn-container {
   @include floating-btn-container;
