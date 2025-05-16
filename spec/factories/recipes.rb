@@ -10,21 +10,28 @@ FactoryBot.define do
     sharable { [ true, false ].sample }
     association :user
 
-    # Define how many items to create (default: 1-5)
+    # Define how many items to create (default: 1-5) unless items are provided
     transient do
       items_count { rand(1..5) }
+      recipe_items { nil } # Allow passing specific recipe items
     end
 
     # Build recipe_items in memory before validation
     after(:build) do |recipe, evaluator|
-      recipe.recipe_items = build_list(
-        :recipe_item,
-        evaluator.items_count,
-        recipe: recipe
-      )
+      if evaluator.recipe_items
+        # Use provided recipe_items if specified
+        recipe.recipe_items = evaluator.recipe_items
+      elsif evaluator.items_count > 0
+        # Only generate random items if no recipe_items are provided
+        recipe.recipe_items = build_list(
+          :recipe_item,
+          evaluator.items_count,
+          recipe: recipe
+        )
+      end
     end
 
-    # Properly formatted traits
+    # Traits
     trait :vegetarian do
       diet { 'vegetarian' }
     end
