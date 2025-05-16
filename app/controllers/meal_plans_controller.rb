@@ -132,5 +132,8 @@ class MealPlansController < ApplicationController
     @calculated_pantry_items = MetricConversionService.convert_hash_to_metric(@aggregated_pantry_items)
 
     @calculated_recipes = RecipesFromPantryService.pantry_to_recipes(@calculated_pantry_items, current_user.recipes)
+
+    @recipes = current_user.recipes.where(id: @calculated_recipes.keys)
+                           .sort_by { |r| -@calculated_recipes[r.id].to_i }
   end
 end

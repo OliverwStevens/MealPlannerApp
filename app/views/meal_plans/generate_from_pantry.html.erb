@@ -6,4 +6,13 @@
 <h3>Aggregated Pantry Items</h3>
 <pre><%= @calculated_recipes.inspect %></pre>
 
+<div id="recipes" class="food-display">
+    <% @recipes.each do |recipe| %>
+      <%= link_to recipe, class: "centered-text hover-move" do %>
+        <%= render recipe, info: false, icon: true %>
+        <p><%= @calculated_recipes[recipe.id]%></p>
+      <% end %>
+    <% end %>
+  </div>
+
 <%#= link_to "Back to Meal Plans", meal_plans_path(start_date: @start_date), class: "basic-red-btn centered-text" %>
