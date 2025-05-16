@@ -7,7 +7,7 @@ RSpec.describe RecipeItem, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of(:name) }
-    it { should validate_length_of(:name).is_at_least(2).is_at_most(100) }
+    it { should validate_length_of(:name).is_at_least(2).is_at_most(200) }
 
     it { should validate_presence_of(:amount) }
     it { should validate_length_of(:amount).is_at_least(1).is_at_most(50) }
