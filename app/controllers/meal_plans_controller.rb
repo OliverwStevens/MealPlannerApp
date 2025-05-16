@@ -128,11 +128,9 @@ class MealPlansController < ApplicationController
   end
 
   def generate_from_pantry
-    @pantry_items = current_user.pantry_items
-    @aggregated_pantry_items = IngredientAggregatorService.aggregate(@pantry_items)
+    @aggregated_pantry_items = IngredientAggregatorService.aggregate(current_user.pantry_items)
     @calculated_pantry_items = MetricConversionService.convert_hash_to_metric(@aggregated_pantry_items)
 
-    recipes = current_user.recipes
-    @calculated_recipes = RecipesFromPantryService.pantry_to_recipes(@calculated_pantry_items, recipes)
+    @calculated_recipes = RecipesFromPantryService.pantry_to_recipes(@calculated_pantry_items, current_user.recipes)
   end
 end
