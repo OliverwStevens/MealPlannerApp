@@ -14,7 +14,6 @@
     <div class="meal-plan-date-selector">
       <%= form_with url: meal_plans_path, method: :get, class: "meal-plan-form" do |f| %>
         <div class="form-field">
-          <%= f.label :start_date, "Week starting:", class: "form-label" %>
           <%= f.date_field :start_date, value: @start_date, class: "form-input" %>
         </div>
         <%= f.submit "Update", class: "form-submit" %>

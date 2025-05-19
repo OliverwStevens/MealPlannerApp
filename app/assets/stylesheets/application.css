@@ -77,7 +77,7 @@ body {
 }
 
 * {
-  outline: 1px solid red;
+  /* outline: 1px solid red;*/
   max-width: 100%;
 }
 
@@ -1088,7 +1088,6 @@ label {
   border-radius: 4px;
   cursor: pointer;
   background-color: #00CC66;
-  margin-top: 1.5rem;
   padding: 0.5rem 1rem;
 }
 .shopping-list .form-submit:hover {
