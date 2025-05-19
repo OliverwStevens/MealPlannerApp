@@ -1490,11 +1490,6 @@ label {
   color: #252323;
 }
 
-.pantry-inventory h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #252323;
-}
 .pantry-inventory table {
   width: 100%;
   border-collapse: collapse;
