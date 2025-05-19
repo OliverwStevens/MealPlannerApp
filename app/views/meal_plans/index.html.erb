@@ -1,7 +1,7 @@
 <!-- HTML Structure -->
 <div id="mealplan-layout">
   <div class="main-content">
-    <h1 class="large-text left-margin">Weekly Meal Plan</h1>
+    <h1 class="title-text left-margin">Weekly Meal Plan</h1>
     
     <% if notice %>
       <div class="alert alert-success"><%= notice %></div>
@@ -99,10 +99,10 @@
   </div>
   
   <div class="sidebar-content">
-    <h2>Today's Meals: <%= Date.today.strftime('%A, %b %d') %></h2>
+    <h2 class="large-text centered-text">Today's Meals:</h2>
     <ul class="todays-meals-list">
       <% @meal_types.each do |meal_type| %>
-        <li>
+        <li class="centered-text">
           <strong><%= meal_type.capitalize %>:</strong>
           <%= @todays_meals[meal_type]&.meal&.name || 'Not selected' %>
         </li>

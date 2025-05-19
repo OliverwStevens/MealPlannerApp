@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "barcode_scanner"
+import "shopping_list"
 //import "../stylesheets/application.scss"
 //import "@zxing/library";
 import * as ZXing from "@zxing/library"

@@ -7,4 +7,5 @@ pin "@hotwired/stimulus", to: "stimulus.min.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 pin "@zxing/library", to: "zxing-umd.min.js", preload: true
 pin "barcode_scanner", to: "barcode_scanner.js"
+pin "shopping_list", to: "shopping_list.js"
 pin "ts-custom-error" # @3.3.1

@@ -117,47 +117,6 @@
   <% end %>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Search functionality
-    const searchInput = document.getElementById('ingredient-search');
-    if (searchInput) {
-      searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase();
-        const items = document.querySelectorAll('.ingredient-item');
-        
-        items.forEach(item => {
-          const name = item.querySelector('.ingredient-name').textContent.toLowerCase();
-          if (name.includes(query)) {
-            item.style.display = '';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    }
-    
-    // Print functionality
-    const printButton = document.getElementById('print-list');
-    if (printButton) {
-      printButton.addEventListener('click', function() {
-        window.print();
-      });
-    }
-    
-    // Clear checked items
-    const clearButton = document.getElementById('clear-checked');
-    if (clearButton) {
-      clearButton.addEventListener('click', function() {
-        const checkedItems = document.querySelectorAll('#shopping-list input[type="checkbox"]:checked');
-        checkedItems.forEach(checkbox => {
-          checkbox.closest('li').style.display = 'none';
-        });
-      });
-    }
-  });
-</script>
-
 <style>
   @media print {
     body * {
