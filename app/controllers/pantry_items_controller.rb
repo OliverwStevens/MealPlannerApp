@@ -4,10 +4,10 @@ class PantryItemsController < ApplicationController
 
   # GET /pantry_items or /pantry_items.json
   def index
-    @pantry_items = current_user.pantry_items
+    @total_pantry_items = current_user.pantry_items
 
     @pantry_items = current_user.pantry_items.order(:name).page(params[:page]).per(12)
-    @total_pantry_items_count = @pantry_items.count
+    @total_pantry_items_count = @total_pantry_items.count
 
 
     if request.headers["Turbo-Frame"] || request.xhr?

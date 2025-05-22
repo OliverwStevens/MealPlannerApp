@@ -1,12 +1,15 @@
-# db/seeds.rb
 require 'faker'
 
 # Clear existing data (child records first)
+PantryItem.destroy_all
 RecipeItem.destroy_all
 Recipe.destroy_all
 User.destroy_all
 Meal.destroy_all
 puts "🧹 Cleaned up existing data..."
+
+# Clear Faker unique cache to prevent barcode collisions
+Faker::Barcode.unique.clear
 
 # Create test users
 users = [
@@ -35,7 +38,8 @@ users.each do |user_data|
 
   puts "👤 Created user: #{user.email}"
 
-  # Create 3 recipes for each user (guaranteed to have ingredients)
+  # Create 40 recipes for each user
+  recipes = []
   40.times do |i|
     begin
       recipe = Recipe.new(
@@ -50,18 +54,18 @@ users.each do |user_data|
         sharable: [ true, false ].sample
       )
 
-      # Create ingredients FIRST (minimum 2, maximum 6)
-      ingredients_count = rand(2..6)
+      ingredients_count = rand(2..3)
+      units = [ 'cups', 'tablespoons', 'teaspoons', 'oz', 'grams', 'lbs' ]
       ingredients = ingredients_count.times.map do
         {
           name: Faker::Food.ingredient,
-          amount: "#{rand(1..4)} #{[ 'cup', 'tablespoon', 'teaspoon', 'oz', 'grams', 'lbs' ].sample}"
+          amount: "#{rand(2..4)} #{units.sample}"
         }
       end
 
-      # Build recipe items before saving recipe
       recipe.recipe_items.build(ingredients)
       recipe.save!
+      recipes << recipe
 
       puts "   🍳 Created recipe '#{recipe.name}' with #{ingredients_count} ingredients"
     rescue => e
@@ -69,14 +73,56 @@ users.each do |user_data|
     end
   end
 
-  20.times do |i|
-    # Retry logic in case of failures
+  # Select 2–5 random recipes for pantry item matching
+  selected_recipes = recipes.sample(rand(2..5))
+  puts "   📋 Selected #{selected_recipes.size} recipes for pantry item matching"
+
+  # Collect all recipe items from selected recipes
+  matching_recipe_items = selected_recipes.flat_map do |recipe|
+    recipe.recipe_items.map do |item|
+      { name: item.name, amount: item.amount, unit: item.amount.split.last }
+    end
+  end.uniq { |item| [ item[:name], item[:unit] ] } # Ensure unique name-unit pairs
+
+  # Create pantry items that match recipe items
+  matching_recipe_items.each do |item|
     begin
+      recipe_amount = item[:amount].split.first.to_f
+      pantry_quantity = "#{rand((recipe_amount * 1.5).to_i..10)} #{item[:unit]}"
 
-      # Get 1-3 random recipes from this user (at least 1)
+      pantry_item = PantryItem.create!(
+        user: user,
+        name: item[:name],
+        barcode: Faker::Barcode.unique.ean(13),
+        quantity: pantry_quantity
+      )
+      puts "   🥫 Created pantry item '#{pantry_item.name}' (#{pantry_item.quantity}) matching recipe for #{user.email}"
+    rescue => e
+      puts "   ❌ Failed to create pantry item: #{e.message}"
+    end
+  end
+
+  # Fill the rest of the pantry with random items
+  target_pantry_items = rand(75..100)
+  remaining_items = [ target_pantry_items - matching_recipe_items.size, 0 ].max
+  remaining_items.times do
+    begin
+      pantry_item = PantryItem.create!(
+        user: user,
+        name: Faker::Food.ingredient,
+        barcode: Faker::Barcode.unique.ean(13),
+        quantity: "#{rand(3..5)} #{[ 'cups', 'tablespoons', 'teaspoons', 'oz', 'grams', 'lbs' ].sample}"
+      )
+      puts "   🥫 Created pantry item '#{pantry_item.name}' for #{user.email}"
+    rescue => e
+      puts "   ❌ Failed to create pantry item: #{e.message}"
+    end
+  end
+
+  # Create 20 meals for each user
+  20.times do |i|
+    begin
       recipes = user.recipes.sample(rand(1..3))
-
-      # Build the meal with mandatory recipe association
       meal = Meal.create!(
         user: user,
         name: "#{Faker::Food.dish}",
@@ -85,13 +131,11 @@ users.each do |user_data|
         sharable: [ true, false ].sample
       )
 
-      # Create the recipe associations
       recipes.each do |recipe|
         meal.meal_recipes.create!(recipe: recipe)
       end
 
       puts "✅ Created meal '#{meal.name}' with #{meal.recipes.count} recipes"
-
     rescue => e
       puts "❌ Failed to create meal: #{e.message}"
     end
@@ -100,6 +144,7 @@ end
 
 puts "🌱 Seeding complete!"
 puts "   Total users: #{User.count}"
+puts "   Total pantry items: #{PantryItem.count}"
 puts "   Total recipes: #{Recipe.count}"
 puts "   Total recipe items: #{RecipeItem.count}"
 puts "   Total meals: #{Meal.count}"
