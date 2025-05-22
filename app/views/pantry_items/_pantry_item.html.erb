@@ -1,17 +1,11 @@
 <div id="<%= dom_id pantry_item %>" class="pantry-item">
-  <% if pantry_item.img_url.present? %>
-    <div class="image-container">
-      <%= image_tag pantry_item.img_url,
-                   class: "image-card",
-                   loading: "lazy",
-                   alt: pantry_item.name %>
-    </div>
-  <% end %>
+  <div class="image-container">
+    <%= image_tag pantry_item.img_url if pantry_item.img_url.present? %>
+  </div>
   <p class="centered-text padded">
     <%= pantry_item.name %>
   </p>
-
-  <% if local_assigns[:show_barcode]%>
+  <% if local_assigns[:show_barcode] %>
     <p class="centered-text padded">
       <strong>Barcode:</strong>
       <%= pantry_item.barcode %>

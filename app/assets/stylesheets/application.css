@@ -616,13 +616,15 @@ input:-ms-input-placeholder { /* IE 10-11 */
   display: grid;
   grid-template-rows: auto 1fr;
   height: 100%;
+  max-width: 300px; /* From new styles, adjustable */
   background-color: #DAD2BC;
   border: 2px solid #252323;
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.2s;
   place-items: center;
-  margin: auto;
+  margin: 1rem auto; /* Combined margin from old and new */
+  padding: 1rem;
 }
 .pantry-item:hover {
   transform: translateY(-10px);
@@ -630,12 +632,13 @@ input:-ms-input-placeholder { /* IE 10-11 */
 }
 @media (max-width: 768px) {
   .pantry-item {
-    width: max(-moz-fit-content);
-    width: max(fit-content);
-    width: 10rem;
+    width: -moz-fit-content;
+    width: fit-content;
+    min-width: 10rem; /* Simplified from max/min */
   }
 }
 
+/* Optional food container, if used elsewhere */
 .food-container {
   width: 15rem;
   height: -moz-fit-content;
@@ -643,25 +646,62 @@ input:-ms-input-placeholder { /* IE 10-11 */
   margin: 0 auto;
 }
 
+/* Image container to maintain aspect ratio */
 .image-container {
-  aspect-ratio: 8.5/11;
+  width: 100%;
+  aspect-ratio: 8.5/11; /* Maintains 8.5/11 aspect ratio */
+  min-height: 10rem; /* From old styles */
+  position: relative;
+  overflow: hidden;
   background: #A99985;
   display: flex;
-  min-height: 10rem;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   border-radius: 4px;
   border: 1px solid #938068;
 }
 
-.image-card {
+/* Styling for actual images */
+.image-container img {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
-     object-fit: contain;
+     object-fit: contain; /* From old styles, keeps image fully visible */
   -o-object-position: center;
      object-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Placeholder styling when no image is provided */
+.image-container:empty::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, #A99985 25%, #938068 25%, #938068 50%, #A99985 50%, #A99985 75%, #938068 75%, #938068);
+  background-size: 20px 20px; /* Consistent with new styles */
+}
+
+/* Placeholder text overlay */
+.image-container:empty::after {
+  content: "No Image";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #666;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
 }
 
 /* ======================
