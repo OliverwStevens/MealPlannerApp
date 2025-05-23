@@ -7,13 +7,15 @@
   <% end %>
 
 </div>
-<h1 class="centered-text title-text">Your Pantry</h1>
 
-<div class="header-container">
-  <h1 class="padded">You have <%= @total_pantry_items_count %> items in your pantry</h1>
+<div class="padded header-container">
+  <h1 class="padded left-margin">You have <%= @total_pantry_items_count %> items in your pantry</h1>
   <%= link_to  "View Inventory", inventory_pantry_items_path, class: "centered-text basic-green-btn"%> 
 
 </div>
+
+<h1 class="centered-text title-text">Your Pantry</h1>
+
 <% if @total_pantry_items_count == 0 %>
   <h2 class="centered-big-title padded"> You need to go shopping! </h2>
 <%end%>

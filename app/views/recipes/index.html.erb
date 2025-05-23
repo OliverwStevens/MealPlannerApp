@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Recipes" %>
-<p> You have <%= @total_recipes_count %> recipe(s). </p>
+<p class="padded left-margin"> You have <%= @total_recipes_count %> recipe(s). </p>
 
 <div class="floating-right-btn-container">
   <%= link_to new_recipe_path, class: "floating-green-button" do %>

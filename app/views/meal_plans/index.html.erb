@@ -11,7 +11,8 @@
     <% end %>
 
     <!-- Date Selection Form -->
-    <div class="meal-plan-date-selector">
+    <p class="left-margin"> Week of: </p>
+    <div class="padded meal-plan-date-selector">
       <%= form_with url: meal_plans_path, method: :get, class: "meal-plan-form" do |f| %>
         <div class="form-field">
           <%= f.date_field :start_date, value: @start_date, class: "form-input" %>

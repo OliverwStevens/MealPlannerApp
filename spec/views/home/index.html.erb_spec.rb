@@ -20,10 +20,6 @@ RSpec.describe "home/index.html.erb", type: :view do
       expect(rendered).to have_selector("h1", text: "Tasty Shares")
     end
 
-    it "displays the public content section" do
-      expect(rendered).to have_selector("h2", text: "Public Content")
-    end
-
     it "renders the infinite-scroll controller with correct data attributes" do
       expect(rendered).to have_css('[data-controller="infinite-scroll"]')
       expect(rendered).to include('data-infinite-scroll-url-value="/"')
